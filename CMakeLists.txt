@@ -1,16 +1,17 @@
-cmake_minimum_required(VERSION 3.14)
+cmake_minimum_required(VERSION 3.24.2)
 
 project(NotificationManager
     VERSION 0.1
     DESCRIPTION ""
     LANGUAGES CXX)
 
-set(CMAKE_AUTOUIC ON)
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_AUTOMOC ON)
-set(CMAKE_AUTORCC ON)
-set(CMAKE_CXX_STANDARD 20)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+find_package(Qt5 REQUIRED COMPONENTS Widgets Quick)
+
+add_subdirectory(app)
 add_subdirectory(core)
-add_subdirectory(logicPlugin)
-add_subdirectory(interfacePlugin)
+add_subdirectory(plugins)
+add_subdirectory(third_party)
+add_subdirectory(translations)

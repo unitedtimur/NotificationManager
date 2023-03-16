@@ -1,0 +1,2 @@
+add_subdirectory(interfacePlugin)
+add_subdirectory(logicPlugin)

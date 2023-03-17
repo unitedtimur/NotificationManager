@@ -1,2 +1,3 @@
-add_subdirectory(interfacePlugin)
-add_subdirectory(logicPlugin)
+PARSE_SUBDIRECTORIES(
+    interface
+    logic)

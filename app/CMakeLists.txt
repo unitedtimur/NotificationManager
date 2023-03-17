@@ -13,14 +13,16 @@ set(QT_COMPONENTS
     Core
     QuickControls2)
 
+set(HEADERS ...)
+
+set(SOURCES ...)
+
+set(UI_FILES ...)
+
+set(RESOURCES ...)
+
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS ${QT_COMPONENTS})
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS ${QT_COMPONENTS})
-
-INCLUDE_SOURCES(${PROJECT_NAME} DIR src)
-
-if (WIN32)
-    list(APPEND SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/src/resources.rc")
-endif()
 
 add_executable(${PROJECT_NAME}
     ${HEADERS}
@@ -36,9 +38,3 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
     Qt${QT_VERSION_MAJOR}::QuickControls2
     notification_manager::core
 )
-
-INSTALL_PREFIX(TARGET_NAME ${PROJECT_NAME} CATEGORY binary)
-
-if(WIN32)
-    set_target_properties(${PROJECT_NAME} PROPERTIES WIN32_EXECUTABLE TRUE)
-endif()

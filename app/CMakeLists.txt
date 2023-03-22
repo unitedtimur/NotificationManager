@@ -1,10 +1,8 @@
 project(manager_app
-    VERSION 0.1
+    VERSION 0.0.1
     LANGUAGES CXX)
 
-set(CMAKE_AUTOMOC ON)
-set(CMAKE_AUTORCC ON)
-set(CMAKE_AUTOUIC ON)
+AUTO_BUILD_RESOURCES_QT5()
 
 set(QT_COMPONENTS
     Core Widgets
@@ -13,13 +11,21 @@ set(QT_COMPONENTS
     Core
     QuickControls2)
 
+add_executable(${PROJECT_NAME} ${CMAKE_CURRENT_LIST_DIR}/src/main.cpp)
+
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS ${QT_COMPONENTS})
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS ${QT_COMPONENTS})
+
+target_include_directories(
+        ${PROJECT_NAME}
+        PRIVATE
+        ${CMAKE_CURRENT_LIST_DIR}/../core/include
+)
 
 target_link_libraries(${PROJECT_NAME} PRIVATE
     Qt${QT_VERSION_MAJOR}::Widgets
     Qt${QT_VERSION_MAJOR}::QuickWidgets
     Qt${QT_VERSION_MAJOR}::Core
     Qt${QT_VERSION_MAJOR}::QuickControls2
-    notification_manager::core
+    core
 )

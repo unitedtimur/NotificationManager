@@ -1,7 +1,7 @@
 macro(PARSE_SUBDIRECTORIES)
     foreach(arg IN ITEMS ${ARGN})
         add_subdirectory(${arg})
-  endforeach()
+    endforeach()
 endmacro()
 
 macro(AUTO_BUILD_RESOURCES_QT5)

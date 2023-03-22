@@ -1,6 +1,6 @@
 macro(PARSE_SUBDIRECTORIES)
-    foreach(arg IN LISTS ARGN)
-        add_subdirectory(arg)
+    foreach(arg IN ITEMS ${ARGN})
+        add_subdirectory(${arg})
   endforeach()
 endmacro()
 

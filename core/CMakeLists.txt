@@ -5,7 +5,7 @@ set(SOURCES ${CMAKE_CURRENT_LIST_DIR}/src/core.cpp)
 
 add_library(
         core
-        SHARED
+        STATIC
         ${HEADERS}
         ${SOURCES}
 )

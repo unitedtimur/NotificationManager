@@ -1,0 +1,27 @@
+project(interface_plugin)
+
+set(HEADERS ${CMAKE_CURRENT_LIST_DIR}/include/interface.h)
+set(SOURCES ${CMAKE_CURRENT_LIST_DIR}/src/interface.cpp)
+
+add_library(
+        interface_plugin
+        SHARED
+        ${HEADERS}
+        ${SOURCES}
+)
+
+set(QT_COMPONENTS
+        Core Widgets
+        LinguistTools
+        QuickWidgets
+        Core
+        QuickControls2)
+
+find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS ${QT_COMPONENTS})
+find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS ${QT_COMPONENTS})
+
+set_target_properties(
+        core PROPERTIES
+        CXX_STANDARD 20
+        CXX_STANDARD_REQUIRED ON
+)

@@ -1,5 +1,7 @@
-//#include "core.h"
 #include <iostream>
+#include "core.h"
+#include "interface.h"
+#include "logic.h"
 
 namespace core {
     void init() {

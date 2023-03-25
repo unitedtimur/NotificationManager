@@ -20,6 +20,12 @@ set(QT_COMPONENTS
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS ${QT_COMPONENTS})
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS ${QT_COMPONENTS})
 
+target_include_directories(
+        ${PROJECT_NAME}
+        PUBLIC
+        ${CMAKE_CURRENT_LIST_DIR}/include
+)
+
 set_target_properties(
         core PROPERTIES
         CXX_STANDARD 20

@@ -22,7 +22,7 @@ find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS ${QT_COMPONENTS})
 
 target_include_directories(
         ${PROJECT_NAME}
-        PRIVATE
+        PUBLIC
         ${CMAKE_CURRENT_LIST_DIR}/include
 )
 

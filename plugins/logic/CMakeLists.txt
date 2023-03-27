@@ -9,6 +9,7 @@ add_library(
         ${HEADERS}
         ${SOURCES}
 )
+add_library(${PROJECT_NAMESPACE}::${PROJECT_NAME} ALIAS ${PROJECT_NAME})
 
 set(QT_COMPONENTS
         Core Widgets
@@ -17,8 +18,7 @@ set(QT_COMPONENTS
         Core
         QuickControls2)
 
-find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS ${QT_COMPONENTS})
-find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS ${QT_COMPONENTS})
+FIND_AND_LINK_QT()
 
 target_include_directories(
         ${PROJECT_NAME}
@@ -26,8 +26,4 @@ target_include_directories(
         ${CMAKE_CURRENT_LIST_DIR}/include
 )
 
-set_target_properties(
-        core PROPERTIES
-        CXX_STANDARD 20
-        CXX_STANDARD_REQUIRED ON
-)
+SET_BASE_TARGET_PROPERTIES(${PROJECT_NAME})

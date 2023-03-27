@@ -6,4 +6,5 @@ int main() {
     core::init();
 
     // start core
+    return 0;
 }

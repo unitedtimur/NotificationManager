@@ -1,1 +1,1 @@
-include(${CMAKE_CURRENT_LIST_DIR}/foo.cmake)
+include(${CMAKE_CURRENT_LIST_DIR}/macro.cmake)

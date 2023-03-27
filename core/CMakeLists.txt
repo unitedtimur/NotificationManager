@@ -1,7 +1,8 @@
 project(core)
-
-set(HEADERS ${CMAKE_CURRENT_LIST_DIR}/include/core.h)
-set(SOURCES ${CMAKE_CURRENT_LIST_DIR}/src/core.cpp)
+file(GLOB_RECURSE SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/*.cpp)
+file(GLOB_RECURSE HEADERS ${CMAKE_CURRENT_SOURCE_DIR}/*.h)
+#set(HEADERS ${CMAKE_CURRENT_LIST_DIR}/include/core.h ${CMAKE_CURRENT_LIST_DIR}/include/base_interface.h ${CMAKE_CURRENT_LIST_DIR}/include/namespace.h ${CMAKE_CURRENT_LIST_DIR}/include/gui_interface.h)
+#set(SOURCES ${CMAKE_CURRENT_LIST_DIR}/src/core.cpp)
 
 add_library(
         core

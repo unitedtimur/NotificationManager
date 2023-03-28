@@ -2,7 +2,7 @@
 #define GUI_INTERFACE_H
 #include "base_interface.h"
 
-namespace core {
+namespace Сore {
 
     class GuiInterface : public BaseInterface
     {
@@ -15,6 +15,6 @@ namespace core {
     };
 
 }
-Q_DECLARE_INTERFACE(core::GuiInterface, "com.core.GuiInterface")
+Q_DECLARE_INTERFACE(Сore::GuiInterface, "com.core.GuiInterface")
 
 #endif // GUI_INTERFACE_H

@@ -18,7 +18,7 @@ set(QT_COMPONENTS
         Core
         QuickControls2)
 
-FIND_AND_LINK_QT()
+FIND_AND_LINK_QT("${QT_COMPONENTS}")
 
 target_include_directories(
         ${PROJECT_NAME}

@@ -1,7 +1,7 @@
 project(core)
 
-set(HEADERS ${CMAKE_CURRENT_LIST_DIR}/include/core.h)
-set(SOURCES ${CMAKE_CURRENT_LIST_DIR}/src/core.cpp)
+file(GLOB_RECURSE SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/*.cpp)
+file(GLOB_RECURSE HEADERS ${CMAKE_CURRENT_SOURCE_DIR}/*.h)
 
 add_library(core STATIC ${HEADERS} ${SOURCES})
 add_library(${PROJECT_NAMESPACE}::${PROJECT_NAME} ALIAS ${PROJECT_NAME})
@@ -18,8 +18,10 @@ target_include_directories(
         PUBLIC
         ${CMAKE_CURRENT_LIST_DIR}/include
 )
-
-FIND_AND_LINK_QT()
+find_package(QT NAMES Qt6 Qt5 COMPONENTS Core Quick REQUIRED)
+find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core Quick REQUIRED)
+target_link_libraries(core
+  PRIVATE Qt${QT_VERSION_MAJOR}::Core)
 target_link_libraries(
         ${PROJECT_NAME} PRIVATE
         ${PROJECT_NAMESPACE}::interface_plugin

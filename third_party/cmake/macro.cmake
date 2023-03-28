@@ -18,19 +18,17 @@ macro(SET_BASE_TARGET_PROPERTIES target)
     )
 endmacro()
 
-macro(FIND_AND_LINK_QT components)
+macro(FIND_AND_LINK_QT)
     # say that we want to find a Qt6 or Qt5 package
-    find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS ${components})
+    find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS ${ARGV})
 
     # say that we need such components from the found package
-    find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS ${components})
-    message(${components})
-    foreach(component IN LISTS components)
-        message(component)
+    find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS ${ARGV})
+    foreach(component IN ITEMS ${ARGV})
         target_link_libraries(
                 ${PROJECT_NAME}
                 PRIVATE
-                Qt${QT_VERSION_MAJOR}::component
+                Qt${QT_VERSION_MAJOR}::${component}
         )
     endforeach()
 endmacro()

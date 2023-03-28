@@ -13,7 +13,6 @@ add_library(${PROJECT_NAMESPACE}::${PROJECT_NAME} ALIAS ${PROJECT_NAME})
 
 set(QT_COMPONENTS
         Core Widgets
-        LinguistTools
         QuickWidgets
         Core
         QuickControls2)

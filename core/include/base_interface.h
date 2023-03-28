@@ -1,13 +1,8 @@
 #ifndef BASE_INTERFACE_H
 #define BASE_INTERFACE_H
-#pragma once
-
 #include <QObject>
-#include <QList>
-#include <QPointer>
 
-namespace base_interface_namespace {
-
+namespace core {
     class BaseInterface : public QObject
     {
         Q_OBJECT
@@ -18,6 +13,6 @@ namespace base_interface_namespace {
         virtual bool initialize(const QList<QPointer<QObject>> &dependencies) = 0;
     };
 }
-Q_DECLARE_INTERFACE(base_interface_namespace::BaseInterface, "com.сore.BaseInterface")
+Q_DECLARE_INTERFACE(core::BaseInterface, "com.сore.BaseInterface")
 
 #endif // BASE_INTERFACE_H

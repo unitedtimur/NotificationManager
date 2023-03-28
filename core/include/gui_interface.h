@@ -1,12 +1,10 @@
 #ifndef GUI_INTERFACE_H
 #define GUI_INTERFACE_H
-
-
 #include "base_interface.h"
 
-namespace gui_interface_namespace {
+namespace core {
 
-    class GuiInterface : public base_interface_namespace::BaseInterface
+    class GuiInterface : public BaseInterface
     {
         Q_OBJECT
         Q_INTERFACES(BaseInterface)
@@ -17,6 +15,6 @@ namespace gui_interface_namespace {
     };
 
 }
-Q_DECLARE_INTERFACE(gui_interface_namespace::GuiInterface, "com.core.GuiInterface")
+Q_DECLARE_INTERFACE(core::GuiInterface, "com.core.GuiInterface")
 
 #endif // GUI_INTERFACE_H

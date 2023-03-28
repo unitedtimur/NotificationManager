@@ -8,7 +8,6 @@ add_library(${PROJECT_NAMESPACE}::${PROJECT_NAME} ALIAS ${PROJECT_NAME})
 
 set(QT_COMPONENTS
         Core Widgets
-        LinguistTools
         QuickWidgets
         Core
         QuickControls2)
@@ -19,7 +18,7 @@ target_include_directories(
         ${CMAKE_CURRENT_LIST_DIR}/include
 )
 
-FIND_AND_LINK_QT()
+FIND_AND_LINK_QT("${QT_COMPONENTS}")
 target_link_libraries(
         ${PROJECT_NAME} PRIVATE
         ${PROJECT_NAMESPACE}::interface_plugin

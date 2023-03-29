@@ -2,22 +2,17 @@ project(core)
 file(GLOB_RECURSE SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/*.cpp)
 file(GLOB_RECURSE HEADERS ${CMAKE_CURRENT_SOURCE_DIR}/*.h)
 
-add_library(
-        core
-        STATIC
-        ${HEADERS}
-        ${SOURCES}
-)
+file(GLOB_RECURSE SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/*.cpp)
+file(GLOB_RECURSE HEADERS ${CMAKE_CURRENT_SOURCE_DIR}/*.h)
+
+add_library(core STATIC ${HEADERS} ${SOURCES})
+add_library(${PROJECT_NAMESPACE}::${PROJECT_NAME} ALIAS ${PROJECT_NAME})
 
 set(QT_COMPONENTS
         Core Widgets
-        LinguistTools
         QuickWidgets
         Core
         QuickControls2)
-
-find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS ${QT_COMPONENTS})
-find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS ${QT_COMPONENTS})
 
 target_include_directories(
         ${PROJECT_NAME}
@@ -25,16 +20,6 @@ target_include_directories(
         ${CMAKE_CURRENT_LIST_DIR}/include
 )
 
-target_link_libraries(${PROJECT_NAME} PRIVATE
-        Qt${QT_VERSION_MAJOR}::Widgets
-        Qt${QT_VERSION_MAJOR}::QuickWidgets
-        Qt${QT_VERSION_MAJOR}::Core
-        Qt${QT_VERSION_MAJOR}::QuickControls2
-        interface_plugin
-        logic_plugin)
+FIND_AND_LINK_QT("${QT_COMPONENTS}")
 
-set_target_properties(
-        core PROPERTIES
-        CXX_STANDARD 20
-        CXX_STANDARD_REQUIRED ON
-)
+SET_BASE_TARGET_PROPERTIES(${PROJECT_NAME})

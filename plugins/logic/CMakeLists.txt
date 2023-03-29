@@ -11,6 +11,9 @@ add_library(
 )
 add_library(${PROJECT_NAMESPACE}::${PROJECT_NAME} ALIAS ${PROJECT_NAME})
 
+include(GenerateExportHeader)
+generate_export_header(${PROJECT_NAME})
+
 set(QT_COMPONENTS
         Core Widgets
         QuickWidgets

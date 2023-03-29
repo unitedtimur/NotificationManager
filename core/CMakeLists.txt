@@ -6,6 +6,9 @@ file(GLOB_RECURSE HEADERS ${CMAKE_CURRENT_SOURCE_DIR}/*.h)
 add_library(core STATIC ${HEADERS} ${SOURCES})
 add_library(${PROJECT_NAMESPACE}::${PROJECT_NAME} ALIAS ${PROJECT_NAME})
 
+include(GenerateExportHeader)
+generate_export_header(${PROJECT_NAME})
+
 set(QT_COMPONENTS
         Core Widgets
         QuickWidgets

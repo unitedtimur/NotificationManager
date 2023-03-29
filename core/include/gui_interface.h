@@ -4,13 +4,21 @@
 #include "base_interface.h"
 
 namespace Сore {
+    /*!
+     * \brief Класс, реализующий плагин интерфейса(то есть в дальнейшем здесь будут описаны все
+     * методы, классы, которые понадобяться для реализации задачи отображения графических элементов,
+     * а сам GuiInerface будет собран в библиотеку)
+     */
     class GuiInterface : public BaseInterface
     {
         Q_OBJECT
         Q_INTERFACES(BaseInterface)
 
     public:
-        virtual ~GuiInterface() = default;        
+        /*!
+         * \brief Виртуальный деструктор с определением в заголовочном файле
+         */
+        virtual ~GuiInterface() = default;
     };
 }
 

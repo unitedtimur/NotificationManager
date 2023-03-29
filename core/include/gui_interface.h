@@ -1,6 +1,8 @@
 #ifndef GUI_INTERFACE_H
 #define GUI_INTERFACE_H
+
 #include "base_interface.h"
+
 namespace Сore {
     class GuiInterface : public BaseInterface
     {
@@ -8,8 +10,7 @@ namespace Сore {
         Q_INTERFACES(BaseInterface)
 
     public:
-        virtual ~GuiInterface() = default;
-        virtual bool initialize(const QList<QPointer<QObject>> &dependencies);
+        virtual ~GuiInterface() = default;        
     };
 }
 

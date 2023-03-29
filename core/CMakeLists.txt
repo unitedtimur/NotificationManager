@@ -19,10 +19,5 @@ target_include_directories(
 )
 
 FIND_AND_LINK_QT("${QT_COMPONENTS}")
-target_link_libraries(
-        ${PROJECT_NAME} PRIVATE
-        ${PROJECT_NAMESPACE}::interface_plugin
-        ${PROJECT_NAMESPACE}::logic_plugin
-)
 
 SET_BASE_TARGET_PROPERTIES(${PROJECT_NAME})

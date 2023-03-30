@@ -3,7 +3,7 @@
 
 #include <QObject>
 
-namespace Сore {
+namespace Core {
     /*!
      * \brief Класс, являющийся базовым интерфейсом, от него будут наследоваться плагины логики и
      * gui
@@ -29,5 +29,5 @@ namespace Сore {
     };
 }
 
-Q_DECLARE_INTERFACE(Сore::BaseInterface, "com.сore.BaseInterface")
+Q_DECLARE_INTERFACE(Core::BaseInterface, "com.Core.BaseInterface")
 #endif // BASE_INTERFACE_H

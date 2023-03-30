@@ -3,11 +3,11 @@
 
 #include "base_interface.h"
 
-namespace Сore {
+namespace Core {
     /*!
      * \brief Класс, реализующий плагин интерфейса(то есть в дальнейшем здесь будут описаны все
      * методы, классы, которые понадобяться для реализации задачи отображения графических элементов,
-     * а сам GuiInerface будет собран в библиотеку)
+     * а сам GuiInterface будет собран в библиотеку)
      */
     class GuiInterface : public BaseInterface
     {
@@ -22,5 +22,5 @@ namespace Сore {
     };
 }
 
-Q_DECLARE_INTERFACE(Сore::GuiInterface, "com.core.GuiInterface")
+Q_DECLARE_INTERFACE(Core::GuiInterface, "com.Core.GuiInterface")
 #endif // GUI_INTERFACE_H

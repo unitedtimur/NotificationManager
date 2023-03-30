@@ -1,7 +1,5 @@
 #pragma once
 
-namespace Сore {
+namespace Core {
     void init();
 }
-
-

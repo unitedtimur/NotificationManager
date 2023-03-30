@@ -1,9 +1,10 @@
 #include <iostream>
 #include "core.h"
 
-int main() {
+int main()
+{
     std::cout << "app started" << std::endl;
-    core::init();
+    Core::init();
 
     // start core
     return 0;

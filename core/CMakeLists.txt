@@ -1,4 +1,6 @@
-project(core)
+project(core
+    VERSION 0.0.1
+    LANGUAGES CXX)
 
 INCLUDE_SOURCES(${PROJECT_NAME})
 

@@ -16,6 +16,7 @@ target_include_directories(
         PUBLIC
         ${CMAKE_CURRENT_LIST_DIR}/include
 )
+
 FIND_AND_LINK_QT("${QT_COMPONENTS}")
 
 SET_BASE_TARGET_PROPERTIES(${PROJECT_NAME})

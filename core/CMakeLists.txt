@@ -1,5 +1,4 @@
 project(core)
-
 file(GLOB_RECURSE SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/*.cpp)
 file(GLOB_RECURSE HEADERS ${CMAKE_CURRENT_SOURCE_DIR}/*.h)
 
@@ -18,10 +17,5 @@ target_include_directories(
         ${CMAKE_CURRENT_LIST_DIR}/include
 )
 FIND_AND_LINK_QT("${QT_COMPONENTS}")
-target_link_libraries(
-        ${PROJECT_NAME} PRIVATE
-        ${PROJECT_NAMESPACE}::interface_plugin
-        ${PROJECT_NAMESPACE}::logic_plugin
-)
 
 SET_BASE_TARGET_PROPERTIES(${PROJECT_NAME})

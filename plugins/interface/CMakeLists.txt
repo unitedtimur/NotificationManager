@@ -1,7 +1,7 @@
 project(interface_plugin)
 
-set(HEADERS ${CMAKE_CURRENT_LIST_DIR}/include/interface.h)
-set(SOURCES ${CMAKE_CURRENT_LIST_DIR}/src/interface.cpp)
+file(GLOB_RECURSE SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/*.cpp)
+file(GLOB_RECURSE HEADERS ${CMAKE_CURRENT_SOURCE_DIR}/*.h)
 
 add_library(
         interface_plugin

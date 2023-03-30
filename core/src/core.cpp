@@ -1,10 +1,9 @@
 #include <iostream>
 #include "core.h"
-#include "interface.h"
-#include "logic.h"
 
-namespace core {
-    void init() {
+namespace Core {
+    void init()
+    {
         std::cout << "Core init" << std::endl;
     }
 }

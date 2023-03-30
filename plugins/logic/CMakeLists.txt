@@ -1,7 +1,6 @@
 project(logic_plugin)
 
-file(GLOB_RECURSE SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/*.cpp)
-file(GLOB_RECURSE HEADERS ${CMAKE_CURRENT_SOURCE_DIR}/*.h)
+INCLUDE_SOURCES(${PROJECT_NAME})
 
 add_library(
         logic_plugin

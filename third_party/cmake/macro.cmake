@@ -32,3 +32,56 @@ macro(FIND_AND_LINK_QT)
         )
     endforeach()
 endmacro()
+
+macro(INCLUDE_SOURCES NAME)
+    # Макрос ищет все исходники в проекте и формирует группу из них
+    set(_OPTIONS_ARGS NOT_RECURSIVE)
+    set(_ONE_VALUE_ARGS DIR)
+    set(_MULTI_VALUE_ARGS EXCLUDE_LIST)
+
+    cmake_parse_arguments(_INCLUDE_SOURCES
+        "${_OPTIONS_ARGS}"
+        "${_ONE_VALUE_ARGS}"
+        "${_MULTI_VALUE_ARGS}"
+        ${ARGN})
+
+    if (NOT _INCLUDE_SOURCES_DIR)
+        set(_INCLUDE_SOURCES_DIR ${CMAKE_CURRENT_SOURCE_DIR})
+    endif()
+
+    if (_INCLUDE_SOURCES_NOT_RECURSIVE)
+        set(RECURSIVE_FLAG GLOB)
+    else()
+        set(RECURSIVE_FLAG GLOB_RECURSE)
+    endif()
+
+    # Ищем исходники в подпроекте, исходя из переменной DIR
+    file(${RECURSIVE_FLAG} HEADERS ${_INCLUDE_SOURCES_DIR}/*.h)
+    file(${RECURSIVE_FLAG} SOURCES ${_INCLUDE_SOURCES_DIR}/*.cpp *.cc)
+    file(${RECURSIVE_FLAG} RESOURCES ${_INCLUDE_SOURCES_DIR}/*.qrc)
+    file(${RECURSIVE_FLAG} MANIFESTS ${_INCLUDE_SOURCES_DIR}/*.rc README.txt)
+    file(${RECURSIVE_FLAG} METADATA ${_INCLUDE_SOURCES_DIR}/*.json README.txt)
+    file(${RECURSIVE_FLAG} UI_FILES ${_INCLUDE_SOURCES_DIR}/*.ui)
+
+    # Исключаем файлы, которые были переданы в EXCLUDE_LIST
+    foreach(EXCLUDE_FILE ${_INCLUDE_SOURCES_EXCLUDE_LIST})
+        set(REGEX "^(.*)${EXCLUDE_FILE}(.*)$")
+        list(FILTER HEADERS EXCLUDE REGEX ${REGEX})
+        list(FILTER SOURCES EXCLUDE REGEX ${REGEX})
+        list(FILTER RESOURCES EXCLUDE REGEX ${REGEX})
+        list(FILTER MANIFESTS EXCLUDE REGEX ${REGEX})
+        list(FILTER METADATA EXCLUDE REGEX ${REGEX})
+        list(FILTER UI_FILES EXCLUDE REGEX ${REGEX})
+    endforeach()
+
+    # Выделяем группу исходников (для отображения в IDE)
+    source_group("Header Files" FILES ${HEADERS})
+    source_group("Source Files" FILES ${SOURCES})
+    source_group("Resources" FILES ${RESOURCES})
+    source_group("Manifests" FILES ${MANIFESTS})
+    source_group("Proto Files" FILES ${PROTOS})
+    source_group("Metadata Files" FILES ${METADATA})
+    source_group("UI Files" FILES ${UI_FILES})
+
+    message(STATUS "CONFIGURED SOURCES FOR ${NAME}")
+endmacro()

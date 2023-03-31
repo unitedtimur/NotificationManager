@@ -18,7 +18,7 @@ namespace Core {
         /*!
          * \brief Виртуальный деструктор с определением в заголовочном файле
          */
-        ~LogicInterface() = default;
+        virtual ~LogicInterface() = default;
     };
 }
 Q_DECLARE_INTERFACE(Core::LogicInterface, "com.Core.LogicInterface")

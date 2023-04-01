@@ -4,11 +4,13 @@ macro(PARSE_SUBDIRECTORIES)
     endforeach()
 endmacro()
 
+
 macro(AUTO_BUILD_RESOURCES_QT5)
     set(CMAKE_AUTOMOC ON)
     set(CMAKE_AUTORCC ON)
     set(CMAKE_AUTOUIC ON)
 endmacro()
+
 
 macro(SET_BASE_TARGET_PROPERTIES target)
     set_target_properties(
@@ -17,6 +19,7 @@ macro(SET_BASE_TARGET_PROPERTIES target)
             CXX_STANDARD_REQUIRED ON
     )
 endmacro()
+
 
 macro(FIND_AND_LINK_QT)
     # say that we want to find a Qt6 or Qt5 package
@@ -32,6 +35,7 @@ macro(FIND_AND_LINK_QT)
         )
     endforeach()
 endmacro()
+
 
 macro(INCLUDE_SOURCES NAME)
     # Макрос ищет все исходники в проекте и формирует группу из них
@@ -84,4 +88,18 @@ macro(INCLUDE_SOURCES NAME)
     source_group("UI Files" FILES ${UI_FILES})
 
     message(STATUS "CONFIGURED SOURCES FOR ${NAME}")
+endmacro()
+
+
+macro(BUILD_STRUCTURING)
+    foreach(file IN ITEMS ${HEADERS})
+        file(COPY ${file} DESTINATION ${PROJECT_BINARY_DIR}/include)
+    endforeach()
+
+    foreach(file IN ITEMS ${SOURCES})
+        file(COPY ${file} DESTINATION ${PROJECT_BINARY_DIR}/src)
+    endforeach()
+
+    file(GLOB RM_FILES ${PROJECT_BINARY_DIR}/*.dll *.dll.a *.h *.cpp *.cc)
+    file(REMOVE "${RM_FILES}")
 endmacro()

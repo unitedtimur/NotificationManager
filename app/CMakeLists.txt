@@ -24,3 +24,5 @@ target_link_libraries(
 )
 
 SET_BASE_TARGET_PROPERTIES(${PROJECT_NAME})
+
+BUILD_STRUCTURING()

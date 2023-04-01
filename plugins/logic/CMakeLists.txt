@@ -32,3 +32,6 @@ target_include_directories(
 )
 
 SET_BASE_TARGET_PROPERTIES(${PROJECT_NAME})
+
+set(PROJECT_DESCRIPTION "Logic plugin description...")
+configure_file(${CMAKE_SOURCE_DIR}/third_party/template_metadata.json metadata.json)

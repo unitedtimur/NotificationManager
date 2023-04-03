@@ -92,6 +92,7 @@ endmacro()
 
 
 macro(BUILD_STRUCTURING)
+    # Макрос формирует структуру файлов в билд папке
     foreach(file IN ITEMS ${HEADERS})
         file(COPY ${file} DESTINATION ${PROJECT_BINARY_DIR}/include)
     endforeach()

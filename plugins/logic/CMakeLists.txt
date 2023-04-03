@@ -2,7 +2,7 @@ project(logic_plugin)
 
 file(GLOB_RECURSE SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/*.cpp)
 file(GLOB_RECURSE HEADERS ${CMAKE_CURRENT_SOURCE_DIR}/*.h)
-
+AUTO_BUILD_RESOURCES_QT5()
 add_library(
         logic_plugin
         SHARED
@@ -28,5 +28,10 @@ target_link_libraries(
     ${PROJECT_NAME}
     PUBLIC
     core
+)
+target_link_libraries(
+    ${PROJECT_NAME}
+    PUBLIC
+    common
 )
 SET_BASE_TARGET_PROPERTIES(${PROJECT_NAME})

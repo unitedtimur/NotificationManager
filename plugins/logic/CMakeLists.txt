@@ -19,13 +19,7 @@ set_target_properties(${PROJECT_NAME}
     RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/lib
 )
 
-include(GenerateExportHeader)
-generate_export_header(${PROJECT_NAME})
-file(COPY ${PROJECT_BINARY_DIR}/${PROJECT_NAME}_export.h
-        DESTINATION ${CMAKE_CURRENT_SOURCE_DIR}/include)
-file(COPY ${PROJECT_BINARY_DIR}/${PROJECT_NAME}_export.h
-        DESTINATION ${PROJECT_BINARY_DIR}/include)
-file(REMOVE ${PROJECT_BINARY_DIR}/${PROJECT_NAME}_export.h)
+GENERATE_EXPORT_HEADERS(include)
 
 set(QT_COMPONENTS
         Core Widgets

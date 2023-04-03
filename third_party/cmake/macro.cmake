@@ -102,3 +102,16 @@ macro(BUILD_STRUCTURING)
     file(GLOB RM_FILES ${PROJECT_BINARY_DIR}/*.dll *.dll.a *.h *.cpp *.cc)
     file(REMOVE "${RM_FILES}")
 endmacro()
+
+macro(GENERATE_EXPORT_HEADERS dir)
+    # Макрос генерирует заголовочные файлы экспорта
+    # и добаляет их в указанную директорию
+
+    include(GenerateExportHeader)
+    generate_export_header(${PROJECT_NAME})
+    file(COPY ${PROJECT_BINARY_DIR}/${PROJECT_NAME}_export.h
+            DESTINATION ${CMAKE_CURRENT_SOURCE_DIR}/${dir})
+    file(COPY ${PROJECT_BINARY_DIR}/${PROJECT_NAME}_export.h
+            DESTINATION ${PROJECT_BINARY_DIR}/${dir})
+    file(REMOVE ${PROJECT_BINARY_DIR}/${PROJECT_NAME}_export.h)
+endmacro()

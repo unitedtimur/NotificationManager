@@ -22,10 +22,13 @@ endmacro()
 
 
 macro(FIND_AND_LINK_QT)
-    # say that we want to find a Qt6 or Qt5 package
+    # Макрос ищет указанные в аргументах компоненты QT
+    # и линкует их с таргетом
+
+    # Ищем пакеты Qt6 или Qt5
     find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS ${ARGV})
 
-    # say that we need such components from the found package
+    # Ищем нужные компоненты
     find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS ${ARGV})
     foreach(component IN ITEMS ${ARGV})
         target_link_libraries(

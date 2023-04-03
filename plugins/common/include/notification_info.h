@@ -26,7 +26,7 @@ namespace LogicPlugin {
         QString _body;
         NotifyCategory _category;
         int _expire_timeout;
-        QTimer *_timer;
+        QTimer *_timer = 0;
     };
 }
 #endif // NOTIFICATIONINFO_H

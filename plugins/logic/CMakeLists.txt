@@ -1,6 +1,9 @@
-project(logic_plugin
-    VERSION 0.0.1
-    LANGUAGES CXX)
+project(
+        logic_plugin
+        VERSION 0.0.1
+        LANGUAGES CXX
+        DESCRIPTION "Logic plugin description..."
+)
 
 INCLUDE_SOURCES(${PROJECT_NAME})
 
@@ -37,7 +40,7 @@ target_include_directories(
 
 SET_BASE_TARGET_PROPERTIES(${PROJECT_NAME})
 
-set(PROJECT_DESCRIPTION "Logic plugin description...")
+# Создание файла metadata.json
 configure_file(${CMAKE_SOURCE_DIR}/third_party/template_metadata.json metadata.json)
 
 BUILD_STRUCTURING()

@@ -4,13 +4,11 @@ macro(PARSE_SUBDIRECTORIES)
     endforeach()
 endmacro()
 
-
 macro(AUTO_BUILD_RESOURCES_QT5)
     set(CMAKE_AUTOMOC ON)
     set(CMAKE_AUTORCC ON)
     set(CMAKE_AUTOUIC ON)
 endmacro()
-
 
 macro(SET_BASE_TARGET_PROPERTIES target)
     set_target_properties(
@@ -19,7 +17,6 @@ macro(SET_BASE_TARGET_PROPERTIES target)
             CXX_STANDARD_REQUIRED ON
     )
 endmacro()
-
 
 macro(FIND_AND_LINK_QT)
     # Макрос ищет указанные в аргументах компоненты QT
@@ -38,7 +35,6 @@ macro(FIND_AND_LINK_QT)
         )
     endforeach()
 endmacro()
-
 
 macro(INCLUDE_SOURCES NAME)
     # Макрос ищет все исходники в проекте и формирует группу из них
@@ -92,7 +88,6 @@ macro(INCLUDE_SOURCES NAME)
 
     message(STATUS "CONFIGURED SOURCES FOR ${NAME}")
 endmacro()
-
 
 macro(BUILD_STRUCTURING)
     # Макрос формирует структуру файлов в билд папке

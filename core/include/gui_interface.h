@@ -1,7 +1,8 @@
 #ifndef GUI_INTERFACE_H
 #define GUI_INTERFACE_H
-
+#pragma once
 #include "base_interface.h"
+#include <QObject>
 
 namespace Core {
     /*!
@@ -12,8 +13,7 @@ namespace Core {
     class GuiInterface : public BaseInterface
     {
         Q_OBJECT
-        Q_INTERFACES(BaseInterface)
-
+        Q_INTERFACES(Core::BaseInterface)
     public:
         /*!
          * \brief Виртуальный деструктор с определением в заголовочном файле

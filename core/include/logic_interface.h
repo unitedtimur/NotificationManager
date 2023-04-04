@@ -1,6 +1,6 @@
 #ifndef LOGIC_INTERFACE_H
 #define LOGIC_INTERFACE_H
-
+#pragma once
 #include "base_interface.h"
 
 namespace Core {
@@ -12,8 +12,7 @@ namespace Core {
     class LogicInterface : public BaseInterface
     {
         Q_OBJECT
-        Q_INTERFACES(BaseInterface)
-
+        Q_INTERFACES(Core::BaseInterface)
     public:
         /*!
          * \brief Виртуальный деструктор с определением в заголовочном файле

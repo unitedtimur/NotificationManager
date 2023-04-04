@@ -2,7 +2,7 @@
 #define NOTIFICATIONINFO_H
 #include <QString>
 #include <QTimer>
-namespace LogicPlugin {
+namespace Common {
     /*
          Перечисление типов уведомлений
     */

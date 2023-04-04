@@ -1,10 +1,9 @@
 project(core)
+AUTO_BUILD_RESOURCES_QT5()
 file(GLOB_RECURSE SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/*.cpp)
 file(GLOB_RECURSE HEADERS ${CMAKE_CURRENT_SOURCE_DIR}/*.h)
-
-add_library(core STATIC ${HEADERS} ${SOURCES})
+add_library(core STATIC ${HEADERS} ${SOURCES} )
 add_library(${PROJECT_NAMESPACE}::${PROJECT_NAME} ALIAS ${PROJECT_NAME})
-
 set(QT_COMPONENTS
         Core Widgets
         QuickWidgets
@@ -16,7 +15,5 @@ target_include_directories(
         PUBLIC
         ${CMAKE_CURRENT_LIST_DIR}/include
 )
-
 FIND_AND_LINK_QT("${QT_COMPONENTS}")
-
 SET_BASE_TARGET_PROPERTIES(${PROJECT_NAME})

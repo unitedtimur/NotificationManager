@@ -27,7 +27,7 @@ namespace LogicPlugin {
         // Q_PROPERTY?
     public:
         bool hasNotifications();
-        void addNotification(NotificationInfo);
+        void addNotification(Common::NotificationInfo);
         void clearList();
         virtual bool initialize(const QList<QPointer<QObject>> &dependencies) override;
 
@@ -47,7 +47,7 @@ namespace LogicPlugin {
         /*
               _notify_list - список уведомлений
             */
-        QList<LogicPlugin::NotificationInfo> _notify_list;
+        QList<Common::NotificationInfo> _notify_list;
     public slots:
         void setEnabled(bool);
     private slots:
@@ -55,7 +55,7 @@ namespace LogicPlugin {
         void removeNotification();
     signals:
         void enabledChangedNotifications(bool);
-        void showNotificationSignal(LogicPlugin::NotificationInfo);
+        void showNotificationSignal(Common::NotificationInfo);
         void removeNotificationSignal();
     };
 }

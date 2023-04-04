@@ -5,7 +5,7 @@ bool LogicPlugin::NotificationLogicPlugin::hasNotifications()
     return !_notify_list.isEmpty();
 }
 
-void LogicPlugin::NotificationLogicPlugin::addNotification(NotificationInfo notify)
+void LogicPlugin::NotificationLogicPlugin::addNotification(Common::NotificationInfo notify)
 {
     _notify_list.append(notify);
 }

@@ -2,7 +2,6 @@
 #define GUI_INTERFACE_H
 #pragma once
 #include "base_interface.h"
-#include <QObject>
 
 namespace Core {
     /*!

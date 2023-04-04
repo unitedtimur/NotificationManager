@@ -18,10 +18,8 @@ macro(SET_BASE_TARGET_PROPERTIES target)
     )
 endmacro()
 
+# Макрос ищет указанные в аргументах компоненты QT линкует их с таргетом
 macro(FIND_AND_LINK_QT)
-    # Макрос ищет указанные в аргументах компоненты QT
-    # и линкует их с таргетом
-
     # Ищем пакеты Qt6 или Qt5
     find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS ${ARGV})
 
@@ -36,8 +34,8 @@ macro(FIND_AND_LINK_QT)
     endforeach()
 endmacro()
 
+# Макрос ищет все исходники в проекте и формирует группу из них
 macro(INCLUDE_SOURCES NAME)
-    # Макрос ищет все исходники в проекте и формирует группу из них
     set(_OPTIONS_ARGS NOT_RECURSIVE)
     set(_ONE_VALUE_ARGS DIR)
     set(_MULTI_VALUE_ARGS EXCLUDE_LIST)
@@ -89,8 +87,8 @@ macro(INCLUDE_SOURCES NAME)
     message(STATUS "CONFIGURED SOURCES FOR ${NAME}")
 endmacro()
 
+# Макрос формирует структуру файлов в билд папке
 macro(BUILD_STRUCTURING)
-    # Макрос формирует структуру файлов в билд папке
     foreach(file IN ITEMS ${HEADERS})
         file(COPY ${file} DESTINATION ${PROJECT_BINARY_DIR}/include)
     endforeach()
@@ -103,10 +101,9 @@ macro(BUILD_STRUCTURING)
     file(REMOVE "${RM_FILES}")
 endmacro()
 
+# Макрос генерирует заголовочные файлы экспорта и добаляет их в указанную
+# директорию
 macro(GENERATE_EXPORT_HEADERS dir)
-    # Макрос генерирует заголовочные файлы экспорта
-    # и добаляет их в указанную директорию
-
     include(GenerateExportHeader)
     generate_export_header(${PROJECT_NAME})
     file(COPY ${PROJECT_BINARY_DIR}/${PROJECT_NAME}_export.h

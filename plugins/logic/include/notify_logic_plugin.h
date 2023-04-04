@@ -8,7 +8,7 @@ namespace LogicPlugin {
     /*
          Класс реализующий плагин бизнес-логики отображения уведомлений
        */
-    class NotificationLogicPlugin : public QObject, public Core::LogicInterface
+    class NotificationLogicPlugin : public Core::LogicInterface
     {
         Q_OBJECT
         /*
@@ -26,7 +26,6 @@ namespace LogicPlugin {
 
         // Q_PROPERTY?
     public:
-        NotificationLogicPlugin(QObject *parent);
         bool hasNotifications();
         void addNotification(NotificationInfo);
         void clearList();

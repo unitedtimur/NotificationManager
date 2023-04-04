@@ -1,8 +1,5 @@
 #include "notify_logic_plugin.h"
 
-LogicPlugin::NotificationLogicPlugin::NotificationLogicPlugin(QObject *parent) : QObject(parent)
-{}
-
 bool LogicPlugin::NotificationLogicPlugin::hasNotifications()
 {
     return !_notify_list.isEmpty();

@@ -12,7 +12,7 @@ namespace Core {
     class LogicInterface : public BaseInterface
     {
         Q_OBJECT
-        Q_INTERFACES(BaseInterface)
+        Q_INTERFACES(Core::BaseInterface)
 
     public:
         /*!

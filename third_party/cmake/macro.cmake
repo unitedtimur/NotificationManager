@@ -112,3 +112,38 @@ macro(GENERATE_EXPORT_HEADERS dir)
             DESTINATION ${PROJECT_BINARY_DIR}/${dir})
     file(REMOVE ${PROJECT_BINARY_DIR}/${PROJECT_NAME}_export.h)
 endmacro()
+
+# Макрос генерирует метадату для плагина
+macro(PLUGIN_METADATA_GENERATOR)
+    set(_ONE_VALUE_ARGS
+            NAME
+            VERSION
+            COMPAT_VERSION
+            VENDOR
+            COPYRIGHT
+            LICENSE
+            CATEGORY
+            DESCRIPTION
+            URL
+            DEPENDENCIES)
+
+    cmake_parse_arguments(_METADATA
+        "${_OPTIONS_ARGS}"
+        "${_ONE_VALUE_ARGS}"
+        "${_MULTI_VALUE_ARGS}"
+        ${ARGN})
+
+    file(WRITE include/plugin_metadata.json "\
+{
+    \"Name\": \"${_METADATA_NAME}\",
+    \"Version\": \"${_METADATA_VERSION}\",
+    \"CompatVersion\": \"${_METADATA_COMPAT_VERSION}\",
+    \"Vendor\": \"${_METADATA_VENDOR}\",
+    \"Copyright\": \"${_METADATA_COPYRIGHT}\",
+    \"License\": \"${_METADATA_LICENSE}\",
+    \"Category\": \"${_METADATA_CATEGORY}\",
+    \"Description\": \"${_METADATA_DESCRIPTION}\",
+    \"Url\": \"${_METADATA_URL}\",
+    \"Dependencies\": \"${_METADATA_DEPENDENCIES}\"
+}")
+endmacro()

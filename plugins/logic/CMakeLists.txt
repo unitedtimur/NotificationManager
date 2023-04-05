@@ -28,9 +28,4 @@ target_link_libraries(
     PUBLIC
     core
 )
-target_link_libraries(
-    ${PROJECT_NAME}
-    PUBLIC
-    common
-)
 SET_BASE_TARGET_PROPERTIES(${PROJECT_NAME})

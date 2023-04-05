@@ -31,9 +31,9 @@ void LogicPlugin::NotificationLogicPlugin::setEnabled(bool value)
 void LogicPlugin::NotificationLogicPlugin::showNextNotification()
 {
     if (hasNotifications()) {
-        _notify_list.first()._timer = new QTimer(this);
-        connect(_notify_list.first()._timer, &QTimer::timeout, this,
-                &LogicPlugin::NotificationLogicPlugin::removeNotification);
+        //        _notify_list.first()._timer = new QTimer(this); TO DO
+        //        connect(_notify_list.first()._timer, &QTimer::timeout, this,
+        //                &LogicPlugin::NotificationLogicPlugin::removeNotification);
         emit showNotificationSignal(_notify_list.first());
         _countOfNotifications++;
     }

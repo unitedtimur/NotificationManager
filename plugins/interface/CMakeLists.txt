@@ -41,7 +41,4 @@ target_include_directories(
 
 SET_BASE_TARGET_PROPERTIES(${PROJECT_NAME})
 
-# Создание файла metadata.json
-configure_file(${CMAKE_SOURCE_DIR}/third_party/template_metadata.json metadata.json)
-
 BUILD_STRUCTURING()

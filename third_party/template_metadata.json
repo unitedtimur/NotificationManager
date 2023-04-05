@@ -1,7 +1,0 @@
-{
-  "Name": "${PROJECT_NAME}",
-  "Version": "${CMAKE_PROJECT_VERSION}",
-  "Description": "${PROJECT_DESCRIPTION}",
-  "Copyright": "(C) 2023 Micran",
-  "License": "Default license"
-}

@@ -1,7 +1,6 @@
 #ifndef NOTIFY_LOGIC_PLUGIN_H
 #define NOTIFY_LOGIC_PLUGIN_H
 #include "logic_interface.h"
-#include "notification_info.h"
 #include <QString>
 #include <QTimer>
 namespace LogicPlugin {
@@ -26,37 +25,7 @@ namespace LogicPlugin {
 
         // Q_PROPERTY?
     public:
-        bool hasNotifications();
-        void addNotification(Common::NotificationInfo);
-        void clearList();
         virtual bool initialize(const QList<QPointer<QObject>> &dependencies) override;
-
-    private:
-        /*
-             _enabled - переменная отвечающая за вкл/выкл уведомлений
-            */
-        bool _enabled;
-        /*
-             _maxNotifyOnScreen - число максимально одновременно отображаемых уведомлений
-            */
-        int _maxNotificationsOnScreen;
-        /*
-             _countOfNotifications - текущее число одновременно отображаемых уведомлений
-            */
-        int _countOfNotifications = 0;
-        /*
-              _notify_list - список уведомлений
-            */
-        QList<Common::NotificationInfo> _notify_list;
-    public slots:
-        void setEnabled(bool);
-    private slots:
-        void showNextNotification();
-        void removeNotification();
-    signals:
-        void enabledChangedNotifications(bool);
-        void showNotificationSignal(Common::NotificationInfo);
-        void removeNotificationSignal();
     };
 }
 

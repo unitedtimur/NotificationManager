@@ -20,6 +20,7 @@ target_link_libraries(
         PRIVATE
         ${PROJECT_NAMESPACE}::core
         ${PROJECT_NAMESPACE}::logic_plugin
+        ${PROJECT_NAMESPACE}::interface_plugin
 
 )
 

@@ -2,7 +2,7 @@
 #include "core.h"
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
-#include "C:/Users/PC/Documents/qtProjects/NotificationManager/plugins/logic/include/notify_model.h"
+#include "notify_model.h"
 #include <QQmlEngine>
 #include <QQmlContext>
 int main(int argc, char *argv[])
@@ -13,17 +13,10 @@ int main(int argc, char *argv[])
     QGuiApplication app(argc, argv);
     NotificationModel notificationModel;
     // Добавляем уведомление в модель
-    notificationModel.addNotification("New notification1", "This is a new notification");
-    notificationModel.addNotification("New notification2", "This is a new notification");
-    notificationModel.addNotification("New notification", "This is a new notification");
-    notificationModel.addNotification("New notification", "This is a new notification");
-    notificationModel.addNotification("New notification", "This is a new notification");
-    notificationModel.addNotification("New notification", "This is a new notification");
-    notificationModel.addNotification("New notification", "This is a new notification");
+    notificationModel.addNotification("Обнаружена цель в SportCenter", "Очень важная информация. Очень важная информация.", 0);
+    notificationModel.addNotification("Камера не доступна!", "Очень важная информация. Очень важная информация.", 1);
+    notificationModel.addNotification("Высокий уровень шума", "Очень важная информация. Очень важная информация.", 2);
     QQmlApplicationEngine engine;
-    engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
-    if (engine.rootObjects().isEmpty())
-        return -1;
     engine.rootContext()->setContextProperty("Notificationmodel", &notificationModel);
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
 

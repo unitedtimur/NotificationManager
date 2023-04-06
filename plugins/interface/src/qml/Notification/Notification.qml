@@ -3,92 +3,85 @@ import QtQuick.Layouts 1.15
 
 
 Rectangle {
-    property string titleName: "BLABLABLA"
-    id:notification
-//    anchors {
-//        top: parent.top
-//        right: parent.right
-//        //left: parent.left
-//        bottomMargin: 10
-//    }
-//    height: parent.height / 4
-    height: pushCL.implicitHeight
-    width: pushCL.implicitWidth
-    color: "#B04444"
+    id: rec
+    property string title: ""
+    property string message: ""
+    property int state: 0
 
-    ColumnLayout {
-        id: pushCL
-        anchors.fill: parent
-        spacing: 10
-        Image {
-            Layout.alignment: Qt.AlignRight
-            id: closeNotificationIcon
+    height: mainWindow.height / 16
+    width: mainWindow.width / 6
+    visible:true
 
-            fillMode: Image.PreserveAspectFit
-            source: "qrc:/ui/assets/closenoticon.png"
 
+    Component.onCompleted: {
+            switch (state) {
+                case 0:
+                    color = Qt.rgba(176/255, 68/255, 68/255, 0.9);
+                    break;
+                case 1:
+                    color = Qt.rgba(33/255, 33/255, 49/255, 0.9);
+                    break;
+                case 2:
+                    color = Qt.rgba(176/255, 127/255, 0, 0.9);
+                    break;
+                default:
+                    color = Qt.rgba(176/255, 68/255, 68/255, 0.9);
+            }
         }
 
-        Text {
-            id: title
-
-            text: notification.titleName
-            color: "#DDDDDD"
-            font.pointSize: 14
-            font.weight: "DemiBold"
-            font.family: "OpenSans"
+    Image {
+        id: closeNotificationIcon
+        anchors{
+            top:parent.top
+            right:parent.right
+            topMargin: 14
+            rightMargin: 22
         }
+        MouseArea {
+            anchors.fill: parent
+            onClicked: rec.visible = false
 
-        Text {
-            id: importantInfo
-
-            text: "Очень важная информация! Очень важная информация!"
-            font.pointSize: 10
-            font.family: "OpenSans"
         }
+        fillMode: Image.PreserveAspectFit
+        source: "qrc:/ui/assets/closenoticon.png"
     }
 
-//    Image {
-//        id: closeNotificationIcon
-//        anchors {
-//            top: parent.top
-//            right: parent.right
-//            topMargin: 3
-//            rightMargin: 3
-//        }
-//        fillMode: Image.PreserveAspectFit
-//        source: "qrc:/ui/assets/closenoticon.png"
+    ColumnLayout {
+        id: columnLayout
+        width:parent.width
 
-//    }
+//            Image {
+//                Layout.alignment: Qt.AlignRight
+//                Layout.topMargin: 14
+//                Layout.rightMargin: 22
+//                MouseArea {
+//                    anchors.fill: parent
+//                    onClicked: rec.visible = false
 
-//    Text {
-//        id: title
-//        anchors {
-//            top: parent.top
-//            right: closeNotificationIcon.left
-//            left: parent.left
-//            topMargin: 5
-//            leftMargin: 5
-//        }
-//        text: notification.titleName
-//        color: "#DDDDDD"
-//        font.pointSize: 14
-//        font.weight: "DemiBold"
-//        font.family: "OpenSans"
-//    }
+//                }
+//                id: closeNotificationIcon
+//                fillMode: Image.PreserveAspectFit
+//                source: "qrc:/ui/assets/closenoticon.png"
+//            }
 
-//    Text {
-//        id: importantInfo
-//        anchors {
-//            top: title.bottom
-//            right: closeNotificationIcon.left
-//            left: parent.left
-//            topMargin: 5
-//            leftMargin: 5
-//        }
-//        text: "Очень важная информация! Очень важная информация!"
-//        font.pointSize: 10
-//        font.family: "OpenSans"
-//    }
+            Text {
+                text: title
+                Layout.leftMargin: 7
+                Layout.topMargin: 10
+                color: "#DDDDDD"
+                font.pointSize: ((rec.height/5) + (rec.width /10))/4
+                font.weight: "DemiBold"
+                font.family: "OpenSans"
+            }
 
+
+        Text {
+            text: message
+            Layout.leftMargin: 7
+            color: "#DDDDDD"
+            font.pointSize: ((rec.height/5) + (rec.width /10))/6
+            font.family: "OpenSans"
+        }
+
+    }
 }

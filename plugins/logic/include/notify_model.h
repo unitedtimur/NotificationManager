@@ -12,12 +12,19 @@ public:
 
     explicit NotificationModel(QObject *parent = nullptr);
 
+    enum NotificationTypes
+    {
+        NOTIFY,
+        WARNING,
+        ALARM
+    };
     enum NotificationRoles
     {
         TitleRole = Qt::UserRole + 1,
-        MessageRole
+        MessageRole,
+        TypeRole
     };
-
+    Q_ENUM(NotificationRoles)
     // QAbstractItemModel overrides
     QModelIndex
     index(int row, int column, const QModelIndex &parent = QModelIndex()) const override;
@@ -27,7 +34,7 @@ public:
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
     QHash<int, QByteArray> roleNames() const override;
 
-    void addNotification(const QString &title, const QString &message);
+    void addNotification(const QString title, const QString message, const int type);
     void removeNotification(int index);
     void clearNotifications();
     int count() const;
@@ -37,6 +44,7 @@ private:
     {
         QString title;
         QString message;
+        int type;
     };
 
     QList<Notification> m_notifications;

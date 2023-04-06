@@ -25,6 +25,8 @@ macro(FIND_AND_LINK_QT)
     # say that we need such components from the found package
     find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS ${ARGV})
     foreach(component IN ITEMS ${ARGV})
+        message(STATUS "LINK - ${PROJECT_NAME}
+            Qt${QT_VERSION_MAJOR}::${component}")
         target_link_libraries(
                 ${PROJECT_NAME}
                 PRIVATE

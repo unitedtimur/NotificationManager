@@ -2,12 +2,14 @@
 #define NOTIFY_MODEL_H
 
 #include <QAbstractItemModel>
+#include "logic_plugin_export.h"
 
-class NotificationModel : public QAbstractItemModel
+class LOGIC_PLUGIN_EXPORT NotificationModel : public QAbstractItemModel
 {
     Q_OBJECT
 
 public:
+
     explicit NotificationModel(QObject *parent = nullptr);
 
     enum NotificationRoles

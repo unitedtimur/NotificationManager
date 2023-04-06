@@ -1,8 +1,8 @@
 import QtQuick 2.15
 import QtQuick.Window 2.15
-//import "G:/Qt/repos/NotificationManager/plugins/interface/src/qml/ControlPanel"
-//import "G:/Qt/repos/NotificationManager/plugins/interface/src/qml/BottomScreen"
-//import "G:/Qt/repos/NotificationManager/plugins/interface/src/qml/Notification"
+import "G:/Qt/repos/NotificationManager/plugins/interface/src/qml/ControlPanel"
+import "G:/Qt/repos/NotificationManager/plugins/interface/src/qml/BottomScreen"
+import "G:/Qt/repos/NotificationManager/plugins/interface/src/qml/Notification"
 
 Window {
     width: 1600

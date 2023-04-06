@@ -13,11 +13,14 @@ set(QT_COMPONENTS
 
 add_executable(${PROJECT_NAME} ${CMAKE_CURRENT_LIST_DIR}/src/main.cpp ${CMAKE_CURRENT_LIST_DIR}/src/main.qml)
 
-FIND_AND_LINK_QT("${QT_COMPONENTS}")
+FIND_AND_LINK_QT ("${QT_COMPONENTS}")
+
 target_link_libraries(
         ${PROJECT_NAME}
         PRIVATE
         ${PROJECT_NAMESPACE}::core
+        ${PROJECT_NAMESPACE}::logic_plugin
+
 )
 
 SET_BASE_TARGET_PROPERTIES(${PROJECT_NAME})

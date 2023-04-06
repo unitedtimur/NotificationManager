@@ -28,4 +28,5 @@ target_link_libraries(
     PUBLIC
     core
 )
+target_compile_definitions(${PROJECT_NAME} PRIVATE LOGIC_PLUGIN)
 SET_BASE_TARGET_PROPERTIES(${PROJECT_NAME})

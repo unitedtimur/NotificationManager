@@ -2,6 +2,8 @@ project(interface_plugin)
 
 file(GLOB_RECURSE SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/*.cpp)
 file(GLOB_RECURSE HEADERS ${CMAKE_CURRENT_SOURCE_DIR}/*.h)
+file(GLOB_RECURSE QML_SRC "*.qml")
+add_custom_target(qml_src SOURCES ${QML_SRC})
 
 add_library(
         interface_plugin

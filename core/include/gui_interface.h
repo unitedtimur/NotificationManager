@@ -12,7 +12,7 @@ namespace Core {
     class GuiInterface : public BaseInterface
     {
         Q_OBJECT
-        Q_INTERFACES(BaseInterface)
+        Q_INTERFACES(Core::BaseInterface)
 
     public:
         /*!

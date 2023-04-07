@@ -34,3 +34,6 @@
 .idea
 build
 CMakeLists.txt.user
+
+*_export.h
+*plugin_metadata.json

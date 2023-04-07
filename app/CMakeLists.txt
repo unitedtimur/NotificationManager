@@ -5,15 +5,18 @@ project(manager_app
 # add CMAKE_AUTOMOC, CMAKE_AUTORCC, CMAKE_AUTOUIC
 AUTO_BUILD_RESOURCES_QT5()
 
+INCLUDE_SOURCES(${PROJECT_NAME})
+
+add_executable(${PROJECT_NAME} ${CMAKE_CURRENT_LIST_DIR}/src/main.cpp)
+
 set(QT_COMPONENTS
     Core Widgets
     QuickWidgets
     Core
     QuickControls2)
 
-add_executable(${PROJECT_NAME} ${CMAKE_CURRENT_LIST_DIR}/src/main.cpp)
-
 FIND_AND_LINK_QT("${QT_COMPONENTS}")
+
 target_link_libraries(
         ${PROJECT_NAME}
         PRIVATE
@@ -21,3 +24,5 @@ target_link_libraries(
 )
 
 SET_BASE_TARGET_PROPERTIES(${PROJECT_NAME})
+
+BUILD_STRUCTURING()

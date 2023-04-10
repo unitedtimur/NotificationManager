@@ -34,7 +34,7 @@ namespace Core {
           {
               QPluginLoader pluginLoader(pluginsDir.absoluteFilePath(fileName));
 
-              if(!pluginLoader.load())
+              if(!pluginLoader.isLoaded())
                          continue;
 
               QObject *pluginObject = qobject_cast<QObject*>(pluginLoader.instance());

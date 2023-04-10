@@ -10,6 +10,15 @@ add_library(
 )
 add_library(${PROJECT_NAMESPACE}::${PROJECT_NAME} ALIAS ${PROJECT_NAME})
 
+set_target_properties(${PROJECT_NAME}
+    PROPERTIES
+    ARCHIVE_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/lib
+    LIBRARY_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/lib
+    RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/lib
+)
+
+GENERATE_EXPORT_HEADERS(include)
+
 set(QT_COMPONENTS
         Core Widgets
         QuickWidgets
@@ -21,7 +30,7 @@ FIND_AND_LINK_QT("${QT_COMPONENTS}")
 target_include_directories(
         ${PROJECT_NAME}
         PUBLIC
-        ${CMAKE_CURRENT_LIST_DIR}/include
+        ${CMAKE_CURRENT_SOURCE_DIR}/include
 )
 target_link_libraries(
     ${PROJECT_NAME}
@@ -30,3 +39,7 @@ target_link_libraries(
 )
 target_compile_definitions(${PROJECT_NAME} PRIVATE LOGIC_PLUGIN)
 SET_BASE_TARGET_PROPERTIES(${PROJECT_NAME})
+
+PLUGIN_METADATA_GENERATOR()
+
+BUILD_STRUCTURING()

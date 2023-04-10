@@ -1,5 +1,5 @@
-#include <iostream>
 #include "core.h"
+#include <iostream>
 
 namespace Core {
     void init()
@@ -9,12 +9,11 @@ namespace Core {
 
     void loadPlugins()
     {
-
-    #ifdef Q_OS_WIN64
+#ifdef Q_OS_WIN64
         const auto pluginExtension = ".dll";
-    #elif defined(Q_OS_LINUX)
+#elif defined(Q_OS_LINUX)
         const auto pluginExtension = ".so";
-    #endif
+#endif
         QString parentDir(QDir::currentPath());
         QDir currentDir(parentDir);
         currentDir.cdUp();
@@ -26,49 +25,43 @@ namespace Core {
         if (!pluginsDir.exists())
             throw std::runtime_error("Directories do not exist");
 
-        QStringList pluginsFiles = pluginsDir.entryList(QStringList()<<pluginExtension,QDir::Files);
+        QStringList pluginsFiles =
+         pluginsDir.entryList(QStringList() << pluginExtension, QDir::Files);
 
         QList<QPointer<QObject>> dependencies;
 
-          foreach(const QString &fileName, pluginsFiles)
-          {
-              QPluginLoader pluginLoader(pluginsDir.absoluteFilePath(fileName));
+        foreach (const QString &fileName, pluginsFiles) {
+            QPluginLoader pluginLoader(pluginsDir.absoluteFilePath(fileName));
 
-              if(!pluginLoader.isLoaded())
-                         continue;
+            if (!pluginLoader.isLoaded())
+                continue;
 
-              QObject *pluginObject = qobject_cast<QObject*>(pluginLoader.instance());
+            QObject *pluginObject = qobject_cast<QObject *>(pluginLoader.instance());
 
-              if(pluginObject)
-              {
-                 const QMetaObject *metaObject = pluginObject->metaObject();
-                 int index = metaObject->indexOfClassInfo("Dependencies");
+            if (pluginObject) {
+                const QMetaObject *metaObject = pluginObject->metaObject();
+                int index = metaObject->indexOfClassInfo("Dependencies");
 
-                 if(index != -1)
-                 {
-                     QMetaClassInfo classInfo = metaObject->classInfo(index);
-                     QString dependenciesString = classInfo.value();
+                if (index != -1) {
+                    QMetaClassInfo classInfo = metaObject->classInfo(index);
+                    QString dependenciesString = classInfo.value();
 
-                     QStringList dependenciesList = dependenciesString.split(";");
+                    QStringList dependenciesList = dependenciesString.split(";");
 
-                     foreach(QString dependencyName, dependenciesList)
-                     {
-                         QObject *dependencyObject = QCoreApplication::instance()->findChild<QObject*>(dependencyName);
-                         if(dependencyObject)
-                         {
-                             dependencies.append(QPointer<QObject>(dependencyObject));
-                         }
-                     }
+                    foreach (QString dependencyName, dependenciesList) {
+                        QObject *dependencyObject =
+                         QCoreApplication::instance()->findChild<QObject *>(dependencyName);
+                        if (dependencyObject) {
+                            dependencies.append(QPointer<QObject>(dependencyObject));
+                        }
+                    }
+                }
+            }
 
-                 }
-              }
-
-              BaseInterface *interface = qobject_cast<BaseInterface*>(pluginObject);
-              if(interface)
-              {
-                  interface->initialize(dependencies);
-              }
-
-          }
+            BaseInterface *interface = qobject_cast<BaseInterface *>(pluginObject);
+            if (interface) {
+                interface->initialize(dependencies);
+            }
+        }
     }
-}
+} // namespace Core

@@ -1,8 +1,9 @@
 #ifndef BASE_INTERFACE_H
 #define BASE_INTERFACE_H
-
+#pragma once
 #include <QObject>
-
+#include <QList>
+#include <QPointer>
 namespace Core {
     /*!
      * \brief Класс, являющийся базовым интерфейсом, от него будут наследоваться плагины логики и
@@ -11,7 +12,6 @@ namespace Core {
     class BaseInterface : public QObject
     {
         Q_OBJECT
-
     public:
         /*!
          * \brief Для класса BaseInterface используется базовый конструктор QObject

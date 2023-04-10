@@ -28,9 +28,7 @@ target_include_directories(
         PUBLIC
         ${CMAKE_CURRENT_SOURCE_DIR}/include
 )
-
 FIND_AND_LINK_QT("${QT_COMPONENTS}")
-
 SET_BASE_TARGET_PROPERTIES(${PROJECT_NAME})
 
 BUILD_STRUCTURING()

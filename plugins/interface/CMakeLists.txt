@@ -7,14 +7,14 @@ project(
 
 INCLUDE_SOURCES(${PROJECT_NAME})
 
-add_custom_target(qml_src SOURCES ${QML_SRC})
+#add_custom_target(qml_src SOURCES ${QML_SRC})
 
 add_library(
         interface_plugin
         SHARED
         ${HEADERS}
         ${SOURCES}
-
+        ${RESOURCES}
 )
 
 set_target_properties(${PROJECT_NAME}

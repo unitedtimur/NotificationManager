@@ -7,8 +7,6 @@ AUTO_BUILD_RESOURCES_QT5()
 
 INCLUDE_SOURCES(${PROJECT_NAME})
 
-add_executable(${PROJECT_NAME} ${CMAKE_CURRENT_LIST_DIR}/src/main.cpp)
-
 set(QT_COMPONENTS
     Core Widgets
     QuickWidgets

@@ -1,41 +1,38 @@
 #include "notify_model.h"
 
-NotificationModel::NotificationModel(QObject *parent) : QAbstractItemModel(parent)
+LogicPlugin::NotificationModel::NotificationModel(QObject *parent) : QAbstractItemModel(parent)
 {}
-QModelIndex NotificationModel::index(int row, int column, const QModelIndex &parent) const
+QModelIndex
+LogicPlugin::NotificationModel::index(int row, int column, const QModelIndex &parent) const
 {
     if (parent.isValid() || row < 0 || row >= m_notifications.count() || column < 0
         || column >= 3) {
         return QModelIndex();
     }
-
     return createIndex(row, column);
 }
 
-QModelIndex NotificationModel::parent(const QModelIndex &child) const
+QModelIndex LogicPlugin::NotificationModel::parent(const QModelIndex &child) const
 {
     Q_UNUSED(child);
     return QModelIndex();
 }
 
-int NotificationModel::rowCount(const QModelIndex &parent) const
+int LogicPlugin::NotificationModel::rowCount(const QModelIndex &parent) const
 {
     if (parent.isValid()) {
         return 0;
     }
-
     return m_notifications.count();
 }
 
-int NotificationModel::columnCount(const QModelIndex &parent) const
+int LogicPlugin::NotificationModel::columnCount(const QModelIndex &parent) const
 {
     Q_UNUSED(parent);
     return 3;
 }
-QVariant NotificationModel::data(const QModelIndex &index, int role) const
+QVariant LogicPlugin::NotificationModel::data(const QModelIndex &index, int role) const
 {
-   // qDebug() << "data role:" << role << "row:" << index.row() << "col:" << index.column();
-
     if (!index.isValid() || index.row() < 0 || index.row() >= m_notifications.count()
         || index.column() < 0 || index.column() >= 3) {
         return QVariant();
@@ -46,7 +43,7 @@ QVariant NotificationModel::data(const QModelIndex &index, int role) const
     case Qt::DisplayRole:
         return index.column() == 0 ? notification.title : notification.message;
     case TitleRole:
-        return notification.title; // QVariant::fromValue?
+        return notification.title;
     case MessageRole:
         return notification.message;
     case TypeRole:
@@ -56,27 +53,28 @@ QVariant NotificationModel::data(const QModelIndex &index, int role) const
     }
 }
 
-QHash<int, QByteArray> NotificationModel::roleNames() const
+QHash<int, QByteArray> LogicPlugin::NotificationModel::roleNames() const
 {
     QHash<int, QByteArray> roles = QAbstractItemModel::roleNames();
     roles[TitleRole] = "title";
     roles[MessageRole] = "message";
     roles[TypeRole] = "type";
-   // qDebug() << roles[TitleRole] << roles[MessageRole];
     return roles;
 }
 
-void NotificationModel::addNotification(const QString title, const QString message, const int type)
+void LogicPlugin::NotificationModel::addNotification(const QString title,
+                                                     const QString message,
+                                                     const int type)
 {
     beginInsertRows(QModelIndex(), m_notifications.count(), m_notifications.count());
     m_notifications.append({ title, message, type });
     endInsertRows();
     emit dataChanged(
-        index(m_notifications.count(), 0),
-        index(m_notifications.count(), 0)); // Сообщаем QML-интерфейсу, что данные изменились
+     index(m_notifications.count(), 0),
+     index(m_notifications.count(), 0)); // Сообщаем QML-интерфейсу, что данные изменились
 }
 
-void NotificationModel::removeNotification(int index)
+void LogicPlugin::NotificationModel::removeNotification(int index)
 {
     if (index >= 0 && index < m_notifications.count()) {
         beginRemoveRows(QModelIndex(), index, index);
@@ -84,14 +82,14 @@ void NotificationModel::removeNotification(int index)
         endRemoveRows();
     }
 }
-void NotificationModel::clearNotifications()
+void LogicPlugin::NotificationModel::clearNotifications()
 {
     beginResetModel();
     m_notifications.clear();
     endResetModel();
 }
 
-int NotificationModel::count() const
+int LogicPlugin::NotificationModel::count() const
 {
     return m_notifications.count();
 }

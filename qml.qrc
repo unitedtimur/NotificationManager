@@ -7,6 +7,5 @@ RCC>
         <file>plugins/interface/src/qml/Notification/NotificationArea.qml</file>
         <file>plugins/interface/src/qml/Notification/Notification.qml</file>
         <file>app/main.qml</file>
-        <file>ui/Notification/NotificationList.qml</file>
     </qresource>
 </RCC>

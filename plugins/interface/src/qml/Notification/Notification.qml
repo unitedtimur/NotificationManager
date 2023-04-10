@@ -1,6 +1,9 @@
 import QtQuick 2.15
 import QtQuick.Layouts 1.15
 
+/*!
+ * \brief Элемент, отрисовывающий сущность очередного уведомления
+ */
 
 Rectangle {
     id: rec
@@ -11,7 +14,6 @@ Rectangle {
     height: mainWindow.height / 16
     width: mainWindow.width / 6
     visible:true
-
 
     Component.onCompleted: {
             switch (state) {
@@ -31,7 +33,7 @@ Rectangle {
 
     Image {
         id: closeNotificationIcon
-        anchors{
+        anchors {
             top:parent.top
             right:parent.right
             topMargin: 14
@@ -49,32 +51,15 @@ Rectangle {
     ColumnLayout {
         id: columnLayout
         width:parent.width
-
-//            Image {
-//                Layout.alignment: Qt.AlignRight
-//                Layout.topMargin: 14
-//                Layout.rightMargin: 22
-//                MouseArea {
-//                    anchors.fill: parent
-//                    onClicked: rec.visible = false
-
-//                }
-//                id: closeNotificationIcon
-//                fillMode: Image.PreserveAspectFit
-//                source: "qrc:/ui/assets/closenoticon.png"
-//            }
-
-            Text {
-                text: title
-                Layout.leftMargin: 7
-                Layout.topMargin: 10
-                color: "#DDDDDD"
-                font.pointSize: ((rec.height/5) + (rec.width /10))/4
-                font.weight: "DemiBold"
-                font.family: "OpenSans"
-            }
-
-
+        Text {
+            text: title
+            Layout.leftMargin: 7
+            Layout.topMargin: 10
+            color: "#DDDDDD"
+            font.pointSize: ((rec.height/5) + (rec.width /10))/4
+            font.weight: "DemiBold"
+            font.family: "OpenSans"
+        }
         Text {
             text: message
             Layout.leftMargin: 7

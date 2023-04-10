@@ -1,5 +1,8 @@
 import QtQuick 2.15
 
+/*!
+ * \brief Элемент, представляющий собой панель управления приложением
+ */
 
 Rectangle {
     id: controlPanel

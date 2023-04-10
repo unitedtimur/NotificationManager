@@ -14,7 +14,6 @@ add_library(
         SHARED
         ${HEADERS}
         ${SOURCES}
-
 )
 
 set_target_properties(${PROJECT_NAME}

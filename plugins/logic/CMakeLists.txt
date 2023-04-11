@@ -40,11 +40,6 @@ target_include_directories(
         PUBLIC
         ${CMAKE_CURRENT_SOURCE_DIR}/include
 )
-target_link_libraries(
-    ${PROJECT_NAME}
-    PUBLIC
-    core
-)
 
 SET_BASE_TARGET_PROPERTIES(${PROJECT_NAME})
 

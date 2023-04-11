@@ -28,8 +28,6 @@ target_link_libraries(
         ${PROJECT_NAME}
         PRIVATE
         ${PROJECT_NAMESPACE}::core
-        ${PROJECT_NAMESPACE}::logic_plugin
-        ${PROJECT_NAMESPACE}::interface_plugin
 )
 
 SET_BASE_TARGET_PROPERTIES(${PROJECT_NAME})

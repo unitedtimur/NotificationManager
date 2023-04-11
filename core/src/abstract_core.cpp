@@ -2,12 +2,12 @@
 #include <iostream>
 
 namespace Core {
-    void init()
+    CoreBasis::CoreBasis()
     {
         std::cout << "Core init" << std::endl;
     }
 
-    void loadPlugins()
+    void CoreBasis::loadPlugins()
     {
 #ifdef Q_OS_WIN64
         const auto pluginExtension = ".dll";
@@ -22,8 +22,10 @@ namespace Core {
         QDir pluginsDir(projectDir);
         pluginsDir.cd("plugins");
 
-        if (!pluginsDir.exists())
-            throw std::runtime_error("Directories do not exist");
+        if (!pluginsDir.exists()) {
+            QMessageBox::critical(nullptr, "Error", "Directories do not exist");
+            exit(EXIT_FAILURE);
+        }
 
         QStringList pluginsFiles =
          pluginsDir.entryList(QStringList() << pluginExtension, QDir::Files);

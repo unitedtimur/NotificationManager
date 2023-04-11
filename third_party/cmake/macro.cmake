@@ -109,20 +109,6 @@ macro(INCLUDE_SOURCES NAME)
     message(STATUS "CONFIGURED SOURCES FOR ${NAME}")
 endmacro()
 
-# Макрос формирует структуру файлов в билд папке
-macro(BUILD_STRUCTURING)
-    foreach(file IN ITEMS ${HEADERS})
-        file(COPY ${file} DESTINATION ${PROJECT_BINARY_DIR}/include)
-    endforeach()
-
-    foreach(file IN ITEMS ${SOURCES})
-        file(COPY ${file} DESTINATION ${PROJECT_BINARY_DIR}/src)
-    endforeach()
-
-    file(GLOB RM_FILES ${PROJECT_BINARY_DIR}/*.dll *.dll.a *.h *.cpp *.cc *.qml)
-    file(REMOVE "${RM_FILES}")
-endmacro()
-
 # Макрос генерирует заголовочные файлы экспорта и добаляет их в указанную
 # директорию
 macro(GENERATE_EXPORT_HEADERS)

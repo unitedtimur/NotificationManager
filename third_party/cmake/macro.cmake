@@ -106,7 +106,7 @@ macro(INCLUDE_SOURCES NAME)
     source_group("Metadata Files" FILES ${METADATA})
     source_group("UI Files" FILES ${UI_FILES})
 
-    message(STATUS "CONFIGURED SOURCES FOR ${NAME}")
+    message(STATUS "SOURCES - configured for ${NAME}")
 endmacro()
 
 # Макрос генерирует заголовочные файлы экспорта и добаляет их в указанную
@@ -134,10 +134,11 @@ macro(GENERATE_EXPORT_HEADERS)
     generate_export_header(${_HEADER_GENERATOR_TARGET}
         EXPORT_FILE_NAME
         ${CMAKE_CURRENT_SOURCE_DIR}/${_HEADER_GENERATOR_DIR}/${_HEADER_GENERATOR_TARGET}_export.h)
+    message(STATUS "EXPORT HEADER - generated for ${_HEADER_GENERATOR_TARGET}")
 endmacro()
 
 # Макрос генерирует метадату для плагина
-macro(PLUGIN_METADATA_GENERATOR)
+macro(PLUGIN_METADATA_GENERATOR NAME)
     set(_ONE_VALUE_ARGS
             NAME
             VERSION
@@ -169,4 +170,6 @@ macro(PLUGIN_METADATA_GENERATOR)
     \"Url\": \"${_METADATA_URL}\",
     \"Dependencies\": \"${_METADATA_DEPENDENCIES}\"
 }")
+
+    message(STATUS "METADATA - generated for ${NAME}")
 endmacro()

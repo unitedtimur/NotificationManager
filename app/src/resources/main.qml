@@ -12,6 +12,7 @@ Window {
     }
     BottomScreen {
           id: bottomScreen
+
           height: parent.height/2
           width: parent.width/6
 

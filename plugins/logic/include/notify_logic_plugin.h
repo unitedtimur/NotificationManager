@@ -2,6 +2,7 @@
 #define NOTIFY_LOGIC_PLUGIN_H
 
 #include "logic_interface.h"
+
 #include <QString>
 #include <QTimer>
 
@@ -9,7 +10,7 @@ namespace LogicPlugin {
     /*!
      * \brief Класс реализующий плагин бизнес-логики отображения уведомлений
      */
-    class NotificationLogicPlugin : public Core::LogicInterface
+    class NotificationLogicPlugin final : public Core::LogicInterface
     {
         Q_OBJECT
         /*!

@@ -1,5 +1,6 @@
 #ifndef GUI_INTERFACE_H
 #define GUI_INTERFACE_H
+
 #include "base_interface.h"
 
 namespace Core {
@@ -18,6 +19,6 @@ namespace Core {
         virtual ~GuiInterface() = default;
     };
 }
-
 Q_DECLARE_INTERFACE(Core::GuiInterface, "com.Core.GuiInterface")
+
 #endif // GUI_INTERFACE_H

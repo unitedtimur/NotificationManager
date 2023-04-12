@@ -1,6 +1,7 @@
-#include "core.h"
-#include "notify_model.h"
+#include <core.h>
+
 #include <iostream>
+
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 #include <QQmlEngine>

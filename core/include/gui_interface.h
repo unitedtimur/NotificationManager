@@ -20,6 +20,6 @@ namespace Core {
         virtual ~GuiInterface() = default;
     };
 }
-
 Q_DECLARE_INTERFACE(Core::GuiInterface, "com.Core.GuiInterface")
+
 #endif // GUI_INTERFACE_H

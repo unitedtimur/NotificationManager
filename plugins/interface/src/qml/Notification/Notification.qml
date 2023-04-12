@@ -1,10 +1,6 @@
 import QtQuick 2.15
 import QtQuick.Layouts 1.15
 
-/*!
- * \brief Элемент, отрисовывающий сущность очередного уведомления
- */
-
 Rectangle {
     id: rec
     property string title: ""
@@ -39,6 +35,7 @@ Rectangle {
             topMargin: 14
             rightMargin: 22
         }
+
         MouseArea {
             anchors.fill: parent
             onClicked: rec.visible = false
@@ -51,6 +48,7 @@ Rectangle {
     ColumnLayout {
         id: columnLayout
         width:parent.width
+
         Text {
             text: title
             Layout.leftMargin: 7
@@ -67,6 +65,5 @@ Rectangle {
             font.pointSize: ((rec.height/5) + (rec.width /10))/6
             font.family: "OpenSans"
         }
-
     }
 }

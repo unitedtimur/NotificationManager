@@ -13,9 +13,10 @@ Window {
     ControlPanel {
        id: controlPanel
     }
-
     BottomScreen {
           id: bottomScreen
+          height: parent.height/2
+          width: parent.width/6
 
           ListView {
               id: notifyList
@@ -26,16 +27,12 @@ Window {
                   right:parent.right
                   topMargin: 25
                   rightMargin: 25
-
-              }
-
-              height: parent.height/2
-              width: parent.width/6
+              }            
               delegate: Notification {
                   title: model.title
                   message: model.message
                   state: model.type
-              }
+                }
           }
-}
+    }
 }

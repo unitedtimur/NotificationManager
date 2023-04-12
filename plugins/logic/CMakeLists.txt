@@ -37,12 +37,7 @@ target_include_directories(
         PUBLIC
         ${CMAKE_CURRENT_SOURCE_DIR}/include
 )
-target_link_libraries(
-    ${PROJECT_NAME}
-    PUBLIC
-    core
-)
-target_compile_definitions(${PROJECT_NAME} PRIVATE LOGIC_PLUGIN)
+
 SET_BASE_TARGET_PROPERTIES(${PROJECT_NAME})
 
 PLUGIN_METADATA_GENERATOR()

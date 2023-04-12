@@ -1,8 +1,5 @@
 import QtQuick 2.15
 import QtQuick.Window 2.15
-import "plugins/interface/src/qml/ControlPanel"
-import "plugins/interface/src/qml/BottomScreen"
-import "plugins/interface/src/qml/Notification"
 
 Window {
     id: mainWindow

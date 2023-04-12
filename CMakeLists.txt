@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.24.2)
+cmake_minimum_required(VERSION 3.24)
 
 project(notification_manager
     VERSION 0.0.1

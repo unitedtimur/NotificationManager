@@ -1,6 +1,6 @@
 #ifndef GUI_INTERFACE_H
 #define GUI_INTERFACE_H
-#pragma once
+
 #include "base_interface.h"
 
 namespace Core {

@@ -76,4 +76,5 @@ namespace LogicPlugin {
         QList<Notification> m_notifications;
     };
 }
+
 #endif // NOTIFY_MODEL_H

@@ -1,10 +1,11 @@
-#include <iostream>
 #include "core.h"
+#include "notify_model.h"
+#include <iostream>
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
-#include "notify_model.h"
 #include <QQmlEngine>
 #include <QQmlContext>
+
 int main(int argc, char *argv[])
 {
 #if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)

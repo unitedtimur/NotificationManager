@@ -1,9 +1,10 @@
 #ifndef BASE_INTERFACE_H
 #define BASE_INTERFACE_H
-#pragma once
+
 #include <QObject>
 #include <QList>
 #include <QPointer>
+
 namespace Core {
     /*!
      * \brief Класс, являющийся базовым интерфейсом, от него будут наследоваться плагины логики и

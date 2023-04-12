@@ -5,12 +5,7 @@ project(
         DESCRIPTION "Interface plugin description..."
 )
 
-file(GLOB_RECURSE SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/*.cpp)
-file(GLOB_RECURSE HEADERS ${CMAKE_CURRENT_SOURCE_DIR}/*.h)
-file(GLOB_RECURSE QML_SRC ${CMAKE_CURRENT_SOURCE_DIR}/*.qml)
-file(GLOB_RECURSE ASSETS ${CMAKE_CURRENT_SOURCE_DIR}/*.png)
-add_custom_target(qml_src SOURCES ${QML_SRC})
-add_custom_target(assets SOURCES ${ASSETS})
+INCLUDE_SOURCES(${PROJECT_NAME})
 
 add_library(
         interface_plugin

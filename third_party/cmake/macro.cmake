@@ -20,18 +20,38 @@ endmacro()
 
 # Макрос ищет указанные в аргументах компоненты QT линкует их с таргетом
 macro(FIND_AND_LINK_QT)
+    set(_OPTIONS_ARGS)
+    set(_ONE_VALUE_ARGS TARGET)
+    set(_MULTI_VALUE_ARGS QT_COMPONENTS)
+
+    # Парсим все переданные аргументы в модуль
+    cmake_parse_arguments(_LIBS_LINKING
+        "${_OPTIONS_ARGS}"
+        "${_ONE_VALUE_ARGS}"
+        "${_MULTI_VALUE_ARGS}"
+        ${ARGN})
+
+    if (NOT _LIBS_LINKING_TARGET)
+        message(FATAL_ERROR "FIND_AND_LINK_QT : TARGET is not set")
+    endif()
+
+    if (NOT _LIBS_LINKING_QT_COMPONENTS)
+        message(FATAL_ERROR "FIND_AND_LINK_QT : QT_COMPONENTS is not set")
+    endif()
+
     # Ищем пакеты Qt6 или Qt5
-    find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS ${ARGV})
+    find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS ${_LIBS_LINKING_QT_COMPONENTS})
 
     # Ищем нужные компоненты
-    find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS ${ARGV})
-    foreach(component IN ITEMS ${ARGV})
-        message(STATUS "LINK - ${PROJECT_NAME}
-            Qt${QT_VERSION_MAJOR}::${component}")
+    find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS ${_LIBS_LINKING_QT_COMPONENTS})
+
+    foreach(COMPONENT ${_LIBS_LINKING_QT_COMPONENTS})
+        message(STATUS "LINK - ${_LIBS_LINKING_TARGET}
+            Qt${QT_VERSION_MAJOR}::${COMPONENT}")
         target_link_libraries(
-                ${PROJECT_NAME}
+                ${_LIBS_LINKING_TARGET}
                 PRIVATE
-                Qt${QT_VERSION_MAJOR}::${component}
+                Qt${QT_VERSION_MAJOR}::${COMPONENT}
         )
     endforeach()
 endmacro()
@@ -61,7 +81,7 @@ macro(INCLUDE_SOURCES NAME)
     # Ищем исходники в подпроекте, исходя из переменной DIR
     file(${RECURSIVE_FLAG} HEADERS ${_INCLUDE_SOURCES_DIR}/*.h)
     file(${RECURSIVE_FLAG} SOURCES ${_INCLUDE_SOURCES_DIR}/*.cpp *.cc)
-    file(${RECURSIVE_FLAG} QML_SRC ${_INCLUDE_SOURCES_DIR}/*.qml)
+    file(${RECURSIVE_FLAG} RESOURCES ${_INCLUDE_SOURCES_DIR}/*.qrc)
     file(${RECURSIVE_FLAG} MANIFESTS ${_INCLUDE_SOURCES_DIR}/*.rc README.txt)
     file(${RECURSIVE_FLAG} METADATA ${_INCLUDE_SOURCES_DIR}/*.json README.txt)
     file(${RECURSIVE_FLAG} UI_FILES ${_INCLUDE_SOURCES_DIR}/*.ui)
@@ -71,7 +91,7 @@ macro(INCLUDE_SOURCES NAME)
         set(REGEX "^(.*)${EXCLUDE_FILE}(.*)$")
         list(FILTER HEADERS EXCLUDE REGEX ${REGEX})
         list(FILTER SOURCES EXCLUDE REGEX ${REGEX})
-        list(FILTER QML_SRC EXCLUDE REGEX ${REGEX})
+        list(FILTER RESOURCES EXCLUDE REGEX ${REGEX})
         list(FILTER MANIFESTS EXCLUDE REGEX ${REGEX})
         list(FILTER METADATA EXCLUDE REGEX ${REGEX})
         list(FILTER UI_FILES EXCLUDE REGEX ${REGEX})
@@ -80,43 +100,45 @@ macro(INCLUDE_SOURCES NAME)
     # Выделяем группу исходников (для отображения в IDE)
     source_group("Header Files" FILES ${HEADERS})
     source_group("Source Files" FILES ${SOURCES})
-    source_group("Resources" FILES ${QML_SRC})
+    source_group("Resources" FILES ${RESOURCES})
     source_group("Manifests" FILES ${MANIFESTS})
     source_group("Proto Files" FILES ${PROTOS})
     source_group("Metadata Files" FILES ${METADATA})
     source_group("UI Files" FILES ${UI_FILES})
 
-    message(STATUS "CONFIGURED SOURCES FOR ${NAME}")
-endmacro()
-
-# Макрос формирует структуру файлов в билд папке
-macro(BUILD_STRUCTURING)
-    foreach(file IN ITEMS ${HEADERS})
-        file(COPY ${file} DESTINATION ${PROJECT_BINARY_DIR}/include)
-    endforeach()
-
-    foreach(file IN ITEMS ${SOURCES})
-        file(COPY ${file} DESTINATION ${PROJECT_BINARY_DIR}/src)
-    endforeach()
-
-    file(GLOB RM_FILES ${PROJECT_BINARY_DIR}/*.dll *.dll.a *.h *.cpp *.cc *.qml)
-    file(REMOVE "${RM_FILES}")
+    message(STATUS "SOURCES - configured for ${NAME}")
 endmacro()
 
 # Макрос генерирует заголовочные файлы экспорта и добаляет их в указанную
 # директорию
-macro(GENERATE_EXPORT_HEADERS dir)
+macro(GENERATE_EXPORT_HEADERS)
+    set(_OPTIONS_ARGS)
+    set(_ONE_VALUE_ARGS TARGET DIR)
+
+    # Парсим все переданные аргументы в модуль
+    cmake_parse_arguments(_HEADER_GENERATOR
+        "${_OPTIONS_ARGS}"
+        "${_ONE_VALUE_ARGS}"
+        "${_MULTI_VALUE_ARGS}"
+        ${ARGN})
+
+    if (NOT _HEADER_GENERATOR_TARGET)
+        message(FATAL_ERROR "FIND_AND_LINK_QT : TARGET is not set")
+    endif()
+
+    if (NOT _HEADER_GENERATOR_DIR)
+        message(FATAL_ERROR "FIND_AND_LINK_QT : DIR is not set")
+    endif()
+
     include(GenerateExportHeader)
-    generate_export_header(${PROJECT_NAME})
-    file(COPY ${PROJECT_BINARY_DIR}/${PROJECT_NAME}_export.h
-            DESTINATION ${CMAKE_CURRENT_SOURCE_DIR}/${dir})
-    file(COPY ${PROJECT_BINARY_DIR}/${PROJECT_NAME}_export.h
-            DESTINATION ${PROJECT_BINARY_DIR}/${dir})
-    file(REMOVE ${PROJECT_BINARY_DIR}/${PROJECT_NAME}_export.h)
+    generate_export_header(${_HEADER_GENERATOR_TARGET}
+        EXPORT_FILE_NAME
+        ${CMAKE_CURRENT_SOURCE_DIR}/${_HEADER_GENERATOR_DIR}/${_HEADER_GENERATOR_TARGET}_export.h)
+    message(STATUS "EXPORT HEADER - generated for ${_HEADER_GENERATOR_TARGET}")
 endmacro()
 
 # Макрос генерирует метадату для плагина
-macro(PLUGIN_METADATA_GENERATOR)
+macro(PLUGIN_METADATA_GENERATOR NAME)
     set(_ONE_VALUE_ARGS
             NAME
             VERSION
@@ -148,4 +170,6 @@ macro(PLUGIN_METADATA_GENERATOR)
     \"Url\": \"${_METADATA_URL}\",
     \"Dependencies\": \"${_METADATA_DEPENDENCIES}\"
 }")
+
+    message(STATUS "METADATA - generated for ${NAME}")
 endmacro()

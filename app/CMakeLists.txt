@@ -13,9 +13,16 @@ set(QT_COMPONENTS
     Core
     QuickControls2)
 
-add_executable(${PROJECT_NAME} ${CMAKE_CURRENT_LIST_DIR}/src/main.cpp ${CMAKE_CURRENT_LIST_DIR}/src/main.qml)
+add_executable(${PROJECT_NAME}
+    ${HEADERS}
+    ${SOURCES}
+    ${RESOURCES})
 
-FIND_AND_LINK_QT ("${QT_COMPONENTS}")
+FIND_AND_LINK_QT(
+    TARGET
+    ${PROJECT_NAME}
+    QT_COMPONENTS
+    ${QT_COMPONENTS})
 
 target_link_libraries(
         ${PROJECT_NAME}
@@ -24,5 +31,3 @@ target_link_libraries(
 )
 
 SET_BASE_TARGET_PROPERTIES(${PROJECT_NAME})
-
-BUILD_STRUCTURING()

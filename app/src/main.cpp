@@ -1,11 +1,10 @@
 #include <iostream>
-#include "core.h"
+#include "abstract_core.h"
 
 int main()
 {
     std::cout << "app started" << std::endl;
-    Core::init();
+    Core::AbstractCore core;
 
-    // start core
     return 0;
 }

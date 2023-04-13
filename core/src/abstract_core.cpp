@@ -58,7 +58,7 @@ namespace Core {
         }
     }
 
-    QPointer<QQmlApplicationEngine> CoreBasis::qmlEngine() const
+    QPointer<QQmlApplicationEngine> AbstractCore::qmlEngine() const
     {
         return _qmlEngine;
     }

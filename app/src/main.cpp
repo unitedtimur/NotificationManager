@@ -1,10 +1,22 @@
-#include <iostream>
 #include "abstract_core.h"
 
-int main()
+#include <iostream>
+#include <QCoreApplication>
+
+int main(int argc, char *argv[])
 {
     std::cout << "app started" << std::endl;
-    Core::AbstractCore core;
+    QCoreApplication app(argc, argv);
 
-    return 0;
+    QString dir(QDir::currentPath());
+    QDir thisDir(dir);
+    thisDir.cdUp();
+    thisDir.cd("plugins");
+
+    QString plugDir = thisDir.absolutePath();
+
+    Core::AbstractCore core;
+    core.loadPlugins(plugDir);
+
+    return app.exec();
 }

@@ -1,9 +1,12 @@
 #include "abstract_core.h"
 
+#include <iostream>
+
 namespace Core {
     AbstractCore::AbstractCore()
     {
         _qmlEngine = new QQmlApplicationEngine(this);
+        qDebug() << "AbstractCore constructor";
     }
 
     void AbstractCore::loadPlugins(const QString &path)

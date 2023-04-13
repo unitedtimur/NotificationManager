@@ -1,8 +1,12 @@
 #ifndef NOTIFY_LOGIC_PLUGIN_H
 #define NOTIFY_LOGIC_PLUGIN_H
+
 #include "logic_interface.h"
+
 #include <QString>
 #include <QTimer>
+#include <QObject>
+
 namespace LogicPlugin {
     /*
          Класс реализующий плагин бизнес-логики отображения уведомлений
@@ -21,7 +25,7 @@ namespace LogicPlugin {
                интерфейса, реализованного через объект, и сослаться на файл, содержащий метаданные
            для плагина.
                 */
-        Q_PLUGIN_METADATA(IID "com.Core.LogicInterface" FILE "logic_interface.json")
+        Q_PLUGIN_METADATA(IID "com.Core.LogicInterface" FILE "plugin_metadata.json")
 
         // Q_PROPERTY?
     public:

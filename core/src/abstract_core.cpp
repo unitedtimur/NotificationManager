@@ -1,4 +1,5 @@
 #include "abstract_core.h"
+#include "logic_interface.h"
 
 #include <iostream>
 
@@ -22,10 +23,11 @@ namespace Core {
 #endif
 
         for (const auto &plugin : qAsConst(plugins)) {
-            QPluginLoader pluginLoader(dir.absolutePath() + "/" + plugin);
-
-            const auto pluginInterface = pluginLoader.instance();
-
+            QObject *parent;
+            QString test(dir.absolutePath() + "/" + plugin);
+            QPluginLoader loader(dir.absolutePath() + "/" + plugin, parent = nullptr);
+            QString a(loader.errorString());
+            QObject *pluginInterface = loader.instance();
             if (!pluginInterface) {
                 qWarning() << "Unknow plugin in plugins folder";
                 continue;

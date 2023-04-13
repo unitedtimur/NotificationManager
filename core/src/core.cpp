@@ -1,6 +1,11 @@
 #include "core.h"
 
 namespace Core {
+    CoreBasis::CoreBasis()
+    {
+        _qmlEngine = new QQmlApplicationEngine(this);
+    }
+
     void CoreBasis::loadPlugins(const QString &path)
     {
         QStringList plugins;

@@ -8,6 +8,9 @@
 #include <QPluginLoader>
 #include <QMetaClassInfo>
 #include <QCoreApplication>
+#include <QQmlApplicationEngine>
+#include <QSettings>
+
 
 namespace Core {
     /*!
@@ -26,6 +29,23 @@ namespace Core {
          * \brief Функция загрузки плагинов
          * Данная функция производит поиск и загрузку плагинов
          */
-        void loadPlugins();
+        void loadPlugins(const QString &path);
+
+        QPointer<QQmlApplicationEngine> qmlEngine() const;
+    private:
+        /*!
+     * \brief Список плагинов, которые будут загружены из папки plugins
+     */
+        QList<QPointer<QObject>> _plugins;
+
+        /*!
+     * \brief Указатель на движок QML
+     */
+        QPointer<QQmlApplicationEngine> _qmlEngine;
+
+        /*!
+     * \brief Указатель на QSettings
+     */
+        QPointer<QSettings> _settings;
 };
 }

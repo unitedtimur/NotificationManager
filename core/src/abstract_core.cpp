@@ -1,12 +1,12 @@
-#include "core.h"
+#include "abstract_core.h"
 
 namespace Core {
-    CoreBasis::CoreBasis()
+    AbstractCore::AbstractCore()
     {
         _qmlEngine = new QQmlApplicationEngine(this);
     }
 
-    void CoreBasis::loadPlugins(const QString &path)
+    void AbstractCore::loadPlugins(const QString &path)
     {
         QStringList plugins;
         QDir dir(path);

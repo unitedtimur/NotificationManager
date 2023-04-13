@@ -37,6 +37,12 @@ target_include_directories(
         ${CMAKE_CURRENT_SOURCE_DIR}/include
 )
 
+target_link_libraries(
+        ${PROJECT_NAME}
+        PRIVATE
+        ${PROJECT_NAMESPACE}::core
+)
+
 SET_BASE_TARGET_PROPERTIES(${PROJECT_NAME})
 
 PLUGIN_METADATA_GENERATOR()

@@ -1,5 +1,7 @@
-#include <iostream>
 #include "core.h"
+
+#include <iostream>
+
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 #include <QQmlEngine>
@@ -8,8 +10,7 @@
 
 int main(int argc, char *argv[])
 {
-    Core::init();
-
+    Core::init();   
     QFile file(":/qml/main.qml");
     qDebug() << file.exists();
 

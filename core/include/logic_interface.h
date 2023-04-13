@@ -1,6 +1,6 @@
 #ifndef LOGIC_INTERFACE_H
 #define LOGIC_INTERFACE_H
-#pragma once
+
 #include "base_interface.h"
 
 namespace Core {
@@ -14,11 +14,8 @@ namespace Core {
         Q_OBJECT
         Q_INTERFACES(Core::BaseInterface)
     public:
-        /*!
-         * \brief Виртуальный деструктор с определением в заголовочном файле
-         */
-        virtual ~LogicInterface() = default;
     };
 }
 Q_DECLARE_INTERFACE(Core::LogicInterface, "com.Core.LogicInterface")
+
 #endif // LOGIC_INTERFACE_H

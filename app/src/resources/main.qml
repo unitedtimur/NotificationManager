@@ -1,8 +1,5 @@
 import QtQuick 2.15
 import QtQuick.Window 2.15
-import "plugins/interface/src/qml/ControlPanel"
-import "plugins/interface/src/qml/BottomScreen"
-import "plugins/interface/src/qml/Notification"
 
 Window {
     id: mainWindow
@@ -13,9 +10,11 @@ Window {
     ControlPanel {
        id: controlPanel
     }
-
     BottomScreen {
           id: bottomScreen
+
+          height: parent.height/2
+          width: parent.width/6
 
           ListView {
               id: notifyList
@@ -26,16 +25,12 @@ Window {
                   right:parent.right
                   topMargin: 25
                   rightMargin: 25
-
-              }
-
-              height: parent.height/2
-              width: parent.width/6
+              }            
               delegate: Notification {
                   title: model.title
                   message: model.message
                   state: model.type
-              }
+                }
           }
-}
+    }
 }

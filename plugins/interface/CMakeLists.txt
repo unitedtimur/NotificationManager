@@ -5,16 +5,23 @@ project(
         DESCRIPTION "Interface plugin description..."
 )
 
+PLUGIN_METADATA_GENERATOR(
+    ${PROJECT_NAME}
+    NAME logic_plugin
+    VERSION 0.0.1
+)
+
 INCLUDE_SOURCES(${PROJECT_NAME})
 
-#add_custom_target(qml_src SOURCES ${QML_SRC})
+message("Path to ${PROJECT_NAME} metadata: ${METADATA}")
 
 add_library(
         interface_plugin
         SHARED
-        ${HEADERS}
         ${SOURCES}
+        ${HEADERS}
         ${RESOURCES}
+        ${METADATA}
 )
 
 set_target_properties(${PROJECT_NAME}
@@ -50,4 +57,3 @@ target_link_libraries(
 
 SET_BASE_TARGET_PROPERTIES(${PROJECT_NAME})
 
-PLUGIN_METADATA_GENERATOR(${PROJECT_NAME})

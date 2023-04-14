@@ -1,5 +1,6 @@
 #include "abstract_core.h"
-#include "logic_interface.h"
+// #include "logic_interface.h"
+#include "connect_interface.h"
 
 #include <iostream>
 
@@ -24,43 +25,61 @@ namespace Core {
 
         for (const auto &plugin : qAsConst(plugins)) {
             QObject *parent;
-            QString test(dir.absolutePath() + "/" + plugin);
-            QPluginLoader loader(dir.absolutePath() + "/" + plugin, parent = nullptr);
-            QString a(loader.errorString());
-            QObject *pluginInterface = loader.instance();
-            if (!pluginInterface) {
-                qWarning() << "Unknow plugin in plugins folder";
-                continue;
-            }
+            //            QString test(dir.absolutePath() + "/" + plugin);
+            QPluginLoader loader(dir.absoluteFilePath(plugin));
+            ConnectInterface *interface = qobject_cast<ConnectInterface *>(loader.instance());
 
-            if (const auto plugin = qobject_cast<BaseInterface *>(pluginInterface); plugin) {
-                _plugins.push_back(plugin);
-            }
-        }
-
-        const auto excludePlugin = [this](auto excludedPlugin, auto plugins) {
-            QList<QPointer<QObject>> result;
-
-            for (const auto &plugin : plugins) {
-                if (plugin != excludedPlugin) {
-                    result.append(plugin);
-                }
-            }
-
-            return result;
-        };
-
-        for (const auto &plugin : qAsConst(_plugins)) {
-            auto *interface = qobject_cast<BaseInterface *>(plugin);
-            const auto isLoaded = interface->initialize(excludePlugin(plugin, _plugins));
-
-            if (!isLoaded) {
-                qWarning() << "Failed to load plugin";
-                _plugins = excludePlugin(plugin, _plugins);
+            QString str = "dododododo";
+            if (interface) {
+                interface->printDocument(str);
             } else {
-                qInfo() << "Plugin is loaded";
+                qDebug() << loader.errorString();
             }
+
+            //            QJsonValue pluginMetadata(loader.metaData().value("Version"));
+
+            //            QJsonObject metaDataObject = pluginMetadata.toObject();
+
+            //            qDebug() <<
+            //            loader.metaData().value("MetaData").toObject().value("Name").toString();
+
+            //            QString a(loader.errorString());
+            //            qDebug() << a;
+            //            QObject *pluginInterface = loader.instance();
+            //            if (!pluginInterface) {
+            //                qWarning() << "Unknow plugin in plugins folder";
+            //                continue;
+            //            }
+
+            //            if (const auto plugin = qobject_cast<BaseInterface *>(pluginInterface);
+            //            plugin) {
+            //                _plugins.push_back(plugin);
+            //            }
         }
+
+        //        const auto excludePlugin = [this](auto excludedPlugin, auto plugins) {
+        //            QList<QPointer<QObject>> result;
+
+        //            for (const auto &plugin : plugins) {
+        //                if (plugin != excludedPlugin) {
+        //                    result.append(plugin);
+        //                }
+        //            }
+
+        //            return result;
+        //        };
+
+        //        for (const auto &plugin : qAsConst(_plugins)) {
+        //            auto *interface = qobject_cast<BaseInterface *>(plugin);
+        //            const auto isLoaded = interface->initialize(excludePlugin(plugin, _plugins));
+
+        //            if (!isLoaded) {
+        //                qWarning() << "Failed to load plugin";
+        //                _plugins = excludePlugin(plugin, _plugins);
+        //            } else {
+        //                qInfo() << "Plugin is loaded";
+        //            }
+        //        }
     }
 
     QPointer<QQmlApplicationEngine> AbstractCore::qmlEngine() const

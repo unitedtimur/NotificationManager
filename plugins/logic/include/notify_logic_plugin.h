@@ -29,6 +29,8 @@ namespace LogicPlugin {
 
         // Q_PROPERTY?
     public:
+        explicit NotificationLogicPlugin();
+        ~NotificationLogicPlugin();
         virtual bool initialize(const QList<QPointer<QObject>> &dependencies) override;
     };
 }

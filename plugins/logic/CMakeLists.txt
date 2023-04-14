@@ -5,13 +5,22 @@ project(
         DESCRIPTION "Logic plugin description..."
 )
 
+PLUGIN_METADATA_GENERATOR(
+    ${PROJECT_NAME}
+    NAME logic_plugin
+    VERSION 0.0.1
+)
+
 INCLUDE_SOURCES(${PROJECT_NAME})
+
+message("Path to ${PROJECT_NAME} metadata: ${METADATA}")
 
 add_library(
         logic_plugin
         SHARED
         ${HEADERS}
         ${SOURCES}
+        ${METADATA}
 )
 add_library(${PROJECT_NAMESPACE}::${PROJECT_NAME} ALIAS ${PROJECT_NAME})
 
@@ -47,4 +56,3 @@ target_link_libraries(
 
 SET_BASE_TARGET_PROPERTIES(${PROJECT_NAME})
 
-PLUGIN_METADATA_GENERATOR(${PROJECT_NAME})

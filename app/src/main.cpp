@@ -1,13 +1,15 @@
 #include "abstract_core.h"
 
 #include <iostream>
-#include <QCoreApplication>
+#include <QApplication>
 #include <QFile>
 
 int main(int argc, char *argv[])
 {
     std::cout << "app started" << std::endl;
-    QCoreApplication app(argc, argv);
+    //    qputenv("QT_DEBUG_PLUGINS", QByteArray("1"));
+
+    QApplication app(argc, argv);
 
     QString dir(QDir::currentPath());
     QDir thisDir(dir);
@@ -21,20 +23,3 @@ int main(int argc, char *argv[])
 
     return app.exec();
 }
-//=======
-//#include "core.h"
-//#include <QGuiApplication>
-//#include <QQmlApplicationEngine>
-//#include <QQmlEngine>
-//#include <QQmlContext>
-//#include <QFile>
-
-//int main(int argc, char *argv[])
-//{
-//    Core::init();
-
-//    QFile file(":/qml/main.qml");
-//    qDebug() << file.exists();
-
-//    return 0;
-//}

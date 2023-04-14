@@ -138,7 +138,7 @@ macro(GENERATE_EXPORT_HEADERS)
 endmacro()
 
 # Макрос генерирует метадату для плагина
-macro(PLUGIN_METADATA_GENERATOR NAME)
+macro(PLUGIN_METADATA_GENERATOR TARGET)
     set(_ONE_VALUE_ARGS
             NAME
             VERSION
@@ -160,16 +160,8 @@ macro(PLUGIN_METADATA_GENERATOR NAME)
     file(WRITE include/plugin_metadata.json "\
 {
     \"Name\": \"${_METADATA_NAME}\",
-    \"Version\": \"${_METADATA_VERSION}\",
-    \"CompatVersion\": \"${_METADATA_COMPAT_VERSION}\",
-    \"Vendor\": \"${_METADATA_VENDOR}\",
-    \"Copyright\": \"${_METADATA_COPYRIGHT}\",
-    \"License\": \"${_METADATA_LICENSE}\",
-    \"Category\": \"${_METADATA_CATEGORY}\",
-    \"Description\": \"${_METADATA_DESCRIPTION}\",
-    \"Url\": \"${_METADATA_URL}\",
-    \"Dependencies\": \"${_METADATA_DEPENDENCIES}\"
+    \"Version\": \"${_METADATA_VERSION}\"
 }")
 
-    message(STATUS "METADATA - generated for ${NAME}")
+    message(STATUS "METADATA - generated for ${TARGET}")
 endmacro()

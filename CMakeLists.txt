@@ -8,6 +8,8 @@ set(PROJECT_NAMESPACE notification_manager)
 
 include(${CMAKE_CURRENT_SOURCE_DIR}/third_party/cmake/base.cmake)
 
+AUTO_BUILD_RESOURCES_QT5()
+
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 

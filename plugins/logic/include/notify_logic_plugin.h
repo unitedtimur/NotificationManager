@@ -27,7 +27,6 @@ namespace NMLogicPlugin {
                 */
         Q_PLUGIN_METADATA(IID "com.NM.Core.LogicInterface" FILE "plugin_metadata.json")
 
-        // Q_PROPERTY?
     public:
         virtual bool initialize(const QList<QPointer<QObject>> &dependencies) override;
     };

@@ -12,8 +12,6 @@ PLUGIN_METADATA_GENERATOR(
 
 INCLUDE_SOURCES(${PROJECT_NAME})
 
-message("Path to ${PROJECT_NAME} metadata: ${METADATA}")
-
 add_library(
         interface_plugin
         SHARED

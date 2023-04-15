@@ -19,12 +19,14 @@ add_library(
         ${SOURCES}
         ${METADATA}
 )
-add_library(${PROJECT_NAMESPACE}::${PROJECT_NAME} ALIAS ${PROJECT_NAME})
 
 set_target_properties(${PROJECT_NAME}
     PROPERTIES
-    RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}install-root/plugins
+    RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/install-root/plugins
 )
+
+add_library(${PROJECT_NAMESPACE}::${PROJECT_NAME} ALIAS ${PROJECT_NAME})
+
 
 GENERATE_EXPORT_HEADERS(TARGET ${PROJECT_NAME} DIR include)
 

@@ -29,7 +29,7 @@ namespace NMLogicPlugin {
 
         // Q_PROPERTY?
     public:
-        virtual bool initialize() override;
+        virtual bool initialize(const QList<QPointer<QObject>> &dependencies) override;
     };
 }
 

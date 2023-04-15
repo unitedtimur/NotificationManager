@@ -2,8 +2,8 @@
 
 #include <QDebug>
 
-bool NMLogicPlugin::NotificationLogicPlugin::initialize()
+bool NMLogicPlugin::NotificationLogicPlugin::initialize(
+ const QList<QPointer<QObject>> &dependencies)
 {
-    qDebug() << "Initialize";
     return true;
 }

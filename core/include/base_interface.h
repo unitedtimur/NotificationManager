@@ -26,7 +26,7 @@ namespace NMCore {
          * \brief Виртуальный метод, который реализует инициализацию плагинов
          * логики и gui, исходя из зависимостей библиотек друг от друга
          */
-        virtual bool initialize() = 0;
+        virtual bool initialize(const QList<QPointer<QObject>> &dependencies) = 0;
     };
 }
 

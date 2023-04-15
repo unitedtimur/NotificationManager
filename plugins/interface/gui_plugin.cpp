@@ -2,8 +2,7 @@
 
 #include <QDebug>
 
-bool NMGuiPlugin::GuiPlugin::initialize()
+bool NMGuiPlugin::GuiPlugin::initialize(const QList<QPointer<QObject>> &dependencies)
 {
-    qDebug() << "Initialize";
     return true;
 }

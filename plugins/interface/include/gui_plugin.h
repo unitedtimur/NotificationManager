@@ -27,7 +27,7 @@ namespace NMGuiPlugin {
         Q_PLUGIN_METADATA(IID "com.NM.GuiPlugin." FILE "plugin_metadata.json")
 
     public:
-        virtual bool initialize() override;
+        virtual bool initialize(const QList<QPointer<QObject>> &dependencies) override;
     };
 }
 

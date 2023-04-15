@@ -18,6 +18,11 @@ add_executable(${PROJECT_NAME}
     ${SOURCES}
     ${RESOURCES})
 
+set_target_properties(
+    ${PROJECT_NAME}
+    PROPERTIES
+    RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/install-root)
+
 FIND_AND_LINK_QT(
     TARGET
     ${PROJECT_NAME}

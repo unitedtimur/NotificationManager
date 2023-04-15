@@ -22,7 +22,8 @@ namespace NMCore {
 #endif
 
         for (const auto &plugin : qAsConst(plugins)) {
-            QPluginLoader loader(dir.absoluteFilePath(plugin));
+            QPluginLoader loader;
+            loader.setFileName(path + "/" + plugin);
 
             QObject *obj = qobject_cast<QObject *>(loader.instance());
 

@@ -1,6 +1,5 @@
 #include "abstract_core.h"
-// #include "logic_interface.h"
-#include "connect_interface.h"
+#include "base_interface.h"
 
 #include <iostream>
 
@@ -27,10 +26,10 @@ namespace Core {
             QObject *parent;
             //            QString test(dir.absolutePath() + "/" + plugin);
             QPluginLoader loader(dir.absoluteFilePath(plugin));
-            ConnectInterface *interface = qobject_cast<ConnectInterface *>(loader.instance());
+            BaseInterface *interface = qobject_cast<BaseInterface *>(loader.instance());
 
             if (interface) {
-                interface->init();
+                interface->initialize();
             } else {
                 qDebug() << loader.errorString();
             }

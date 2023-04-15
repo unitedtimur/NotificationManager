@@ -25,7 +25,7 @@ public:
      * \brief Виртуальный метод, который реализует инициализацию плагинов
      * логики и gui, исходя из зависимостей библиотек друг от друга
      */
-    virtual bool initialize(const QList<QPointer<QObject>> &dependencies) = 0;
+    virtual bool initialize() = 0;
 };
 
 Q_DECLARE_INTERFACE(BaseInterface, "com.core.BaseInterface")

@@ -19,6 +19,6 @@ public:
     virtual ~GuiInterface() = default;
 };
 
-Q_DECLARE_INTERFACE(GuiInterface, "com.Core.GuiInterface")
+Q_DECLARE_INTERFACE(GuiInterface, "com.core.GuiInterface")
 
 #endif // GUI_INTERFACE_H

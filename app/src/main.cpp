@@ -18,7 +18,7 @@ int main(int argc, char *argv[])
 
     QString plugDir = thisDir.absolutePath();
 
-    Core::AbstractCore core;
+    NMCore::AbstractCore core;
     core.loadPlugins(plugDir);
 
     return app.exec();

@@ -2,7 +2,7 @@
 
 #include <QDebug>
 
-bool GuiPlugin::initialize()
+bool NMGuiPlugin::GuiPlugin::initialize()
 {
     qDebug() << "Initialize";
     return true;

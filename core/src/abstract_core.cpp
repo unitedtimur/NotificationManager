@@ -3,7 +3,7 @@
 
 #include <iostream>
 
-namespace Core {
+namespace NMCore {
     AbstractCore::AbstractCore()
     {
         _qmlEngine = new QQmlApplicationEngine(this);

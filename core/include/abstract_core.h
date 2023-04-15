@@ -10,7 +10,7 @@
 #include <QSettings>
 #include <QQmlApplicationEngine>
 
-namespace Core {
+namespace NMCore {
     class CORE_EXPORT AbstractCore : public QObject
     {
         Q_OBJECT

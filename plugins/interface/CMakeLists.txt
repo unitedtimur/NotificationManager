@@ -2,13 +2,12 @@ project(
         interface_plugin
         VERSION 0.0.1
         LANGUAGES CXX
-        DESCRIPTION "Interface plugin description..."
 )
 
 PLUGIN_METADATA_GENERATOR(
     ${PROJECT_NAME}
     NAME logic_plugin
-    VERSION 0.0.1
+    VERSION ${CMAKE_PROJECT_VERSION}
 )
 
 INCLUDE_SOURCES(${PROJECT_NAME})

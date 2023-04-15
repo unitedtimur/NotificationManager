@@ -1,19 +1,19 @@
 project(
-        interface_plugin
+        gui_plugin
         VERSION 0.0.1
         LANGUAGES CXX
 )
 
 PLUGIN_METADATA_GENERATOR(
     ${PROJECT_NAME}
-    NAME logic_plugin
+    NAME gui_plugin
     VERSION ${CMAKE_PROJECT_VERSION}
 )
 
 INCLUDE_SOURCES(${PROJECT_NAME})
 
 add_library(
-        interface_plugin
+        ${PROJECT_NAME}
         SHARED
         ${SOURCES}
         ${HEADERS}

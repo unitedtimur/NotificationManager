@@ -13,7 +13,7 @@ PLUGIN_METADATA_GENERATOR(
 INCLUDE_SOURCES(${PROJECT_NAME})
 
 add_library(
-        logic_plugin
+        ${PROJECT_NAME}
         SHARED
         ${HEADERS}
         ${SOURCES}

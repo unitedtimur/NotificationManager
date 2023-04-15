@@ -1,4 +1,4 @@
 PARSE_SUBDIRECTORIES(
-    interface
+    gui
     logic
 )

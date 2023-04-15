@@ -3,7 +3,7 @@
 
 #include "base_interface.h"
 
-namespace Core {
+namespace NMCore {
     /*!
      * \brief Класс, реализующий плагин интерфейса(то есть в дальнейшем здесь будут описаны все
      * методы, классы, которые понадобяться для реализации задачи отображения графических элементов,
@@ -12,15 +12,10 @@ namespace Core {
     class GuiInterface : public BaseInterface
     {
         Q_OBJECT
-        Q_INTERFACES(Core::BaseInterface)
-
-    public:
-        /*!
-         * \brief Виртуальный деструктор с определением в заголовочном файле
-         */
-        virtual ~GuiInterface() = default;
+        Q_INTERFACES(NMCore::BaseInterface)
     };
 }
 
-Q_DECLARE_INTERFACE(Core::GuiInterface, "com.Core.GuiInterface")
+Q_DECLARE_INTERFACE(NMCore::GuiInterface, "com.NM.Core.GuiInterface")
+
 #endif // GUI_INTERFACE_H

@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.24.2)
+cmake_minimum_required(VERSION 3.24)
 
 project(notification_manager
     VERSION 0.0.1
@@ -7,6 +7,8 @@ project(notification_manager
 set(PROJECT_NAMESPACE notification_manager)
 
 include(${CMAKE_CURRENT_SOURCE_DIR}/third_party/cmake/base.cmake)
+
+AUTO_BUILD_RESOURCES_QT5()
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)

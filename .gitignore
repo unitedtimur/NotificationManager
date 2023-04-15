@@ -35,6 +35,6 @@
 build
 CMakeLists.txt.user
 
-*_export.h
+**/*_export.h
 *plugin_metadata.json
 .clang-format

@@ -3,23 +3,20 @@
 
 #include "base_interface.h"
 
-namespace Core {
+namespace NMCore {
     /*!
      * \brief Класс, реализующий плагин бизнес-логики(то есть в дальнейшем здесь будут описаны все
-     * методы, классы, которые понадобяться для реализации задачи отображения графических элементов,
+     * методы, классы, которые понадобяться для реализации логики отображения уведомлений,
      * а сам LogicInterface будет собран в библиотеку)
      */
     class LogicInterface : public BaseInterface
     {
         Q_OBJECT
-        Q_INTERFACES(Core::BaseInterface)
-
+        Q_INTERFACES(NMCore::BaseInterface)
     public:
-        /*!
-         * \brief Виртуальный деструктор с определением в заголовочном файле
-         */
-        explicit LogicInterface(QObject *parent = nullptr);
     };
 }
-Q_DECLARE_INTERFACE(Core::LogicInterface, "com.Core.LogicInterface")
+
+Q_DECLARE_INTERFACE(NMCore::LogicInterface, "com.NM.Core.LogicInterface")
+
 #endif // LOGIC_INTERFACE_H

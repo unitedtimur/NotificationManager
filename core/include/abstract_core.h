@@ -2,7 +2,6 @@
 #define ICORE_H
 
 #include "core_export.h"
-#include "base_interface.h"
 
 #include <QDir>
 #include <QObject>
@@ -11,7 +10,7 @@
 #include <QSettings>
 #include <QQmlApplicationEngine>
 
-namespace Core {
+namespace NMCore {
     class CORE_EXPORT AbstractCore : public QObject
     {
         Q_OBJECT

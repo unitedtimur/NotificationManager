@@ -4,17 +4,12 @@
 
 GuiPlugin::GuiPlugin(QObject *parent)
 {
-    qDebug() << name() << "created";
+    qDebug() << "created";
 }
 
 GuiPlugin::~GuiPlugin()
 {
-    qDebug() << name() << "destroyed";
-}
-
-QString GuiPlugin::name()
-{
-    return "Interface plugin";
+    qDebug() << "destroyed";
 }
 
 bool GuiPlugin::printName()

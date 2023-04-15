@@ -14,10 +14,9 @@ class GuiPlugin : public PreInterface
 public:
     GuiPlugin(QObject *parent = 0);
     ~GuiPlugin();
-    QString name();
 
 public:
-    virtual bool printName();
+    bool printName();
 };
 
 #endif // GUI_PLUGIN_H

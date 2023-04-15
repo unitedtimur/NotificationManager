@@ -12,11 +12,6 @@ class GuiInterface : public BaseInterface
 {
     Q_OBJECT
     Q_INTERFACES(BaseInterface)
-public:
-    /*!
-     * \brief Виртуальный деструктор с определением в заголовочном файле
-     */
-    virtual ~GuiInterface() = default;
 };
 
 Q_DECLARE_INTERFACE(GuiInterface, "com.core.GuiInterface")

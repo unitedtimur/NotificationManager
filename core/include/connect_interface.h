@@ -9,7 +9,7 @@ class ConnectInterface : public QObject
 public:
     using QObject::QObject;
     virtual ~ConnectInterface() = default;
-    virtual bool printName() = 0;
+    virtual bool init() = 0;
 };
 
 // говорим компилятору сгенерировать метаинформацию для строки-идентификатор

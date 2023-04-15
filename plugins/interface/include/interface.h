@@ -5,18 +5,14 @@
 
 #include <QObject>
 
-class GuiPlugin : public PreInterface
+class GuiPluginTest : public PreInterface
 {
     Q_OBJECT
     Q_PLUGIN_METADATA(IID "ConnectInterface_iid" FILE "plugin_metadata.json")
     Q_INTERFACES(PreInterface)
 
 public:
-    GuiPlugin(QObject *parent = 0);
-    ~GuiPlugin();
-
-public:
-    bool printName();
+    virtual bool init() override;
 };
 
 #endif // GUI_PLUGIN_H

@@ -2,17 +2,7 @@
 
 #include <QDebug>
 
-GuiPlugin::GuiPlugin(QObject *parent)
-{
-    qDebug() << "created";
-}
-
-GuiPlugin::~GuiPlugin()
-{
-    qDebug() << "destroyed";
-}
-
-bool GuiPlugin::printName()
+bool GuiPluginTest::init()
 {
     qDebug() << "Interface plugin";
     return true;

@@ -30,7 +30,7 @@ namespace Core {
             ConnectInterface *interface = qobject_cast<ConnectInterface *>(loader.instance());
 
             if (interface) {
-                interface->printName();
+                interface->init();
             } else {
                 qDebug() << loader.errorString();
             }

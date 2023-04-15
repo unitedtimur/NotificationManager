@@ -8,8 +8,7 @@ class PreInterface : public ConnectInterface
     Q_OBJECT
     Q_INTERFACES(ConnectInterface)
 public:
-    using ConnectInterface::ConnectInterface;
-    virtual ~PreInterface() = default;
+    //    virtual ~PreInterface() = default;
 };
 
 Q_DECLARE_INTERFACE(PreInterface, "com.core.PreInterface")

@@ -3,10 +3,13 @@
 
 #include <QObject>
 
-class ConnectInterface
+class ConnectInterface : public QObject
 {
+    Q_OBJECT
 public:
-    virtual bool printDocument(QString str) = 0;
+    using QObject::QObject;
+    virtual ~ConnectInterface() = default;
+    virtual bool printName() = 0;
 };
 
 // говорим компилятору сгенерировать метаинформацию для строки-идентификатор

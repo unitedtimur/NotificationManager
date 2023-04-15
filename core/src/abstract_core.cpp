@@ -29,9 +29,8 @@ namespace Core {
             QPluginLoader loader(dir.absoluteFilePath(plugin));
             ConnectInterface *interface = qobject_cast<ConnectInterface *>(loader.instance());
 
-            QString str = "dododododo";
             if (interface) {
-                interface->printDocument(str);
+                interface->printName();
             } else {
                 qDebug() << loader.errorString();
             }

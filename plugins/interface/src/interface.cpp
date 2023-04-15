@@ -2,7 +2,7 @@
 
 #include <QDebug>
 
-GuiPlugin::GuiPlugin(QObject *parent) : QObject(parent)
+GuiPlugin::GuiPlugin(QObject *parent)
 {
     qDebug() << name() << "created";
 }
@@ -17,8 +17,8 @@ QString GuiPlugin::name()
     return "Interface plugin";
 }
 
-bool GuiPlugin::printDocument(QString strDoc)
+bool GuiPlugin::printName()
 {
-    qDebug() << name() << "print:" << strDoc;
+    qDebug() << "Interface plugin";
     return true;
 }

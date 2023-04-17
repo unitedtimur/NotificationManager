@@ -19,7 +19,14 @@ namespace LogicPlugin {
          */
         AbstractNotification(QString title, QString description, int type);
         ~AbstractNotification() = default;
+        /*!
+         * \brief Геттеры для приватных полей класса
+         */
+        QString getTitle();
+        QString getDescription();
+        int getType();
 
+    private:
         QString _title;
         QString _description;
         int _type;

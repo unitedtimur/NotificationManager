@@ -7,6 +7,7 @@ class AbstractNotification
 {
 public:
     AbstractNotification(QString title, QString description, int type);
+    ~AbstractNotification() = default;
 
     QString _title;
     QString _description;

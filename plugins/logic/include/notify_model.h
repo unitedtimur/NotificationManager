@@ -16,16 +16,6 @@ namespace LogicPlugin {
     public:
         explicit NotificationModel(QObject *parent = nullptr);
         /*!
-         * \brief Перечисляемый тип, в котором находятся три, доступные на данный момент, типа
-         * уведомления
-         */
-        enum NotificationTypes
-        {
-            NOTIFY,
-            WARNING,
-            ALARM
-        };
-        /*!
          * \brief Смотреть enum Qt::ItemDataRole, User roles
          */
         enum NotificationRoles

@@ -5,8 +5,7 @@ LogicPlugin::NotificationModel::NotificationModel(QObject *parent) : QAbstractIt
 QModelIndex
 LogicPlugin::NotificationModel::index(int row, int column, const QModelIndex &parent) const
 {
-    if (parent.isValid() || row < 0 || row >= _notifications.count() || column < 0
-        || column >= 3) {
+    if (parent.isValid() || row < 0 || row >= _notifications.count() || column < 0 || column >= 3) {
         return QModelIndex();
     }
     return createIndex(row, column);
@@ -41,8 +40,7 @@ QVariant LogicPlugin::NotificationModel::data(const QModelIndex &index, int role
 
     switch (role) {
     case Qt::DisplayRole:
-        return index.column() == 0 ? notification.getTitle()
-                                   : notification.getDescription();
+        return index.column() == 0 ? notification.getTitle() : notification.getDescription();
     case TitleRole:
         return notification.getTitle();
     case MessageRole:
@@ -63,10 +61,11 @@ QHash<int, QByteArray> LogicPlugin::NotificationModel::roleNames() const
     return roles;
 }
 
-void LogicPlugin::NotificationModel::addNotification(QPointer<LogicPlugin::AbstractNotification> notification)
+void LogicPlugin::NotificationModel::addNotification(
+ QPointer<LogicPlugin::AbstractNotification> notification)
 {
     beginInsertRows(QModelIndex(), _notifications.count(), _notifications.count());
-    _notifications.append({ notification->getTitle(), notification->getDescription(), notification->getType()});
+    _notifications.push_back(*notification);
     endInsertRows();
     emit dataChanged(
      index(_notifications.count(), 0),

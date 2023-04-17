@@ -65,7 +65,7 @@ namespace LogicPlugin {
         /*!
          * \brief Список, в котором хранится информация об всех уведомления в модели
          */
-        QList<LogicPlugin::NotificationEntity> _notifications;
+        QList<LogicPlugin::AbstractNotification> _notifications;
     };
 }
 

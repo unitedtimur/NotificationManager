@@ -2,7 +2,11 @@
 #define NOTIFY_MODEL_H
 
 #include "logic_plugin_export.h"
+#include "notification_entity.h"
+
 #include <QAbstractItemModel>
+#include <QPointer>
+
 
 namespace LogicPlugin {
     /*!
@@ -38,7 +42,7 @@ namespace LogicPlugin {
         /*!
          * \brief Метод, с помощью которого в модель добавляются данные о новом уведомлении
          */
-        void addNotification(const QString title, const QString message, const int type);
+        void addNotification(QPointer<LogicPlugin::NotificationEntity> notification);
         /*!
          * \brief Метод, с помощью которого из модели удаляются данные об уведомлении с определенным
          * индексом
@@ -54,16 +58,10 @@ namespace LogicPlugin {
         int count() const;
 
     private:
-        struct Notification
-        {
-            QString title;
-            QString message;
-            int type;
-        };
         /*!
          * \brief Список, в котором хранится информация об всех уведомления в модели
          */
-        QList<Notification> m_notifications;
+        QList<LogicPlugin::NotificationEntity> _notifications;
     };
 }
 

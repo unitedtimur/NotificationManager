@@ -5,7 +5,7 @@ LogicPlugin::NotificationModel::NotificationModel(QObject *parent) : QAbstractIt
 QModelIndex
 LogicPlugin::NotificationModel::index(int row, int column, const QModelIndex &parent) const
 {
-    if (parent.isValid() || row < 0 || row >= m_notifications.count() || column < 0
+    if (parent.isValid() || row < 0 || row >= _notifications.count() || column < 0
         || column >= 3) {
         return QModelIndex();
     }
@@ -23,7 +23,7 @@ int LogicPlugin::NotificationModel::rowCount(const QModelIndex &parent) const
     if (parent.isValid()) {
         return 0;
     }
-    return m_notifications.count();
+    return _notifications.count();
 }
 
 int LogicPlugin::NotificationModel::columnCount(const QModelIndex &parent) const
@@ -33,21 +33,21 @@ int LogicPlugin::NotificationModel::columnCount(const QModelIndex &parent) const
 }
 QVariant LogicPlugin::NotificationModel::data(const QModelIndex &index, int role) const
 {
-    if (!index.isValid() || index.row() < 0 || index.row() >= m_notifications.count()
+    if (!index.isValid() || index.row() < 0 || index.row() >= _notifications.count()
         || index.column() < 0 || index.column() >= 3) {
         return QVariant();
     }
-    const Notification &notification = m_notifications.at(index.row());
-
+    NotificationEntity notification = _notifications.at(index.row());
     switch (role) {
     case Qt::DisplayRole:
-        return index.column() == 0 ? notification.title : notification.message;
+        return index.column() == 0 ? notification.getTitle()
+                                   : notification.getDescription();
     case TitleRole:
-        return notification.title;
+        return notification.getTitle();
     case MessageRole:
-        return notification.message;
+        return notification.getDescription();
     case TypeRole:
-        return notification.type;
+        return notification.getType();
     default:
         return QVariant();
     }
@@ -62,34 +62,32 @@ QHash<int, QByteArray> LogicPlugin::NotificationModel::roleNames() const
     return roles;
 }
 
-void LogicPlugin::NotificationModel::addNotification(const QString title,
-                                                     const QString message,
-                                                     const int type)
+void LogicPlugin::NotificationModel::addNotification(QPointer<LogicPlugin::NotificationEntity> notification)
 {
-    beginInsertRows(QModelIndex(), m_notifications.count(), m_notifications.count());
-    m_notifications.append({ title, message, type });
+    beginInsertRows(QModelIndex(), _notifications.count(), _notifications.count());
+    _notifications.append({ notification->getTitle(), notification->getDescription(), notification->getType()});
     endInsertRows();
     emit dataChanged(
-     index(m_notifications.count(), 0),
-     index(m_notifications.count(), 0)); // Сообщаем QML-интерфейсу, что данные изменились
+     index(_notifications.count(), 0),
+     index(_notifications.count(), 0)); // Сообщаем QML-интерфейсу, что данные изменились
 }
 
 void LogicPlugin::NotificationModel::removeNotification(int index)
 {
-    if (index >= 0 && index < m_notifications.count()) {
+    if (index >= 0 && index < _notifications.count()) {
         beginRemoveRows(QModelIndex(), index, index);
-        m_notifications.removeAt(index);
+        _notifications.removeAt(index);
         endRemoveRows();
     }
 }
 void LogicPlugin::NotificationModel::clearNotifications()
 {
     beginResetModel();
-    m_notifications.clear();
+    _notifications.clear();
     endResetModel();
 }
 
 int LogicPlugin::NotificationModel::count() const
 {
-    return m_notifications.count();
+    return _notifications.count();
 }

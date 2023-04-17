@@ -7,10 +7,10 @@ namespace LogicPlugin {
     /*!
      * \brief Имплементация класса, в который нужно вносить изменения, если это потребуется
      */
-    class notification_entity final : public AbstractNotification
+    class NotificationEntity final : public AbstractNotification
     {
     public:
-        notification_entity(QString title, QString description, int type);
+        NotificationEntity(QString title, QString description, int type);
     };
 }
 

@@ -2,11 +2,11 @@
 #define NOTIFY_MODEL_H
 
 #include "logic_plugin_export.h"
+#include "abstract_notification.h"
 #include "notification_entity.h"
 
 #include <QAbstractItemModel>
 #include <QPointer>
-
 
 namespace LogicPlugin {
     /*!
@@ -39,19 +39,23 @@ namespace LogicPlugin {
         int columnCount(const QModelIndex &parent = QModelIndex()) const override;
         QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
         QHash<int, QByteArray> roleNames() const override;
+
         /*!
          * \brief Метод, с помощью которого в модель добавляются данные о новом уведомлении
          */
-        void addNotification(QPointer<LogicPlugin::NotificationEntity> notification);
+        void addNotification(QPointer<LogicPlugin::AbstractNotification> notification);
+
         /*!
          * \brief Метод, с помощью которого из модели удаляются данные об уведомлении с определенным
          * индексом
          */
         void removeNotification(int index);
+
         /*!
          * \brief Метод, удаляющий информацию о всех уведомлениях в модели
          */
         void clearNotifications();
+
         /*!
          * \brief Метод, возвращающий количество уведомлений в модели
          */

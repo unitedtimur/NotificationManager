@@ -37,7 +37,8 @@ QVariant LogicPlugin::NotificationModel::data(const QModelIndex &index, int role
         || index.column() < 0 || index.column() >= 3) {
         return QVariant();
     }
-    NotificationEntity notification = _notifications.at(index.row());
+    AbstractNotification notification(_notifications.at(index.row()));
+
     switch (role) {
     case Qt::DisplayRole:
         return index.column() == 0 ? notification.getTitle()
@@ -62,7 +63,7 @@ QHash<int, QByteArray> LogicPlugin::NotificationModel::roleNames() const
     return roles;
 }
 
-void LogicPlugin::NotificationModel::addNotification(QPointer<LogicPlugin::NotificationEntity> notification)
+void LogicPlugin::NotificationModel::addNotification(QPointer<LogicPlugin::AbstractNotification> notification)
 {
     beginInsertRows(QModelIndex(), _notifications.count(), _notifications.count());
     _notifications.append({ notification->getTitle(), notification->getDescription(), notification->getType()});

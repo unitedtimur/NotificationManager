@@ -1,7 +1,7 @@
 #ifndef NOTIFICATION_ENTITY_H
 #define NOTIFICATION_ENTITY_H
 
-#include <abstract_notification.h>
+#include "abstract_notification.h"
 
 namespace LogicPlugin {
     /*!

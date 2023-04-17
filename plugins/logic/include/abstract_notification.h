@@ -1,14 +1,17 @@
 #ifndef ABSTRACT_NOTIFICATION_H
 #define ABSTRACT_NOTIFICATION_H
 
+#include "logic_plugin_export.h"
+
 #include <QString>
+#include <QObject>
 
 namespace LogicPlugin {
     /*!
      * \brief Класс, от которого могут наследоваться юзеры библиотеки, чтобы создать новый класс
      * уведомления, если потребуется расширить функционал
      */
-    class AbstractNotification
+    class LOGIC_PLUGIN_EXPORT AbstractNotification: public QObject
     {
     public:
         /*!
@@ -17,7 +20,7 @@ namespace LogicPlugin {
          * \param description - строка, в которой храниться более подробное описание уведомления
          * \param type - тип уведомления
          */
-        AbstractNotification(QString title, QString description, int type);
+        explicit AbstractNotification(QString title, QString description, int type);
         ~AbstractNotification() = default;
         /*!
          * \brief Геттеры для приватных полей класса

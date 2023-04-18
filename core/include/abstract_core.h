@@ -10,7 +10,7 @@
 #include <QSettings>
 #include <QQmlApplicationEngine>
 
-namespace NMCore {
+namespace Core {
     class CORE_EXPORT AbstractCore : public QObject
     {
         Q_OBJECT
@@ -21,8 +21,6 @@ namespace NMCore {
         void loadPlugins(const QString &path);
 
         QPointer<QQmlApplicationEngine> qmlEngine() const;
-
-        // ...
 
     private:
         /*!

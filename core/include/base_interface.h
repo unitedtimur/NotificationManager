@@ -4,7 +4,7 @@
 #include <QObject>
 #include <QList>
 #include <QPointer>
-namespace NMCore {
+namespace Core {
     /*!
      * \brief Класс, являющийся базовым интерфейсом, от него будут
      * наследоваться плагины логики и gui
@@ -30,5 +30,5 @@ namespace NMCore {
     };
 }
 
-Q_DECLARE_INTERFACE(NMCore::BaseInterface, "com.NM.Core.BaseInterface")
+Q_DECLARE_INTERFACE(Core::BaseInterface, "com.Core.BaseInterface")
 #endif // BASE_INTERFACE_H

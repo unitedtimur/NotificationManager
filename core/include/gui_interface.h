@@ -3,7 +3,7 @@
 
 #include "base_interface.h"
 
-namespace NMCore {
+namespace Core {
     /*!
      * \brief Класс, реализующий плагин интерфейса(то есть в дальнейшем здесь будут описаны все
      * методы, классы, которые понадобяться для реализации задачи отображения графических элементов, а сам GuiInterface будет собран в библиотеку)
@@ -11,10 +11,10 @@ namespace NMCore {
     class GuiInterface : public BaseInterface
     {
         Q_OBJECT
-        Q_INTERFACES(NMCore::BaseInterface)
+        Q_INTERFACES(Core::BaseInterface)
     };
 }
 
-Q_DECLARE_INTERFACE(NMCore::GuiInterface, "com.NM.Core.GuiInterface")
+Q_DECLARE_INTERFACE(Core::GuiInterface, "com.NM.Core.GuiInterface")
 
 #endif // GUI_INTERFACE_H

@@ -1,11 +1,11 @@
 #ifndef PLUGINLOADER_H
 #define PLUGINLOADER_H
 
-#include "abstract_core.h"
+#include <abstract_core.h>
 
 #include <QDir>
 
-namespace Core {
+namespace App {
     /*!
      * \brief Класс, используемый для создания сущности, при помощи которой вызывается метод
      * загрузки плагинов

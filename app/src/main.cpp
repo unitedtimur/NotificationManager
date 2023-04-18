@@ -1,4 +1,4 @@
-#include "abstract_core.h"
+#include <abstract_core.h>
 
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>

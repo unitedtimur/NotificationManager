@@ -1,4 +1,4 @@
-#include <plugin_loader.h>
+#include <abstract_core.h>
 
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
@@ -14,7 +14,11 @@ int main(int argc, char *argv[])
     QDir thisDir(dir);
     thisDir.cdUp();
     thisDir.cd("plugins");
-    Core::PluginLoader pluginInvoker;
-    pluginInvoker.invokePluginsLoading(thisDir);
+
+    QString plugDir = thisDir.absolutePath();
+
+    Core::AbstractCore core;
+    core.loadPlugins(plugDir);
+
     return app.exec();
 }

@@ -138,7 +138,7 @@ macro(GENERATE_EXPORT_HEADERS)
 endmacro()
 
 # Макрос генерирует метадату для плагина
-macro(PLUGIN_METADATA_GENERATOR TARGET)
+macro(PLUGIN_METADATA_GENERATOR TARGET_NAME)
     set(_ONE_VALUE_ARGS
             NAME
             VERSION

@@ -14,11 +14,13 @@ namespace Core {
         QStringList plugins;
         QDir dir(path);
 
-        if (dir.exists())
+        if (!dir.exists())
+            return;
+
 #ifdef Q_OS_WIN
-            plugins = dir.entryList(QStringList("*.dll"), QDir::Files);
+        plugins = dir.entryList(QStringList("*.dll"), QDir::Files);
 #elif defined Q_OS_UNIX
-            plugins = dir.entryList(QStringList("*.so"), QDir::Files);
+        plugins = dir.entryList(QStringList("*.so"), QDir::Files);
 #endif
 
         for (const auto &plugin : qAsConst(plugins)) {
@@ -27,7 +29,7 @@ namespace Core {
             const auto *loading_object = qobject_cast<QObject *>(loader.instance());
 
             if (loading_object) {
-                qDebug() << Q_FUNC_INFO <<  "Plugin loaded";
+                qDebug() << Q_FUNC_INFO << "Plugin loaded";
             } else {
                 qWarning() << Q_FUNC_INFO << loader.errorString();
             }

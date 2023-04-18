@@ -6,6 +6,7 @@
 #include <QObject>
 #include <QString>
 #include <QTimer>
+
 namespace GuiPlugin {
     /*!
      * \brief Класс реализующий плагин бизнес-логики отображения уведомлений
@@ -13,11 +14,13 @@ namespace GuiPlugin {
     class NotificationGuiPlugin final : public Core::GuiInterface
     {
         Q_OBJECT
+
         /*!
          * \brief Q_INTERFACES Этот макрос сообщает Qt, какие интерфейсы реализует класс. Это
          * используется при внедрении плагинов.
          */
         Q_INTERFACES(Core::GuiInterface)
+
         /*!
          * \brief Q_PLUGIN_METADATA  Этот макрос используется для объявления метаданных, которые
          * являются частью плагина, создающего экземпляр этого объекта. Макрос должен объявить IID

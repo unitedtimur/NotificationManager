@@ -39,14 +39,12 @@ FIND_AND_LINK_QT(TARGET
     QT_COMPONENTS
     ${QT_COMPONENTS})
 
-target_include_directories(
-        ${PROJECT_NAME}
+target_include_directories(${PROJECT_NAME}
         PUBLIC
         ${CMAKE_CURRENT_SOURCE_DIR}/include
 )
 
-target_link_libraries(
-        ${PROJECT_NAME}
+target_link_libraries(${PROJECT_NAME}
         PRIVATE
         ${PROJECT_NAMESPACE}::core
 )

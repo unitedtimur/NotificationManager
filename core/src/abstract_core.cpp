@@ -24,30 +24,18 @@ namespace Core {
         for (const auto &plugin : qAsConst(plugins)) {
             QPluginLoader loader(dir.absoluteFilePath(plugin));
 
-            QObject *obj = qobject_cast<QObject *>(loader.instance());
+            const auto *loading_object = qobject_cast<QObject *>(loader.instance());
 
-            if (obj) {
+            if (loading_object) {
                 qDebug() << "Plugin loaded";
             } else {
                 qWarning() << loader.errorString();
             }
 
-            if (const auto plugin = qobject_cast<BaseInterface *>(obj); plugin) {
+            if (const auto plugin = qobject_cast<BaseInterface *>(loading_object); plugin) {
                 _plugins.push_back(plugin);
             }
         }
-
-        //        const auto excludePlugin = [this](auto excludedPlugin, auto plugins) {
-        //            QList<QPointer<QObject>> result;
-
-        //            for (const auto &plugin : plugins) {
-        //                if (plugin != excludedPlugin) {
-        //                    result.append(plugin);
-        //                }
-        //            }
-
-        //            return result;
-        //        };
     }
 
     QPointer<QQmlApplicationEngine> AbstractCore::qmlEngine() const

@@ -26,15 +26,15 @@ namespace Core {
         for (const auto &plugin : qAsConst(plugins)) {
             QPluginLoader loader(dir.absoluteFilePath(plugin));
 
-            const auto *loading_object = qobject_cast<QObject *>(loader.instance());
+            const auto *loadingObject = qobject_cast<QObject *>(loader.instance());
 
-            if (loading_object) {
+            if (loadingObject) {
                 qDebug() << Q_FUNC_INFO << "Plugin loaded";
             } else {
                 qWarning() << Q_FUNC_INFO << loader.errorString();
             }
 
-            if (const auto plugin = qobject_cast<BaseInterface *>(loading_object); plugin) {
+            if (const auto plugin = qobject_cast<BaseInterface *>(loadingObject); plugin) {
                 _plugins.push_back(plugin);
             }
         }

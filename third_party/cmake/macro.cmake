@@ -138,18 +138,27 @@ macro(GENERATE_EXPORT_HEADERS)
 endmacro()
 
 # Макрос генерирует метадату для плагина
+# Используйте слудующий синтаксис
+# PLUGIN_METADATA_GENERATOR(target_name
+#   NAME plugin_name
+#   ...
+#   URL plugin_url
+#   DEPENDENCIES
+#   "SomeOtherPlugin 2.3.0_2"
+#   "EvenOther 1.0.02")
 macro(PLUGIN_METADATA_GENERATOR TARGET_NAME)
     set(_ONE_VALUE_ARGS
-            NAME
-            VERSION
-            COMPAT_VERSION
-            VENDOR
-            COPYRIGHT
-            LICENSE
-            CATEGORY
-            DESCRIPTION
-            URL
-            DEPENDENCIES)
+        NAME
+        VERSION
+        COMPAT_VERSION
+        VENDOR
+        COPYRIGHT
+        LICENSE
+        CATEGORY
+        DESCRIPTION
+        URL)
+
+    set(_MULTI_VALUE_ARGS DEPENDENCIES)
 
     cmake_parse_arguments(_METADATA
         "${_OPTIONS_ARGS}"
@@ -157,11 +166,19 @@ macro(PLUGIN_METADATA_GENERATOR TARGET_NAME)
         "${_MULTI_VALUE_ARGS}"
         ${ARGN})
 
-    file(WRITE include/plugin_metadata.json "\
-{
-    \"Name\": \"${_METADATA_NAME}\",
-    \"Version\": \"${_METADATA_VERSION}\"
-}")
+    foreach(DEP ${_METADATA_DEPENDENCIES})
+        string(REPLACE " " ";" CURR_DEP ${DEP})
+        list(GET CURR_DEP 0 DEP_NAME)
+        list(GET CURR_DEP 1 DEP_VERSION)
 
-    message(STATUS "METADATA - generated for ${TARGET}")
+        list(APPEND TEMP_LIST
+        "{\"Name\" : \"${DEP_NAME}\", \"Version\" : \"${DEP_VERSION}\"}")
+    endforeach()
+
+    string(REPLACE ";" ",\n        " DEPENDENCIES_JSON_FORMAT "${TEMP_LIST}")
+
+    configure_file(${CMAKE_CURRENT_LIST_DIR}/../plugin_metadata.json.in
+    ${CMAKE_CURRENT_LIST_DIR}/include/plugin_metadata.json)
+
+    message(STATUS "METADATA - generated for ${TARGET_NAME}")
 endmacro()

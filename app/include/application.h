@@ -1,5 +1,5 @@
-#ifndef PLUGINLOADER_H
-#define PLUGINLOADER_H
+#ifndef APPLICATION_H
+#define APPLICATION_H
 
 #include <abstract_core.h>
 
@@ -10,21 +10,24 @@ namespace App {
      * \brief Класс, используемый для создания сущности, при помощи которой вызывается метод
      * загрузки плагинов
      */
-    class PluginLoader
+    class Application
     {
     public:
-        PluginLoader();
-        ~PluginLoader() = default;
+       explicit Application();
+        ~Application() = default;
 
         /*!
          * \brief Метод, вызывающий метод загрузки плагинов
          * \param pluginsDir - переменная, указывающая на каталог с плагинами
          */
-        void invokePluginsLoading(QDir pluginsDir);
+        void invokePluginsLoading(const QString &pluginsDir);
 
     private:
+        /*!
+         * \brief _core - объект класса AbstractCore, через него в методе invokePluginsLoading
+         * вызываем метод loadPlugins, принадлежащий AbstractCore
+         */
         Core::AbstractCore _core;
-        QString _pluginsDir;
     };
 }
-#endif // PLUGINLOADER_H
+#endif // APPLICATION_H

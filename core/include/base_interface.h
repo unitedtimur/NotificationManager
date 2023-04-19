@@ -4,6 +4,7 @@
 #include <QObject>
 #include <QList>
 #include <QPointer>
+
 namespace Core {
     /*!
      * \brief Класс, являющийся базовым интерфейсом, от него будут

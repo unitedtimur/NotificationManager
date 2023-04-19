@@ -6,7 +6,8 @@
 namespace Core {
     /*!
      * \brief Класс, реализующий плагин интерфейса(то есть в дальнейшем здесь будут описаны все
-     * методы, классы, которые понадобяться для реализации задачи отображения графических элементов, а сам GuiInterface будет собран в библиотеку)
+     * методы, классы, которые понадобяться для реализации задачи отображения графических элементов,
+     * а сам GuiInterface будет собран в библиотеку)
      */
     class GuiInterface : public BaseInterface
     {
@@ -16,5 +17,4 @@ namespace Core {
 }
 
 Q_DECLARE_INTERFACE(Core::GuiInterface, "com.Core.GuiInterface")
-
 #endif // GUI_INTERFACE_H

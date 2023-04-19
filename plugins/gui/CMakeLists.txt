@@ -40,8 +40,7 @@ FIND_AND_LINK_QT(TARGET ${PROJECT_NAME}
     QT_COMPONENTS
     ${QT_COMPONENTS})
 
-target_include_directories(
-        ${PROJECT_NAME}
+target_include_directories(${PROJECT_NAME}
         PUBLIC
         ${CMAKE_CURRENT_SOURCE_DIR}/include
 )

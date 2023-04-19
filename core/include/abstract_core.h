@@ -19,8 +19,9 @@ namespace Core {
         explicit AbstractCore();
 
         /*!
-         * \brief В методе реализована логика предоставления прямого доступа к каждому плагину, лежащему в папке ../plugins.
-         * Указатели на root component каждого плагина добавляются в список(QList<QPointer<QObject>> _plugins)
+         * \brief В методе реализована логика предоставления прямого доступа к каждому плагину,
+         * лежащему в папке ../plugins. Указатели на root component каждого плагина добавляются в
+         * список(QList<QPointer<QObject>> _plugins)
          * \param path - в этой строке находится путь до папки plugins
          */
         void loadPlugins(const QString &path);

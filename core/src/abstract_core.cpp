@@ -45,5 +45,4 @@ namespace Core {
     {
         return _qmlEngine;
     }
-
 } // namespace Core

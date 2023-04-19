@@ -13,7 +13,7 @@ namespace App {
     class Application
     {
     public:
-       explicit Application();
+        explicit Application();
         ~Application() = default;
 
         /*!

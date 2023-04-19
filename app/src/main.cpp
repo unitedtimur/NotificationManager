@@ -1,4 +1,4 @@
-#include "plugin_loader.h"
+#include "application.h"
 
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
@@ -9,12 +9,12 @@
 int main(int argc, char *argv[])
 {
     QGuiApplication app(argc, argv);
-
-    QString dir(QDir::currentPath());
-    QDir thisDir(dir);
-    thisDir.cdUp();
-    thisDir.cd("plugins");
-    App::PluginLoader pluginInvoker;
-    pluginInvoker.invokePluginsLoading(thisDir);
+    QString pluginsDir = QGuiApplication::applicationDirPath().left(
+                          QGuiApplication::applicationDirPath().lastIndexOf('/'))
+                         + "/plugins"; // тут не получится написать как ты в примере указал, потому
+                                       // что applicationDirPath возвращает путь до директории app,
+                                       // а plugins лежит на одном уровне с app
+    App::Application pluginInvoker;
+    pluginInvoker.invokePluginsLoading(pluginsDir);
     return app.exec();
 }

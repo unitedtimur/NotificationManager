@@ -30,7 +30,7 @@ namespace Core {
         void loadPlugins(const QString &path);
 
         /*!
-         * \brief Указатель на QQmlApplicationEngine
+         * \brief Возвращает указатель на QQmlApplicationEngine
          */
         QPointer<QQmlApplicationEngine> qmlEngine() const;
 

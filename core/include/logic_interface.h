@@ -17,6 +17,6 @@ namespace Core {
     };
 }
 
-Q_DECLARE_INTERFACE(Core::LogicInterface, "com.NM.Core.LogicInterface")
+Q_DECLARE_INTERFACE(Core::LogicInterface, "com.Core.LogicInterface")
 
 #endif // LOGIC_INTERFACE_H

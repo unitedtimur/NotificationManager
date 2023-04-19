@@ -12,6 +12,7 @@ namespace Core {
     class BaseInterface : public QObject
     {
         Q_OBJECT
+
     public:
         /*!
          * \brief Для класса BaseInterface используется базовый
@@ -23,8 +24,7 @@ namespace Core {
          */
         virtual ~BaseInterface() = default;
         /*!
-         * \brief Виртуальный метод, который реализует инициализацию плагинов
-         * логики и gui, исходя из зависимостей библиотек друг от друга
+         * \brief Метод, позволяющий получить список всех динамических библиотек
          */
         virtual bool initialize(const QList<QPointer<QObject>> &dependencies) = 0;
     };

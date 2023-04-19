@@ -9,7 +9,8 @@
 int main(int argc, char *argv[])
 {
     QGuiApplication app(argc, argv);
+    QString pluginsDir = QGuiApplication::applicationDirPath() + "/plugins";
     App::Application pluginInvoker;
-    pluginInvoker.invokePluginsLoading("plugins");
+    pluginInvoker.invokePluginsLoading(pluginsDir);
     return app.exec();
 }

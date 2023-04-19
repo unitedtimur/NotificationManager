@@ -30,7 +30,7 @@ namespace GuiPlugin {
         Q_PLUGIN_METADATA(IID "com.NotificationGuiPlugin" FILE "plugin_metadata.json")
 
     public:
-        virtual bool initialize(const QList<QPointer<QObject>> &dependencies) override;
+        bool initialize(const QList<QPointer<QObject>> &dependencies) override;
     };
 }
 

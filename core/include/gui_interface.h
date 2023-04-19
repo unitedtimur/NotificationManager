@@ -15,6 +15,6 @@ namespace Core {
     };
 }
 
-Q_DECLARE_INTERFACE(Core::GuiInterface, "com.NM.Core.GuiInterface")
+Q_DECLARE_INTERFACE(Core::GuiInterface, "com.Core.GuiInterface")
 
 #endif // GUI_INTERFACE_H

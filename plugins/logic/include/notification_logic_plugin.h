@@ -28,7 +28,7 @@ namespace LogicPlugin {
         Q_PLUGIN_METADATA(IID "com.Core.LogicInterface" FILE "plugin_metadata.json")
 
     public:
-        virtual bool initialize(const QList<QPointer<QObject>> &dependencies) override;
+        bool initialize(const QList<QPointer<QObject>> &dependencies) override;
     };
 }
 

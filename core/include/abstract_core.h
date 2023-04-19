@@ -11,6 +11,9 @@
 #include <QQmlApplicationEngine>
 
 namespace Core {
+    /*!
+     * \brief Класс для загрузки плагинов и подготовки их к использованию
+     */
     class CORE_EXPORT AbstractCore : public QObject
     {
         Q_OBJECT
@@ -26,6 +29,9 @@ namespace Core {
          */
         void loadPlugins(const QString &path);
 
+        /*!
+         * \brief Указатель на QQmlApplicationEngine
+         */
         QPointer<QQmlApplicationEngine> qmlEngine() const;
 
     private:

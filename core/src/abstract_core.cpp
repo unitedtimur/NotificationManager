@@ -24,7 +24,8 @@ namespace Core {
 #endif
 
         for (const auto &plugin : qAsConst(plugins)) {
-            QPluginLoader loader(dir.absoluteFilePath(plugin));
+            QPluginLoader loader;
+            loader.setFileName(path + "/" + plugin);
 
             const auto *loadingObject = qobject_cast<QObject *>(loader.instance());
 

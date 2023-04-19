@@ -9,17 +9,7 @@
 int main(int argc, char *argv[])
 {
     QGuiApplication app(argc, argv);
-<<<<<<< HEAD
-    QString pluginsDir = QGuiApplication::applicationDirPath().left(
-                          QGuiApplication::applicationDirPath().lastIndexOf('/'))
-                         + "/plugins";
     App::Application pluginInvoker;
-    pluginInvoker.invokePluginsLoading(pluginsDir);
-=======
-
-    NMCore::AbstractCore core;
-    core.loadPlugins("plugins");
-
->>>>>>> install-root
+    pluginInvoker.invokePluginsLoading("plugins");
     return app.exec();
 }

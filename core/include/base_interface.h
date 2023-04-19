@@ -19,10 +19,12 @@ namespace Core {
          * конструктор QObject
          */
         using QObject::QObject;
+
         /*!
          * \brief Виртуальный деструктор с определением в хедере
          */
         virtual ~BaseInterface() = default;
+
         /*!
          * \brief Метод, позволяющий получить список всех динамических библиотек
          */

@@ -138,14 +138,6 @@ macro(GENERATE_EXPORT_HEADERS)
 endmacro()
 
 # Макрос генерирует метадату для плагина
-# Используйте слудующий синтаксис
-# PLUGIN_METADATA_GENERATOR(target_name
-#   NAME plugin_name
-#   ...
-#   URL plugin_url
-#   DEPENDENCIES
-#   "SomeOtherPlugin 2.3.0_2"
-#   "EvenOther 1.0.02")
 macro(PLUGIN_METADATA_GENERATOR TARGET_NAME)
     set(_ONE_VALUE_ARGS
         NAME
@@ -177,8 +169,8 @@ macro(PLUGIN_METADATA_GENERATOR TARGET_NAME)
 
     string(REPLACE ";" ",\n        " DEPENDENCIES_JSON_FORMAT "${TEMP_LIST}")
 
-    configure_file(${CMAKE_CURRENT_LIST_DIR}/../plugin_metadata.json.in
-    ${CMAKE_CURRENT_LIST_DIR}/include/plugin_metadata.json)
+    configure_file(${CMAKE_CURRENT_LIST_DIR}/../metadata.json.in
+    ${CMAKE_CURRENT_LIST_DIR}/include/metadata.json)
 
     message(STATUS "METADATA - generated for ${TARGET_NAME}")
 endmacro()

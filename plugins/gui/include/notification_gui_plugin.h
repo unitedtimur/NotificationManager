@@ -27,7 +27,7 @@ namespace GuiPlugin {
          * интерфейса, реализованного через объект, и сослаться на файл, содержащий метаданные для
          * плагина.
          */
-        Q_PLUGIN_METADATA(IID "com.NotificationGuiPlugin" FILE "plugin_metadata.json")
+        Q_PLUGIN_METADATA(IID "com.NotificationGuiPlugin" FILE "metadata.json")
 
     public:
         bool initialize(const QList<QPointer<QObject>> &dependencies) override;

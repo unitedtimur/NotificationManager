@@ -2,6 +2,7 @@
 #define ABSTRACT_NOTIFICATION_H
 
 #include "logic_plugin_export.h"
+#include "notification_type.h"
 
 #include <QString>
 #include <QObject>
@@ -24,19 +25,21 @@ namespace LogicPlugin {
         explicit AbstractNotification(AbstractNotification const &notification);
         ~AbstractNotification() = default;
 
+        LogicPlugin::NotificationType addType (const QString &name);
+
         /*!
          * \brief Геттеры для приватных полей класса
          */
         QString getTitle();
         QString getDescription();
-        int getType();
+        //LogicPlugin::NotificationType getType();
 
         /*!
          * \brief Сеттеры для приватных полей класса
          */
         void setTitle(QString title);
         void setDescription(QString description);
-        void setType(int type);
+
 
     private:
         QString _title;

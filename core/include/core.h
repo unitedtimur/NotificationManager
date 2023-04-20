@@ -1,4 +1,0 @@
-
-namespace Core {
-    void init();
-}

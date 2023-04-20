@@ -13,11 +13,6 @@ namespace Core {
     {
         Q_OBJECT
         Q_INTERFACES(Core::BaseInterface)
-    public:
-        /*!
-         * \brief Виртуальный деструктор с определением в заголовочном файле
-         */
-        virtual ~GuiInterface() = default;
     };
 }
 Q_DECLARE_INTERFACE(Core::GuiInterface, "com.Core.GuiInterface")

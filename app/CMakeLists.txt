@@ -18,14 +18,24 @@ add_executable(${PROJECT_NAME}
     ${SOURCES}
     ${RESOURCES})
 
+set_target_properties(
+    ${PROJECT_NAME}
+    PROPERTIES
+    RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/install-root)
+
 FIND_AND_LINK_QT(
     TARGET
     ${PROJECT_NAME}
     QT_COMPONENTS
     ${QT_COMPONENTS})
 
-target_link_libraries(
+target_include_directories(
         ${PROJECT_NAME}
+        PUBLIC
+        ${CMAKE_CURRENT_SOURCE_DIR}/include
+)
+
+target_link_libraries(${PROJECT_NAME}
         PRIVATE
         ${PROJECT_NAMESPACE}::core
 )

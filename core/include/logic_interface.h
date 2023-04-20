@@ -13,13 +13,9 @@ namespace Core {
     {
         Q_OBJECT
         Q_INTERFACES(Core::BaseInterface)
-    public:
-        /*!
-         * \brief Виртуальный деструктор с определением в заголовочном файле
-         */
-        virtual ~LogicInterface() = default;
     };
 }
+
 Q_DECLARE_INTERFACE(Core::LogicInterface, "com.Core.LogicInterface")
 
 #endif // LOGIC_INTERFACE_H

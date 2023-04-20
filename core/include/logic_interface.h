@@ -13,7 +13,6 @@ namespace Core {
     {
         Q_OBJECT
         Q_INTERFACES(Core::BaseInterface)
-    public:
     };
 }
 

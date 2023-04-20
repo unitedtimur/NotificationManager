@@ -36,17 +36,16 @@ QVariant LogicPlugin::NotificationModel::data(const QModelIndex &index, int role
         || index.column() < 0 || index.column() >= 3) {
         return QVariant();
     }
-    AbstractNotification notification(_notifications.at(index.row()));
 
     switch (role) {
     case Qt::DisplayRole:
-        return index.column() == 0 ? notification.getTitle() : notification.getDescription();
+        return index.column() == 0 ? _notifications.at(index.row())->getTitle() : _notifications.at(index.row())->getDescription();
     case TitleRole:
-        return notification.getTitle();
+        return _notifications.at(index.row())->getTitle();
     case MessageRole:
-        return notification.getDescription();
+        return _notifications.at(index.row())->getDescription();
     case TypeRole:
-        return notification.getType();
+        return _notifications.at(index.row())->getType();
     default:
         return QVariant();
     }
@@ -65,7 +64,7 @@ void LogicPlugin::NotificationModel::addNotification(
  QPointer<LogicPlugin::AbstractNotification> notification)
 {
     beginInsertRows(QModelIndex(), _notifications.count(), _notifications.count());
-    _notifications.push_back(*notification);
+    _notifications.push_back(notification);
     endInsertRows();
     emit dataChanged(
      index(_notifications.count(), 0),

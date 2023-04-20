@@ -32,6 +32,7 @@ namespace LogicPlugin {
          */
         QString getTitle();
         QString getDescription();
+        int getType();
         //LogicPlugin::NotificationType getType();
 
         /*!
@@ -39,6 +40,7 @@ namespace LogicPlugin {
          */
         void setTitle(QString title);
         void setDescription(QString description);
+        void setType(int);
 
 
     private:

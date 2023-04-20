@@ -3,7 +3,6 @@
 
 #include "logic_plugin_export.h"
 #include "abstract_notification.h"
-#include "notification_entity.h"
 
 #include <QAbstractItemModel>
 #include <QPointer>

@@ -2,25 +2,31 @@ project(
         logic_plugin
         VERSION 0.0.1
         LANGUAGES CXX
-        DESCRIPTION "Logic plugin description..."
+)
+
+PLUGIN_METADATA_GENERATOR(
+    ${PROJECT_NAME}
+    NAME logic_plugin
+    VERSION ${CMAKE_PROJECT_VERSION}
 )
 
 INCLUDE_SOURCES(${PROJECT_NAME})
 
 add_library(
-        logic_plugin
+        ${PROJECT_NAME}
         SHARED
         ${HEADERS}
         ${SOURCES}
+        ${METADATA}
 )
-add_library(${PROJECT_NAMESPACE}::${PROJECT_NAME} ALIAS ${PROJECT_NAME})
 
 set_target_properties(${PROJECT_NAME}
     PROPERTIES
-    ARCHIVE_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/lib
-    LIBRARY_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/lib
-    RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/lib
+    RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/install-root/plugins
 )
+
+add_library(${PROJECT_NAMESPACE}::${PROJECT_NAME} ALIAS ${PROJECT_NAME})
+
 
 GENERATE_EXPORT_HEADERS(TARGET ${PROJECT_NAME} DIR include)
 
@@ -35,12 +41,15 @@ FIND_AND_LINK_QT(TARGET
     QT_COMPONENTS
     ${QT_COMPONENTS})
 
-target_include_directories(
-        ${PROJECT_NAME}
+target_include_directories(${PROJECT_NAME}
         PUBLIC
         ${CMAKE_CURRENT_SOURCE_DIR}/include
 )
 
+target_link_libraries(${PROJECT_NAME}
+        PRIVATE
+        ${PROJECT_NAMESPACE}::core
+)
+
 SET_BASE_TARGET_PROPERTIES(${PROJECT_NAME})
 
-PLUGIN_METADATA_GENERATOR(${PROJECT_NAME})

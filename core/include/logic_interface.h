@@ -13,9 +13,8 @@ namespace Core {
     {
         Q_OBJECT
         Q_INTERFACES(Core::BaseInterface)
-    public:
     };
 }
-Q_DECLARE_INTERFACE(Core::LogicInterface, "com.Core.LogicInterface")
 
+Q_DECLARE_INTERFACE(Core::LogicInterface, "com.Core.LogicInterface")
 #endif // LOGIC_INTERFACE_H

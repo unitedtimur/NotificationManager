@@ -1,27 +1,29 @@
 project(
-        interface_plugin
+        gui_plugin
         VERSION 0.0.1
         LANGUAGES CXX
-        DESCRIPTION "Interface plugin description..."
+)
+
+PLUGIN_METADATA_GENERATOR(
+    ${PROJECT_NAME}
+    NAME gui_plugin
+    VERSION ${CMAKE_PROJECT_VERSION}
 )
 
 INCLUDE_SOURCES(${PROJECT_NAME})
 
-#add_custom_target(qml_src SOURCES ${QML_SRC})
-
 add_library(
-        interface_plugin
+        ${PROJECT_NAME}
         SHARED
-        ${HEADERS}
         ${SOURCES}
+        ${HEADERS}
         ${RESOURCES}
+        ${METADATA}
 )
 
 set_target_properties(${PROJECT_NAME}
     PROPERTIES
-    ARCHIVE_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/lib
-    LIBRARY_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/lib
-    RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/lib
+    RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/install-root/plugins
 )
 
 add_library(${PROJECT_NAMESPACE}::${PROJECT_NAME} ALIAS ${PROJECT_NAME})
@@ -38,12 +40,15 @@ FIND_AND_LINK_QT(TARGET ${PROJECT_NAME}
     QT_COMPONENTS
     ${QT_COMPONENTS})
 
-target_include_directories(
-        ${PROJECT_NAME}
+target_include_directories(${PROJECT_NAME}
         PUBLIC
         ${CMAKE_CURRENT_SOURCE_DIR}/include
 )
 
+target_link_libraries(${PROJECT_NAME}
+        PRIVATE
+        ${PROJECT_NAMESPACE}::core
+)
+
 SET_BASE_TARGET_PROPERTIES(${PROJECT_NAME})
 
-PLUGIN_METADATA_GENERATOR(${PROJECT_NAME})

@@ -138,18 +138,19 @@ macro(GENERATE_EXPORT_HEADERS)
 endmacro()
 
 # Макрос генерирует метадату для плагина
-macro(PLUGIN_METADATA_GENERATOR NAME)
+macro(PLUGIN_METADATA_GENERATOR TARGET_NAME)
     set(_ONE_VALUE_ARGS
-            NAME
-            VERSION
-            COMPAT_VERSION
-            VENDOR
-            COPYRIGHT
-            LICENSE
-            CATEGORY
-            DESCRIPTION
-            URL
-            DEPENDENCIES)
+        NAME
+        VERSION
+        COMPAT_VERSION
+        VENDOR
+        COPYRIGHT
+        LICENSE
+        CATEGORY
+        DESCRIPTION
+        URL)
+
+    set(_MULTI_VALUE_ARGS DEPENDENCIES)
 
     cmake_parse_arguments(_METADATA
         "${_OPTIONS_ARGS}"
@@ -157,19 +158,19 @@ macro(PLUGIN_METADATA_GENERATOR NAME)
         "${_MULTI_VALUE_ARGS}"
         ${ARGN})
 
-    file(WRITE include/plugin_metadata.json "\
-{
-    \"Name\": \"${_METADATA_NAME}\",
-    \"Version\": \"${_METADATA_VERSION}\",
-    \"CompatVersion\": \"${_METADATA_COMPAT_VERSION}\",
-    \"Vendor\": \"${_METADATA_VENDOR}\",
-    \"Copyright\": \"${_METADATA_COPYRIGHT}\",
-    \"License\": \"${_METADATA_LICENSE}\",
-    \"Category\": \"${_METADATA_CATEGORY}\",
-    \"Description\": \"${_METADATA_DESCRIPTION}\",
-    \"Url\": \"${_METADATA_URL}\",
-    \"Dependencies\": \"${_METADATA_DEPENDENCIES}\"
-}")
+    foreach(DEP ${_METADATA_DEPENDENCIES})
+        string(REPLACE " " ";" CURR_DEP ${DEP})
+        list(GET CURR_DEP 0 DEP_NAME)
+        list(GET CURR_DEP 1 DEP_VERSION)
 
-    message(STATUS "METADATA - generated for ${NAME}")
+        list(APPEND TEMP_LIST
+        "{\"Name\" : \"${DEP_NAME}\", \"Version\" : \"${DEP_VERSION}\"}")
+    endforeach()
+
+    string(REPLACE ";" ",\n        " DEPENDENCIES_JSON_FORMAT "${TEMP_LIST}")
+
+    configure_file(${CMAKE_CURRENT_LIST_DIR}/../metadata.json.in
+    ${CMAKE_CURRENT_LIST_DIR}/include/metadata.json)
+
+    message(STATUS "METADATA - generated for ${TARGET_NAME}")
 endmacro()

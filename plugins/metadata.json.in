@@ -1,0 +1,12 @@
+{
+    "Name" : "${_METADATA_NAME}",
+    "Version" : "${_METADATA_VERSION}",
+    "CompatVersion" : "${_METADATA_COMPAT_VERSION}",
+    "Vendor" : "${_METADATA_VENDOR}",
+    "Copyright" : "${_METADATA_COPYRIGHT}",
+    "License" : "${_METADATA_LICENSE}",
+    "Category" : "${_METADATA_CATEGORY}",
+    "Description" : "${_METADATA_DESCRIPTION}",
+    "Url" : "${_METADATA_URL}",
+    "Dependencies" : [ ${DEPENDENCIES_JSON_FORMAT} ]
+}

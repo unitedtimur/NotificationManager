@@ -9,13 +9,6 @@ LogicPlugin::AbstractNotification::AbstractNotification(QString title,
     _type = type;
 }
 
-LogicPlugin::AbstractNotification::AbstractNotification(const AbstractNotification &notification)
-{
-    setTitle(notification._title);
-    setDescription(notification._description);
-    setType(notification._type);
-}
-
 QString LogicPlugin::AbstractNotification::getTitle()
 {
     return _title;

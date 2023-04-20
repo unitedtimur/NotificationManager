@@ -22,7 +22,6 @@ namespace LogicPlugin {
          * \param type - тип уведомления
          */
         explicit AbstractNotification(QString title, QString description, int type);
-        explicit AbstractNotification(AbstractNotification const &notification);
         ~AbstractNotification() = default;
 
         LogicPlugin::NotificationType addType (const QString &name);

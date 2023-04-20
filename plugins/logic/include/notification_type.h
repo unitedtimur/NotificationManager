@@ -1,5 +1,5 @@
-#ifndef NOTIFICATIONTYPE_H
-#define NOTIFICATIONTYPE_H
+#ifndef NOTIFICATION_TYPE_H
+#define NOTIFICATION_TYPE_H
 
 #include <QString>
 #include <QMap>
@@ -23,4 +23,4 @@ namespace LogicPlugin {
         uint16_t _nTypes = 3;
     };
 }
-#endif // NOTIFICATIONTYPE_H
+#endif // NOTIFICATION_TYPE_H

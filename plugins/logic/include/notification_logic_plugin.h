@@ -1,5 +1,5 @@
-#ifndef NOTIFY_LOGIC_PLUGIN_H
-#define NOTIFY_LOGIC_PLUGIN_H
+#ifndef NOTIFICATION_LOGIC_PLUGIN_H
+#define NOTIFICATION_LOGIC_PLUGIN_H
 
 #include "logic_interface.h"
 
@@ -33,4 +33,4 @@ namespace LogicPlugin {
     };
 }
 
-#endif // NOTIFY_LOGIC_PLUGIN_H
+#endif // NOTIFICATION_LOGIC_PLUGIN_H

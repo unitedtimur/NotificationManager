@@ -1,5 +1,5 @@
-#ifndef NOTIFY_LOGIC_PLUGIN_H
-#define NOTIFY_LOGIC_PLUGIN_H
+#ifndef NOTIFICATION_GUI_PLUGIN_H
+#define NOTIFICATION_GUI_PLUGIN_H
 
 #include "gui_interface.h"
 
@@ -34,4 +34,4 @@ namespace GuiPlugin {
     };
 }
 
-#endif // NOTIFY_LOGIC_PLUGIN_H
+#endif // NOTIFICATION_GUI_PLUGIN_H

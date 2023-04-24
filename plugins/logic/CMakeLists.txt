@@ -4,6 +4,8 @@ project(
         LANGUAGES CXX
 )
 
+AUTO_BUILD_RESOURCES_QT5()
+
 PLUGIN_METADATA_GENERATOR(
     ${PROJECT_NAME}
     NAME logic_plugin

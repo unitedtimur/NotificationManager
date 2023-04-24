@@ -4,6 +4,8 @@ project(
         LANGUAGES CXX
 )
 
+AUTO_BUILD_RESOURCES_QT5()
+
 PLUGIN_METADATA_GENERATOR(
     ${PROJECT_NAME}
     NAME gui_plugin
@@ -48,6 +50,7 @@ target_include_directories(${PROJECT_NAME}
 target_link_libraries(${PROJECT_NAME}
         PRIVATE
         ${PROJECT_NAMESPACE}::core
+        ${PROJECT_NAMESPACE}::logic_plugin
 )
 
 SET_BASE_TARGET_PROPERTIES(${PROJECT_NAME})

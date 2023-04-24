@@ -1,7 +1,9 @@
-#ifndef NOTIFY_LOGIC_PLUGIN_H
-#define NOTIFY_LOGIC_PLUGIN_H
+#ifndef NOTIFY_GUI_PLUGIN_H
+#define NOTIFY_GUI_PLUGIN_H
 
 #include "gui_interface.h"
+#include "gui_plugin_export.h"
+#include "notification_logic_plugin.h"
 
 #include <QObject>
 #include <QString>
@@ -11,7 +13,7 @@ namespace GuiPlugin {
     /*!
      * \brief Класс реализующий плагин бизнес-логики отображения уведомлений
      */
-    class NotificationGuiPlugin final : public Core::GuiInterface
+    class GUI_PLUGIN_EXPORT NotificationGuiPlugin : public Core::GuiInterface
     {
         Q_OBJECT
 
@@ -29,9 +31,13 @@ namespace GuiPlugin {
          */
         Q_PLUGIN_METADATA(IID "com.NotificationGuiPlugin" FILE "metadata.json")
 
+        /*!
+         * \brief Указатель на NotificationLogicPlugin
+         */
+        QPointer<LogicPlugin::NotificationLogicPlugin> notificationLogicPlugin;
+
     public:
         bool initialize(const QList<QPointer<QObject>> &dependencies) override;
     };
 }
-
-#endif // NOTIFY_LOGIC_PLUGIN_H
+#endif // NOTIFY_GUI_PLUGIN_H

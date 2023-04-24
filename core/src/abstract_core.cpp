@@ -9,13 +9,13 @@ namespace Core {
         _qmlEngine = new QQmlApplicationEngine(this);
     }
 
-    void AbstractCore::loadPlugins(const QString &path)
+    bool AbstractCore::loadPlugins(const QString &path)
     {
         QStringList plugins;
         QDir dir(path);
 
         if (!dir.exists())
-            return;
+            return false;
 
 #ifdef Q_OS_WIN
         plugins = dir.entryList(QStringList("*.dll"), QDir::Files);
@@ -25,19 +25,31 @@ namespace Core {
         for (const auto &plugin : qAsConst(plugins)) {
             QPluginLoader loader;
             loader.setFileName(path + "/" + plugin);
-
             const auto *loadingObject = qobject_cast<QObject *>(loader.instance());
 
             if (loadingObject) {
-                qDebug() << Q_FUNC_INFO << "Plugin loaded";
+                qDebug() << Q_FUNC_INFO << plugin << "loaded";
             } else {
                 qWarning() << Q_FUNC_INFO << loader.errorString();
+                return false;
             }
 
             if (const auto plugin = qobject_cast<BaseInterface *>(loadingObject); plugin) {
                 _plugins.push_back(plugin);
             }
         }
+
+        for (const auto &plugin : qAsConst(_plugins)) {
+            auto const p = qobject_cast<BaseInterface *>(plugin.data());
+            if (p->initialize(_plugins)) {
+            } else {
+                qDebug() << Q_FUNC_INFO << "Initialize failed";
+                return false;
+            }
+        }
+
+        qDebug() << Q_FUNC_INFO << "Plugins loaded";
+        return true;
     }
 
     QPointer<QQmlApplicationEngine> AbstractCore::qmlEngine() const

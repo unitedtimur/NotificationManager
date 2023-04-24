@@ -27,7 +27,7 @@ namespace Core {
          * список(QList<QPointer<QObject>> _plugins)
          * \param path - в этой строке находится путь до папки plugins
          */
-        void loadPlugins(const QString &path);
+        bool loadPlugins(const QString &path);
 
         /*!
          * \brief Возвращает указатель на QQmlApplicationEngine

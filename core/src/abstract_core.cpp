@@ -3,6 +3,10 @@
 
 #include <iostream>
 
+#ifdef Q_OS_WIN
+#    include "windows.h"
+#endif
+
 namespace Core {
     AbstractCore::AbstractCore()
     {
@@ -19,12 +23,14 @@ namespace Core {
 
 #ifdef Q_OS_WIN
         plugins = dir.entryList(QStringList("*.dll"), QDir::Files);
+        SetDllDirectoryA((LPCSTR)path.toStdString().c_str());
 #elif defined Q_OS_UNIX
         plugins = dir.entryList(QStringList("*.so"), QDir::Files);
 #endif
         for (const auto &plugin : qAsConst(plugins)) {
             QPluginLoader loader;
             loader.setFileName(path + "/" + plugin);
+
             const auto *loadingObject = qobject_cast<QObject *>(loader.instance());
 
             if (loadingObject) {

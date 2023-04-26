@@ -22,7 +22,6 @@ namespace Core {
 #elif defined Q_OS_UNIX
         plugins = dir.entryList(QStringList("*.so"), QDir::Files);
 #endif
-
         for (const auto &plugin : qAsConst(plugins)) {
             QPluginLoader loader;
             loader.setFileName(path + "/" + plugin);

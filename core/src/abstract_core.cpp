@@ -46,7 +46,7 @@ namespace Core {
         }
 
         for (const auto &plugin : qAsConst(_plugins)) {
-            auto const p = qobject_cast<BaseInterface *>(plugin.data());
+            const auto p = qobject_cast<BaseInterface *>(plugin.data());
             if (p->initialize(_plugins)) {
             } else {
                 qDebug() << Q_FUNC_INFO << "Initialize failed";

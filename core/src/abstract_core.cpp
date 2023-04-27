@@ -34,7 +34,7 @@ namespace Core {
             const auto *loadingObject = qobject_cast<QObject *>(loader.instance());
 
             if (loadingObject) {
-                qDebug() << Q_FUNC_INFO << plugin << "loaded";
+                qDebug() << Q_FUNC_INFO << "Plugin loaded";
             } else {
                 qWarning() << Q_FUNC_INFO << loader.errorString();
                 return false;

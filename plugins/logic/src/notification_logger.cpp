@@ -23,7 +23,7 @@ namespace LogicPlugin {
         return query.exec("CREATE TABLE IF NOT EXISTS notification(Type INT, Title TEXT, "
                           "Description TEXT, Date DATETIME)");
     }
-    bool NotificationLogger::insert(int type, QString tytle, QString descript, QDate date)
+    bool NotificationLogger::insert(QString type, QString tytle, QString descript, QDate date)
     {
         QSqlQuery query(_db);
         query.prepare("INSERT INTO notification(Type, Title, Description, Date) "

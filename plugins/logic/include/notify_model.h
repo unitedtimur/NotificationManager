@@ -3,10 +3,9 @@
 
 #include "logic_plugin_export.h"
 #include "abstract_notification.h"
-
+#include "notification_logger.h"
 #include <QAbstractItemModel>
 #include <QPointer>
-
 namespace LogicPlugin {
     /*!
      * \brief Класс, который определяет интерфейс, используемый для взаимодействия с компонентами
@@ -61,6 +60,7 @@ namespace LogicPlugin {
         int count() const;
 
     private:
+        NotificationLogger &logger = NotificationLogger::instance();
         /*!
          * \brief Список, в котором хранится информация об всех уведомления в модели
          */

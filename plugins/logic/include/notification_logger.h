@@ -1,11 +1,13 @@
 #ifndef NOTIFICATIONLOGGER_H
 #define NOTIFICATIONLOGGER_H
+
 #include <QtSql/QSqlDatabase>
 #include <QtSql/QSqlQuery>
 #include <QtSql/QSql>
 #include <QFile>
 #include <QDate>
 #include <QVariant>
+
 namespace LogicPlugin {
     class NotificationLogger : public QObject
     {
@@ -23,6 +25,6 @@ namespace LogicPlugin {
         NotificationLogger &operator=(NotificationLogger) = delete;
         static QSqlDatabase _db;
     };
-
 }
+
 #endif // NOTIFICATIONLOGGER_H

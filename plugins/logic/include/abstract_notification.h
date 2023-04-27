@@ -6,6 +6,7 @@
 
 #include <QString>
 #include <QObject>
+#include <QDebug>
 
 namespace LogicPlugin {
     /*!
@@ -21,31 +22,31 @@ namespace LogicPlugin {
          * \param description - строка, в которой храниться более подробное описание уведомления
          * \param type - тип уведомления
          */
-        explicit AbstractNotification(QString title, QString description, int type);
+        explicit AbstractNotification(QString title, QString description, uint16_t typeID);
         ~AbstractNotification() = default;
-
-        LogicPlugin::NotificationType addType (const QString &name);
 
         /*!
          * \brief Геттеры для приватных полей класса
          */
         const QString Title();
         const QString Description();
-        const int Type();
-        //LogicPlugin::NotificationType getType();
+        const QString Type();
 
         /*!
          * \brief Сеттеры для приватных полей класса
          */
         void setTitle(QString title);
         void setDescription(QString description);
-        void setType(int);
-
+        void setType(uint16_t);
 
     private:
+        /*!
+         * \brief приватные поля класса, в них храняться название уведомление, краткое описание и id
+         * типа уведомления, к каждому id привязано конкретное название уведомления
+         */
         QString _title;
         QString _description;
-        int _type;
+        uint16_t _typeID;
     };
 }
 

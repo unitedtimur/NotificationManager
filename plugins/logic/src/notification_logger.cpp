@@ -13,10 +13,14 @@ namespace LogicPlugin {
         _db.setDatabaseName(db_name);
         return _db.isValid() && _db.open();
     }
+    void NotificationLogger::close()
+    {
+        _db.close();
+    }
     bool NotificationLogger::createTable()
     {
         QSqlQuery query(_db);
-        return query.exec("CREATE TABLE IF NOT EXIST notification(Type INT, Title TEXT, "
+        return query.exec("CREATE TABLE IF NOT EXISTS notification(Type INT, Title TEXT, "
                           "Description TEXT, Date DATETIME)");
     }
     bool NotificationLogger::insert(int type, QString tytle, QString descript, QDate date)

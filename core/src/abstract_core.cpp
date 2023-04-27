@@ -54,6 +54,7 @@ namespace Core {
         }
 
         qDebug() << Q_FUNC_INFO << "Plugins loaded";
+
         return true;
     }
 

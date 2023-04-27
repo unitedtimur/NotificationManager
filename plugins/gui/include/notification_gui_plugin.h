@@ -1,5 +1,5 @@
-#ifndef NOTIFY_GUI_PLUGIN_H
-#define NOTIFY_GUI_PLUGIN_H
+#ifndef NOTIFICATION_GUI_PLUGIN_H
+#define NOTIFICATION_GUI_PLUGIN_H
 
 #include "gui_interface.h"
 #include "gui_plugin_export.h"
@@ -40,4 +40,4 @@ namespace GuiPlugin {
         bool initialize(const QList<QPointer<QObject>> &dependencies) override;
     };
 }
-#endif // NOTIFY_GUI_PLUGIN_H
+#endif // NOTIFICATION_GUI_PLUGIN_H

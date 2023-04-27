@@ -39,13 +39,13 @@ QVariant LogicPlugin::NotificationModel::data(const QModelIndex &index, int role
 
     switch (role) {
     case Qt::DisplayRole:
-        return index.column() == 0 ? _notifications.at(index.row())->getTitle() : _notifications.at(index.row())->getDescription();
+        return index.column() == 0 ? _notifications.at(index.row())->Title() : _notifications.at(index.row())->Description();
     case TitleRole:
-        return _notifications.at(index.row())->getTitle();
+        return _notifications.at(index.row())->Title();
     case MessageRole:
-        return _notifications.at(index.row())->getDescription();
+        return _notifications.at(index.row())->Description();
     case TypeRole:
-        return _notifications.at(index.row())->getType();
+        return _notifications.at(index.row())->Type();
     default:
         return QVariant();
     }

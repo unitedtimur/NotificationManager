@@ -29,9 +29,9 @@ namespace LogicPlugin {
         /*!
          * \brief Геттеры для приватных полей класса
          */
-        QString getTitle();
-        QString getDescription();
-        int getType();
+        const QString Title();
+        const QString Description();
+        const int Type();
         //LogicPlugin::NotificationType getType();
 
         /*!

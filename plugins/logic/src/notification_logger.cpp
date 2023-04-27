@@ -7,10 +7,10 @@ namespace LogicPlugin {
         static NotificationLogger db;
         return db;
     }
-    bool NotificationLogger::openDatabase(QString db_type, QString db_name)
+    bool NotificationLogger::openDatabase(QString type, QString name)
     {
-        _db = QSqlDatabase::addDatabase(db_type);
-        _db.setDatabaseName(db_name);
+        _db = QSqlDatabase::addDatabase(type);
+        _db.setDatabaseName(name);
         return _db.isValid() && _db.open();
     }
     void NotificationLogger::close()

@@ -11,7 +11,7 @@ namespace LogicPlugin {
     {
     public:
         static NotificationLogger &instance();
-        bool openDatabase(QString db_type, QString db_name);
+        bool openDatabase(QString type, QString name);
         bool createTable();
         bool insert(QString type, QString tytle, QString descript, QDate date);
         void close();

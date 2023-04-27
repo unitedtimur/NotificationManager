@@ -2,7 +2,7 @@
 
 LogicPlugin::NotificationModel::NotificationModel(QObject *parent) : QAbstractItemModel(parent)
 {
-    logger.openDatabase("QSQLITE", "notify_db");
+    logger.openDatabase("QSQLITE", "./notify_db");
     logger.createTable();
 }
 QModelIndex

@@ -30,7 +30,7 @@ namespace LogicPlugin {
         bool openDatabase(QString type, QString name);
         /*!
          * \brief createTable создает таблицу в базе данных
-         * \return возвращает true, если запрос успешно выполнено, иначе false
+         * \return возвращает true, если запрос успешно выполнен, иначе false
          */
         bool createTable();
         /*!
@@ -39,7 +39,7 @@ namespace LogicPlugin {
          * \param tytle - заголовок уведомления
          * \param descript - описание
          * \param date - дата
-         * \return
+         * \return возвращает true, если запрос успешно выполнен, иначе false
          */
         bool insert(QString type, QString tytle, QString descript, QDate date);
         /*!

@@ -24,7 +24,7 @@ namespace LogicPlugin {
     bool NotificationLogger::createTable()
     {
         QSqlQuery query(_db);
-        return query.exec("CREATE TABLE IF NOT EXISTS notification(Type INT, Title TEXT, "
+        return query.exec("CREATE TABLE IF NOT EXISTS notification(Type TEXT, Title TEXT, "
                           "Description TEXT, Date DATETIME)");
     }
 

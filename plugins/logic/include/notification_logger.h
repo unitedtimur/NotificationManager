@@ -22,7 +22,7 @@ namespace LogicPlugin {
          */
         static NotificationLogger &instance();
         /*!
-         * \brief openDatabase метод открывает соединение с базой данных, используя заданный  .
+         * \brief openDatabase метод открывает соединение с базой данных
          * \param type тип базы данных ("QSQLITE")
          * \param name имя базы данных
          * \return возвращает true, если соединение установлено успешно, иначе false

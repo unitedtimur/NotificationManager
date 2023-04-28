@@ -21,6 +21,7 @@ namespace LogicPlugin {
          * \return возвращает на него ссылку
          */
         static NotificationLogger &instance();
+
         /*!
          * \brief openDatabase метод открывает соединение с базой данных
          * \param type тип базы данных ("QSQLITE")
@@ -28,11 +29,13 @@ namespace LogicPlugin {
          * \return возвращает true, если соединение установлено успешно, иначе false
          */
         bool openDatabase(QString type, QString name);
+
         /*!
          * \brief createTable создает таблицу в базе данных
          * \return возвращает true, если запрос успешно выполнен, иначе false
          */
         bool createTable();
+
         /*!
          * \brief insert метод для добавления строки в базу данных, используя подговленный запрос
          * \param type - тип уведомления
@@ -42,6 +45,7 @@ namespace LogicPlugin {
          * \return возвращает true, если запрос успешно выполнен, иначе false
          */
         bool insert(QString type, QString tytle, QString descript, QDate date);
+
         /*!
          * \brief close метод закрывает соединение с базой данных
          */

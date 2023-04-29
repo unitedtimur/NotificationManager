@@ -1,5 +1,5 @@
-#ifndef NOTIFICATIONLOGGER_H
-#define NOTIFICATIONLOGGER_H
+#ifndef NOTIFICATION_LOGGER_H
+#define NOTIFICATION_LOGGER_H
 
 #include <QtSql/QSqlDatabase>
 #include <QtSql/QSqlQuery>
@@ -17,43 +17,43 @@ namespace LogicPlugin {
     {
     public:
         /*!
-         * \brief instance метод, который создает единственный статический экземпляр класса
-         * \return возвращает на него ссылку
+         * \brief instance Метод, который создает единственный статический экземпляр класса
+         * \return Возвращает на него ссылку
          */
         static NotificationLogger &instance();
 
         /*!
-         * \brief openDatabase метод открывает соединение с базой данных
-         * \param type тип базы данных ("QSQLITE")
-         * \param name имя базы данных
-         * \return возвращает true, если соединение установлено успешно, иначе false
+         * \brief openDatabase Метод открывает соединение с базой данных
+         * \param type Тип базы данных ("QSQLITE")
+         * \param name Имя базы данных
+         * \return Возвращает true, если соединение установлено успешно, иначе false
          */
         bool openDatabase(QString type, QString name);
 
         /*!
-         * \brief createTable создает таблицу в базе данных
-         * \return возвращает true, если запрос успешно выполнен, иначе false
+         * \brief createTable Создает таблицу в базе данных
+         * \return Возвращает true, если запрос успешно выполнен, иначе false
          */
         bool createTable();
 
         /*!
-         * \brief insert метод для добавления строки в базу данных, используя подговленный запрос
-         * \param type - тип уведомления
-         * \param tytle - заголовок уведомления
-         * \param descript - описание
-         * \param date - дата
-         * \return возвращает true, если запрос успешно выполнен, иначе false
+         * \brief insert Метод для добавления строки в базу данных, используя подговленный запрос
+         * \param type - Тип уведомления
+         * \param tytle - Заголовок уведомления
+         * \param descript - Описание
+         * \param date - Дата
+         * \return Возвращает true, если запрос успешно выполнен, иначе false
          */
         bool insert(QString type, QString tytle, QString descript, QDate date);
 
         /*!
-         * \brief close метод закрывает соединение с базой данных
+         * \brief close Метод закрывает соединение с базой данных
          */
         void close();
 
     private:
         /*!
-         * \brief синглтон, приватные удаленные конструктор по умолчанию,
+         * \brief Синглтон, приватные удаленные конструктор по умолчанию,
          * конструктор копирования, оператор =, гарантирующие создание только одного экземпляра
          * класса
          */
@@ -61,8 +61,11 @@ namespace LogicPlugin {
         ~NotificationLogger() = default;
         NotificationLogger(const NotificationLogger &) = delete;
         NotificationLogger &operator=(NotificationLogger) = delete;
+        /*!
+         * \brief _db - Статический обьект для установки соединения с базой данных
+         */
         static QSqlDatabase _db;
     };
 }
 
-#endif // NOTIFICATIONLOGGER_H
+#endif // NOTIFICATION_LOGGER_H

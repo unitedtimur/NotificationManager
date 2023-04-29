@@ -4,15 +4,13 @@
 
 bool GuiPlugin::NotificationGuiPlugin::initialize(const QList<QPointer<QObject>> &dependencies)
 {
-    for (const auto &plugin : qAsConst(dependencies)) {
-        if (const auto &nlp = qobject_cast<LogicPlugin::NotificationLogicPlugin *>(plugin.data());
-            nlp) {
-            notificationLogicPlugin = nlp;
-        }
-    }
-
-    if (!notificationLogicPlugin)
+    if (Core::AbstractCore::findPlugin<Core::LogicInterface>(_logicPlugin, dependencies)) {
+        if (!_logicPlugin)
+            qDebug() << Q_FUNC_INFO << "is empty";
+        qDebug() << Q_FUNC_INFO << "Plugin dependencies found";
+        return true;
+    } else {
+        qWarning() << Q_FUNC_INFO << "Plugin dependencies not found";
         return false;
-
-    return true;
+    }
 }

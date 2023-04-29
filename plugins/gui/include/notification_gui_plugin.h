@@ -1,9 +1,11 @@
 #ifndef NOTIFICATION_GUI_PLUGIN_H
 #define NOTIFICATION_GUI_PLUGIN_H
 
-#include "gui_interface.h"
 #include "gui_plugin_export.h"
 #include "notification_logic_plugin.h"
+
+#include "gui_interface.h"
+#include "abstract_core.h"
 
 #include <QObject>
 #include <QString>
@@ -34,7 +36,7 @@ namespace GuiPlugin {
         /*!
          * \brief Указатель на NotificationLogicPlugin
          */
-        QPointer<LogicPlugin::NotificationLogicPlugin> notificationLogicPlugin;
+        LogicPlugin::NotificationLogicPlugin *_logicPlugin = nullptr;
 
     public:
         bool initialize(const QList<QPointer<QObject>> &dependencies) override;

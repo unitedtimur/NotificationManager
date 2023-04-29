@@ -27,7 +27,8 @@ namespace Core {
         virtual ~BaseInterface() = default;
 
         /*!
-         * \brief Метод, позволяющий получить список всех динамических библиотек
+         * \brief Метод инициализирует плагин
+         * \param dependencies - список всех загруженных плагинов
          */
         virtual bool initialize(const QList<QPointer<QObject>> &dependencies) = 0;
     };

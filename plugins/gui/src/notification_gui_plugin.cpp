@@ -4,9 +4,8 @@
 
 bool GuiPlugin::NotificationGuiPlugin::initialize(const QList<QPointer<QObject>> &dependencies)
 {
-    if (Core::AbstractCore::findPlugin<Core::LogicInterface>(_logicPlugin, dependencies)) {
-        if (!_logicPlugin)
-            qDebug() << Q_FUNC_INFO << "is empty";
+    if (Core::AbstractCore::findPlugin<LogicPlugin::NotificationLogicPlugin>(_logicPlugin,
+                                                                             dependencies)) {
         qDebug() << Q_FUNC_INFO << "Plugin dependencies found";
         return true;
     } else {

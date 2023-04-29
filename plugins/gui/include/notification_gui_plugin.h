@@ -2,10 +2,10 @@
 #define NOTIFICATION_GUI_PLUGIN_H
 
 #include "gui_plugin_export.h"
-#include "notification_logic_plugin.h"
-
 #include "gui_interface.h"
+
 #include "abstract_core.h"
+#include "notification_logic_plugin.h"
 
 #include <QObject>
 #include <QString>

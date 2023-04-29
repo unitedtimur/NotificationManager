@@ -43,8 +43,6 @@ namespace Core {
         template<typename T>
         static bool findPlugin(T *&_plugin, const QList<QPointer<QObject>> &dependencies)
         {
-            //            if (!_plugin)
-            //                qDebug() << Q_FUNC_INFO << "is empty";
             for (const auto &plugin : qAsConst(dependencies)) {
                 _plugin = qobject_cast<T *>(plugin);
 

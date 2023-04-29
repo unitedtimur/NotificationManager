@@ -4,17 +4,16 @@
 #include "logic_plugin_export.h"
 #include "abstract_notification.h"
 #include "notification_logger.h"
-#include <QAbstractItemModel>
+#include <QAbstractListModel>
 #include <QPointer>
 namespace LogicPlugin {
     /*!
      * \brief Класс, который определяет интерфейс, используемый для взаимодействия с компонентами
      * gui
      */
-    class LOGIC_PLUGIN_EXPORT NotificationModel : public QAbstractItemModel
+    class LOGIC_PLUGIN_EXPORT NotificationModel : public QAbstractListModel
     {
         Q_OBJECT
-
     public:
         explicit NotificationModel(QObject *parent = nullptr);
         /*!
@@ -27,14 +26,7 @@ namespace LogicPlugin {
             TypeRole
         };
         Q_ENUM(NotificationRoles)
-        QModelIndex
-        /*!
-         * \brief QAbstractItemModel Class
-         */
-        index(int row, int column, const QModelIndex &parent = QModelIndex()) const override;
-        QModelIndex parent(const QModelIndex &child) const override;
         int rowCount(const QModelIndex &parent = QModelIndex()) const override;
-        int columnCount(const QModelIndex &parent = QModelIndex()) const override;
         QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
         QHash<int, QByteArray> roleNames() const override;
 

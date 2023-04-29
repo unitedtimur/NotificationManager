@@ -60,6 +60,9 @@ namespace LogicPlugin {
         int count() const;
 
     private:
+        /*!
+         * \brief logger Ссылка на класс, логирующий в бд
+         */
         NotificationLogger &logger = NotificationLogger::instance();
         /*!
          * \brief Список, в котором хранится информация об всех уведомления в модели

@@ -24,17 +24,17 @@ QString LogicPlugin::AbstractNotification::type() const
     return LogicPlugin::NotificationType::stringType(_typeID);
 }
 
-void LogicPlugin::AbstractNotification::setTitle(QString title)
+void LogicPlugin::AbstractNotification::setTitle(const QString &title)
 {
     _title = title;
 }
 
-void LogicPlugin::AbstractNotification::setDescription(QString description)
+void LogicPlugin::AbstractNotification::setDescription(const QString &description)
 {
     _description = description;
 }
 
-void LogicPlugin::AbstractNotification::setType(uint16_t typeID)
+void LogicPlugin::AbstractNotification::setType(const uint16_t &typeID)
 {
     if (LogicPlugin::NotificationType::isTypeExist(typeID))
         _typeID = typeID;

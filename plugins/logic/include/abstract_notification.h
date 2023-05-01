@@ -37,15 +37,23 @@ namespace LogicPlugin {
 
         /*!
          * \brief Метод, возвращающий тип уведомления
-        */
+         */
         QString type() const;
 
         /*!
-         * \brief Сеттеры для приватных полей класса
+         * \brief Метод, меняющий значение переменной _title
          */
-        void setTitle(QString title);
-        void setDescription(QString description);
-        void setType(uint16_t);
+        void setTitle(const QString &title);
+
+        /*!
+         * \brief Метод, меняющий значение переменной _description
+         */
+        void setDescription(const QString &description);
+
+        /*!
+         * \brief Метод, меняющий тип уведомления
+         */
+        void setType(const uint16_t &typeID);
 
     private:
         /*!

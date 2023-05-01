@@ -1,20 +1,9 @@
 #include "notify_model.h"
 
-LogicPlugin::NotificationModel::NotificationModel(QObject *parent) : QAbstractItemModel(parent)
-{}
-QModelIndex
-LogicPlugin::NotificationModel::index(int row, int column, const QModelIndex &parent) const
+LogicPlugin::NotificationModel::NotificationModel(QObject *parent) : QAbstractListModel(parent)
 {
-    if (parent.isValid() || row < 0 || row >= _notifications.count() || column < 0 || column >= 3) {
-        return QModelIndex();
-    }
-    return createIndex(row, column);
-}
-
-QModelIndex LogicPlugin::NotificationModel::parent(const QModelIndex &child) const
-{
-    Q_UNUSED(child);
-    return QModelIndex();
+    logger.openDatabase("QSQLITE", "./notify_db");
+    logger.createTable();
 }
 
 int LogicPlugin::NotificationModel::rowCount(const QModelIndex &parent) const
@@ -25,30 +14,21 @@ int LogicPlugin::NotificationModel::rowCount(const QModelIndex &parent) const
     return _notifications.count();
 }
 
-int LogicPlugin::NotificationModel::columnCount(const QModelIndex &parent) const
-{
-    Q_UNUSED(parent);
-    return 3;
-}
 QVariant LogicPlugin::NotificationModel::data(const QModelIndex &index, int role) const
 {
-    if (!index.isValid() || index.row() < 0 || index.row() >= _notifications.count()
-        || index.column() < 0 || index.column() >= 3) {
-        return QVariant();
+    if (index.row() <= _notifications.count()) {
+        switch (role) {
+        case TitleRole:
+            return _notifications.at(index.row())->Title();
+        case MessageRole:
+            return _notifications.at(index.row())->Description();
+        case TypeRole:
+            return _notifications.at(index.row())->Type();
+        default:
+            return QVariant();
+        }
     }
-
-    switch (role) {
-    case Qt::DisplayRole:
-        return index.column() == 0 ? _notifications.at(index.row())->Title() : _notifications.at(index.row())->Description();
-    case TitleRole:
-        return _notifications.at(index.row())->Title();
-    case MessageRole:
-        return _notifications.at(index.row())->Description();
-    case TypeRole:
-        return _notifications.at(index.row())->Type();
-    default:
-        return QVariant();
-    }
+    return QVariant();
 }
 
 QHash<int, QByteArray> LogicPlugin::NotificationModel::roleNames() const
@@ -65,6 +45,8 @@ void LogicPlugin::NotificationModel::addNotification(
 {
     beginInsertRows(QModelIndex(), _notifications.count(), _notifications.count());
     _notifications.push_back(notification);
+    logger.insert(notification->Type(), notification->Title(), notification->Description(),
+                  QDate::currentDate());
     endInsertRows();
     emit dataChanged(
      index(_notifications.count(), 0),

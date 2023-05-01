@@ -19,11 +19,11 @@ QVariant LogicPlugin::NotificationModel::data(const QModelIndex &index, int role
     if (index.row() <= _notifications.count()) {
         switch (role) {
         case TitleRole:
-            return _notifications.at(index.row())->Title();
+            return _notifications.at(index.row())->title();
         case MessageRole:
-            return _notifications.at(index.row())->Description();
+            return _notifications.at(index.row())->description();
         case TypeRole:
-            return _notifications.at(index.row())->Type();
+            return _notifications.at(index.row())->type();
         default:
             return QVariant();
         }
@@ -45,7 +45,7 @@ void LogicPlugin::NotificationModel::addNotification(
 {
     beginInsertRows(QModelIndex(), _notifications.count(), _notifications.count());
     _notifications.push_back(notification);
-    logger.insert(notification->Type(), notification->Title(), notification->Description(),
+    logger.insert(notification->type(), notification->title(), notification->description(),
                   QDate::currentDate());
     endInsertRows();
     emit dataChanged(

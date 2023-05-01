@@ -26,11 +26,19 @@ namespace LogicPlugin {
         ~AbstractNotification() = default;
 
         /*!
-         * \brief Геттеры для приватных полей класса
+         * \brief Метод, возвращающий значения переменной _title
          */
-        const QString Title();
-        const QString Description();
-        const QString Type();
+        QString title() const;
+
+        /*!
+         * \brief Метод, возвращающий значения переменной _description
+         */
+        QString description() const;
+
+        /*!
+         * \brief Метод, возвращающий тип уведомления
+        */
+        QString type() const;
 
         /*!
          * \brief Сеттеры для приватных полей класса

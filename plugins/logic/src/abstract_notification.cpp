@@ -9,17 +9,17 @@ LogicPlugin::AbstractNotification::AbstractNotification(QString title,
     setType(typeID);
 }
 
-const QString LogicPlugin::AbstractNotification::Title()
+QString LogicPlugin::AbstractNotification::title() const
 {
     return _title;
 }
 
-const QString LogicPlugin::AbstractNotification::Description()
+QString LogicPlugin::AbstractNotification::description() const
 {
     return _description;
 }
 
-const QString LogicPlugin::AbstractNotification::Type()
+QString LogicPlugin::AbstractNotification::type() const
 {
     return LogicPlugin::NotificationType::stringType(_typeID);
 }

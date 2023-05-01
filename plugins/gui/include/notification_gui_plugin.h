@@ -15,7 +15,7 @@ namespace GuiPlugin {
     /*!
      * \brief Класс реализующий плагин бизнес-логики отображения уведомлений
      */
-    class GUI_PLUGIN_EXPORT NotificationGuiPlugin : public Core::GuiInterface
+    class GUI_PLUGIN_EXPORT NotificationGuiPlugin final : public Core::GuiInterface
     {
         Q_OBJECT
 

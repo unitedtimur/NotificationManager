@@ -20,11 +20,11 @@ QVariant LogicPlugin::NotificationModel::data(const QModelIndex &index, int role
         return QVariant();
     switch (role) {
     case TitleRole:
-        return _notifications.at(index.row())->Title();
+        return _notifications.at(index.row())->title();
     case MessageRole:
-        return _notifications.at(index.row())->Description();
+        return _notifications.at(index.row())->description();
     case TypeRole:
-        return _notifications.at(index.row())->Type();
+        return _notifications.at(index.row())->type();
     default:
         return QVariant();
     }

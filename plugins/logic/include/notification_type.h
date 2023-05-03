@@ -37,7 +37,7 @@ namespace LogicPlugin {
          * \brief _types - структура, в которой хранятся пары значений (название уведомления и его
          * id)
          */
-        static QMap<QString, uint16_t> _types;
+        static std::map<QString, uint16_t> _types;
 
         /*!
          * \brief _nTypes - количество уведомлений в структуре (по умолчанию их 4)

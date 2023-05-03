@@ -1,6 +1,6 @@
 #include "notification_type.h"
 
-QMap<QString, uint16_t> LogicPlugin::NotificationType::_types = {
+std::map<QString, uint16_t> LogicPlugin::NotificationType::_types = {
     { "DEFAULT", 0 }, { "NOTIFY", 1 }, { "WARNING", 2 }, { "ALARM", 3 }
 };
 
@@ -16,18 +16,27 @@ void LogicPlugin::NotificationType::addType(const QString &name)
 
 const QString LogicPlugin::NotificationType::stringType(uint16_t value)
 {
-    for (auto it = _types.begin(); it != _types.end(); ++it) {
-        if (it.value() == value)
-            return it.key();
+    const auto it = std::find_if(_types.begin(), _types.end(),
+                           [&value](const std::pair<QString, uint16_t> &element) {
+                                     return element.second == value;
+                                 });
+    if (it != _types.end()) {
+        return it->first;
+    } else {
+        return "";
     }
-    return "";
 }
 
 bool LogicPlugin::NotificationType::isTypeExist(uint16_t value)
 {
-    for (auto it = _types.begin(); it != _types.end(); ++it) {
-        if (it.value() == value)
-            return true;
+    const auto it = std::find_if(_types.begin(), _types.end(),
+                           [&value](const std::pair<QString, uint16_t> &element) {
+                               return element.second == value;
+                           });
+    if (it != _types.end()) {
+        return true;
+    } else {
+        return false;
     }
-    return false;
+
 }

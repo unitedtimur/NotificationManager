@@ -18,13 +18,14 @@ QVariant LogicPlugin::NotificationModel::data(const QModelIndex &index, int role
 {
     if (index.row() > _notifications.size())
         return QVariant();
+    const auto row = _notifications.at(index.row());
     switch (role) {
     case TitleRole:
-        return _notifications.at(index.row())->title();
+        return row->title();
     case MessageRole:
-        return _notifications.at(index.row())->description();
+        return row->description();
     case TypeRole:
-        return _notifications.at(index.row())->type();
+        return row->type();
     default:
         return QVariant();
     }

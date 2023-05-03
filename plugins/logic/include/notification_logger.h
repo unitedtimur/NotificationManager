@@ -61,6 +61,7 @@ namespace LogicPlugin {
         ~NotificationLogger() = default;
         NotificationLogger(const NotificationLogger &) = delete;
         NotificationLogger &operator=(NotificationLogger) = delete;
+
         /*!
          * \brief _db - Статический обьект для установки соединения с базой данных
          */

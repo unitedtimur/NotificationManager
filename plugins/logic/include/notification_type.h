@@ -18,7 +18,7 @@ namespace LogicPlugin {
          * храняться уведомления и соответсвующие им id
          * \param name - название уведомления, которое требуется добавить
          */
-        void addType(const QString &name);
+        std::optional<uint16_t> addType(const QString &name);
 
         /*!
          * \brief Метод, возвращающий название уведомления с соответсвующим id

@@ -33,9 +33,9 @@ namespace LogicPlugin {
     {
         QSqlQuery query(_db);
         query.prepare("INSERT INTO notification(Type, Title, Description, Date) "
-                      "VALUES(:type, :tytle, :descript, :date)");
+                      "VALUES(:type, :title, :descript, :date)");
         query.bindValue(":type", QVariant::fromValue(type));
-        query.bindValue(":tytle", QVariant::fromValue(title));
+        query.bindValue(":title", QVariant::fromValue(title));
         query.bindValue(":descript", QVariant::fromValue(descript));
         query.bindValue(":date", QVariant::fromValue(date));
         return query.exec();

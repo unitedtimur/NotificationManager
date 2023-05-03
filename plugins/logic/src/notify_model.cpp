@@ -16,19 +16,18 @@ int LogicPlugin::NotificationModel::rowCount(const QModelIndex &parent) const
 
 QVariant LogicPlugin::NotificationModel::data(const QModelIndex &index, int role) const
 {
-    if (index.row() <= _notifications.count()) {
-        switch (role) {
-        case TitleRole:
-            return _notifications.at(index.row())->title();
-        case MessageRole:
-            return _notifications.at(index.row())->description();
-        case TypeRole:
-            return _notifications.at(index.row())->type();
-        default:
-            return QVariant();
-        }
+    if (index.row() > _notifications.size())
+        return QVariant();
+    switch (role) {
+    case TitleRole:
+        return _notifications.at(index.row())->Title();
+    case MessageRole:
+        return _notifications.at(index.row())->Description();
+    case TypeRole:
+        return _notifications.at(index.row())->Type();
+    default:
+        return QVariant();
     }
-    return QVariant();
 }
 
 QHash<int, QByteArray> LogicPlugin::NotificationModel::roleNames() const
@@ -48,18 +47,15 @@ void LogicPlugin::NotificationModel::addNotification(
     logger.insert(notification->type(), notification->title(), notification->description(),
                   QDate::currentDate());
     endInsertRows();
-    emit dataChanged(
-     index(_notifications.count(), 0),
-     index(_notifications.count(), 0)); // Сообщаем QML-интерфейсу, что данные изменились
 }
 
 void LogicPlugin::NotificationModel::removeNotification(int index)
 {
-    if (index >= 0 && index < _notifications.count()) {
-        beginRemoveRows(QModelIndex(), index, index);
-        _notifications.removeAt(index);
-        endRemoveRows();
-    }
+    if (index > _notifications.size())
+        return;
+    beginRemoveRows(QModelIndex(), index, index);
+    _notifications.removeAt(index);
+    endRemoveRows();
 }
 void LogicPlugin::NotificationModel::clearNotifications()
 {

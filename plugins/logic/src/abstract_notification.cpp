@@ -36,9 +36,9 @@ void LogicPlugin::AbstractNotification::setDescription(const QString &descriptio
 
 void LogicPlugin::AbstractNotification::setType(const uint16_t &typeID)
 {
-    if (LogicPlugin::NotificationType::isTypeExist(typeID))
+    if (LogicPlugin::NotificationType::isTypeExist(typeID)) {
         _typeID = typeID;
-    else {
+    } else {
         qDebug() << Q_FUNC_INFO
                  << " NotificationType structure does not have type with id: " << typeID
                  << "\n NotificationType will be set to default value";

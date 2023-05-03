@@ -4,18 +4,21 @@
 #include "logic_plugin_export.h"
 #include "abstract_notification.h"
 #include "notification_logger.h"
+
 #include <QAbstractListModel>
 #include <QPointer>
+
 namespace LogicPlugin {
     /*!
      * \brief Класс, который определяет интерфейс, используемый для взаимодействия с компонентами
      * gui
      */
-    class LOGIC_PLUGIN_EXPORT NotificationModel : public QAbstractListModel
+    class LOGIC_PLUGIN_EXPORT NotificationModel final : public QAbstractListModel
     {
         Q_OBJECT
     public:
         explicit NotificationModel(QObject *parent = nullptr);
+
         /*!
          * \brief Смотреть enum Qt::ItemDataRole, User roles
          */
@@ -26,6 +29,10 @@ namespace LogicPlugin {
             TypeRole
         };
         Q_ENUM(NotificationRoles)
+
+        /*!
+         * \brief Смотреть QAbstractListModel Class
+         */
         int rowCount(const QModelIndex &parent = QModelIndex()) const override;
         QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
         QHash<int, QByteArray> roleNames() const override;
@@ -56,6 +63,7 @@ namespace LogicPlugin {
          * \brief logger Ссылка на класс, логирующий в бд
          */
         NotificationLogger &logger = NotificationLogger::instance();
+
         /*!
          * \brief Список, в котором хранится информация об всех уведомления в модели
          */

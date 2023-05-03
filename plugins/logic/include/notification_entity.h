@@ -10,7 +10,7 @@ namespace LogicPlugin {
     class NotificationEntity final : public AbstractNotification
     {
     public:
-       explicit NotificationEntity(QString title, QString description, int type);
+        explicit NotificationEntity(QString title, QString description, uint16_t type);
     };
 }
 

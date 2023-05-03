@@ -26,26 +26,50 @@ namespace LogicPlugin {
         ~AbstractNotification() = default;
 
         /*!
-         * \brief Геттеры для приватных полей класса
+         * \brief Метод, возвращающий значения переменной _title
          */
-        const QString Title();
-        const QString Description();
-        const QString Type();
+        QString title() const;
 
         /*!
-         * \brief Сеттеры для приватных полей класса
+         * \brief Метод, возвращающий значения переменной _description
          */
-        void setTitle(QString title);
-        void setDescription(QString description);
-        void setType(uint16_t);
+        QString description() const;
+
+        /*!
+         * \brief Метод, возвращающий тип уведомления
+         */
+        QString type() const;
+
+        /*!
+         * \brief Метод, меняющий значение переменной _title
+         */
+        void setTitle(const QString &title);
+
+        /*!
+         * \brief Метод, меняющий значение переменной _description
+         */
+        void setDescription(const QString &description);
+
+        /*!
+         * \brief Метод, меняющий тип уведомления
+         */
+        void setType(const uint16_t &typeID);
 
     private:
         /*!
-         * \brief приватные поля класса, в них храняться название уведомление, краткое описание и id
-         * типа уведомления, к каждому id привязано конкретное название уведомления
+         * \brief Приватное поле класса, хранящее название переменной уведомления
          */
         QString _title;
+
+        /*!
+         * \brief Приватное поле класса, хранящее краткое описание уведомления
+         */
         QString _description;
+
+        /*!
+         * \brief Приватное поле класса, хранящее id типа уведомления, к каждому id привязано
+         * конкретное название уведомления
+         */
         uint16_t _typeID;
     };
 }

@@ -9,32 +9,32 @@ LogicPlugin::AbstractNotification::AbstractNotification(QString title,
     setType(typeID);
 }
 
-const QString LogicPlugin::AbstractNotification::Title()
+QString LogicPlugin::AbstractNotification::title() const
 {
     return _title;
 }
 
-const QString LogicPlugin::AbstractNotification::Description()
+QString LogicPlugin::AbstractNotification::description() const
 {
     return _description;
 }
 
-const QString LogicPlugin::AbstractNotification::Type()
+QString LogicPlugin::AbstractNotification::type() const
 {
     return LogicPlugin::NotificationType::stringType(_typeID);
 }
 
-void LogicPlugin::AbstractNotification::setTitle(QString title)
+void LogicPlugin::AbstractNotification::setTitle(const QString &title)
 {
     _title = title;
 }
 
-void LogicPlugin::AbstractNotification::setDescription(QString description)
+void LogicPlugin::AbstractNotification::setDescription(const QString &description)
 {
     _description = description;
 }
 
-void LogicPlugin::AbstractNotification::setType(uint16_t typeID)
+void LogicPlugin::AbstractNotification::setType(const uint16_t &typeID)
 {
     if (LogicPlugin::NotificationType::isTypeExist(typeID))
         _typeID = typeID;

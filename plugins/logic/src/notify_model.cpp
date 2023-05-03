@@ -44,7 +44,7 @@ void LogicPlugin::NotificationModel::addNotification(
 {
     beginInsertRows(QModelIndex(), _notifications.count(), _notifications.count());
     _notifications.push_back(notification);
-    logger.insert(notification->Type(), notification->Title(), notification->Description(),
+    logger.insert(notification->type(), notification->title(), notification->description(),
                   QDate::currentDate());
     endInsertRows();
 }

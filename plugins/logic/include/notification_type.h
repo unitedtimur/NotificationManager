@@ -24,13 +24,13 @@ namespace LogicPlugin {
          * \brief Метод, возвращающий название уведомления с соответсвующим id
          * \param typeID - id уведомления
          */
-        const static QString stringType(uint16_t typeID);
+        const static QString stringType(const uint16_t &typeID);
 
         /*!
          * \brief Метод, проверяющий существует ли в структуре уведомление с соответсвующим id
          * \param typeID - значение, которое требуется проверить (есть ли это значение в структуре)
          */
-        static bool isTypeExist(uint16_t typeID);
+        static bool isTypeExist(const uint16_t &typeID);
 
     private:
         /*!

@@ -14,10 +14,10 @@ void LogicPlugin::NotificationType::addType(const QString &name)
     }
 }
 
-const QString LogicPlugin::NotificationType::stringType(uint16_t value)
+const QString LogicPlugin::NotificationType::stringType(const uint16_t &value)
 {
     const auto it = std::find_if(_types.begin(), _types.end(),
-                           [&value](const std::pair<QString, uint16_t> &element) {
+                                 [&value](const std::pair<QString, uint16_t> &element) {
                                      return element.second == value;
                                  });
     if (it != _types.end()) {
@@ -27,16 +27,15 @@ const QString LogicPlugin::NotificationType::stringType(uint16_t value)
     }
 }
 
-bool LogicPlugin::NotificationType::isTypeExist(uint16_t value)
+bool LogicPlugin::NotificationType::isTypeExist(const uint16_t &value)
 {
     const auto it = std::find_if(_types.begin(), _types.end(),
-                           [&value](const std::pair<QString, uint16_t> &element) {
-                               return element.second == value;
-                           });
+                                 [&value](const std::pair<QString, uint16_t> &element) {
+                                     return element.second == value;
+                                 });
     if (it != _types.end()) {
         return true;
     } else {
         return false;
     }
-
 }

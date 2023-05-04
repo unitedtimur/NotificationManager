@@ -41,17 +41,25 @@ namespace Core {
          * \return True если плагин найден, иначе false
          */
         template<typename T>
-        static bool findPlugin(T *&_plugin, const QList<QPointer<QObject>> &dependencies)
+        static bool findPlugins(const QList<QPointer<QObject>> &dependencies, T *&plugin)
         {
-            for (const auto &plugin : qAsConst(dependencies)) {
-                _plugin = qobject_cast<T *>(plugin);
+            for (const auto &dependency : qAsConst(dependencies)) {
+                plugin = qobject_cast<T *>(dependency);
 
-                if (_plugin) {
+                if (plugin) {
                     return true;
                 }
             }
 
             return false;
+        }
+
+        template<typename T, typename... R>
+        static bool findPlugins(const QList<QPointer<QObject>> &dependencies,
+                            T *&plugin,
+                            R *&...plugins)
+        {
+            return findPlugins(dependencies, plugin) && findPlugins(dependencies, plugins...);
         }
 
     private:

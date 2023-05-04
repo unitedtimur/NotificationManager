@@ -2,7 +2,7 @@
 #define ABSTRACT_NOTIFICATION_H
 
 #include "logic_plugin_export.h"
-#include "notification_type.h"
+#include "type_manager.h"
 
 #include <QString>
 #include <QObject>

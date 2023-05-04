@@ -1,5 +1,5 @@
-#ifndef NOTIFICATION_TYPE_H
-#define NOTIFICATION_TYPE_H
+#ifndef TYPE_MANAGER_H
+#define TYPE_MANAGER_H
 
 #include <QString>
 #include <QMap>
@@ -10,7 +10,7 @@ namespace LogicPlugin {
      * добавления новых уведомлений, а также используемый для возвращения названия типа уведомления
      * по его id
      */
-    class NotificationType
+    class TypeManager
     {
     public:
         /*!
@@ -46,4 +46,4 @@ namespace LogicPlugin {
     };
 }
 
-#endif // NOTIFICATION_TYPE_H
+#endif // TYPE_MANAGER_H

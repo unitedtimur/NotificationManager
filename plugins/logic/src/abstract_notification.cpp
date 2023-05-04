@@ -21,7 +21,7 @@ QString LogicPlugin::AbstractNotification::description() const
 
 QString LogicPlugin::AbstractNotification::type() const
 {
-    return LogicPlugin::NotificationType::stringType(_typeID);
+    return LogicPlugin::TypeManager::stringType(_typeID);
 }
 
 void LogicPlugin::AbstractNotification::setTitle(const QString &title)
@@ -36,7 +36,7 @@ void LogicPlugin::AbstractNotification::setDescription(const QString &descriptio
 
 void LogicPlugin::AbstractNotification::setType(const uint16_t &typeID)
 {
-    if (LogicPlugin::NotificationType::isTypeExist(typeID)) {
+    if (LogicPlugin::TypeManager::isTypeExist(typeID)) {
         _typeID = typeID;
     } else {
         qDebug() << Q_FUNC_INFO

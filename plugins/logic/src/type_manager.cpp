@@ -1,10 +1,10 @@
-#include "notification_type.h"
+#include "type_manager.h"
 
-std::map<QString, uint16_t> LogicPlugin::NotificationType::_types = {
+std::map<QString, uint16_t> LogicPlugin::TypeManager::_types = {
     { "DEFAULT", 0 }, { "NOTIFY", 1 }, { "WARNING", 2 }, { "ALARM", 3 }
 };
 
-std::optional<uint16_t> LogicPlugin::NotificationType::addType(const QString &name)
+std::optional<uint16_t> LogicPlugin::TypeManager::addType(const QString &name)
 {
     if (name.isEmpty())
         return std::nullopt;
@@ -20,7 +20,7 @@ std::optional<uint16_t> LogicPlugin::NotificationType::addType(const QString &na
     return { it->second };
 }
 
-const QString LogicPlugin::NotificationType::stringType(const uint16_t &value)
+const QString LogicPlugin::TypeManager::stringType(const uint16_t &value)
 {
     const auto it = std::find_if(_types.begin(), _types.end(),
                                  [&value](const auto &element) {
@@ -31,7 +31,7 @@ const QString LogicPlugin::NotificationType::stringType(const uint16_t &value)
     return "";
 }
 
-bool LogicPlugin::NotificationType::isTypeExist(const uint16_t &value)
+bool LogicPlugin::TypeManager::isTypeExist(const uint16_t &value)
 {
     const auto it = std::find_if(_types.begin(), _types.end(),
                                  [&value](const auto &element) {

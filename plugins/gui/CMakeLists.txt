@@ -23,10 +23,15 @@ add_library(
         ${METADATA}
 )
 
+if(WIN32)
+    set(OS_VAR_OUTPUT_DIRECTORY RUNTIME_OUTPUT_DIRECTORY)
+else()
+    set(OS_VAR_OUTPUT_DIRECTORY LIBRARY_OUTPUT_DIRECTORY)
+endif()
+
 set_target_properties(${PROJECT_NAME}
     PROPERTIES
-    RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/install-root/plugins
-    LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/install-root/plugins
+    ${OS_VAR_OUTPUT_DIRECTORY} ${CMAKE_BINARY_DIR}/install-root/plugins
 )
 
 add_library(${PROJECT_NAMESPACE}::${PROJECT_NAME} ALIAS ${PROJECT_NAME})

@@ -3,7 +3,7 @@
 
 #include <QString>
 #include <QMap>
-
+#include <optional>
 namespace LogicPlugin {
     /*!
      * \brief Класс, который хранит имеющиеся типы уведомлений, осуществляя функционал

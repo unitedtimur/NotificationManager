@@ -8,6 +8,8 @@
 #endif
 
 namespace Core {
+    AbstractCore *AbstractCore::p_instance = 0;
+
     AbstractCore::AbstractCore()
     {
         _qmlEngine = new QQmlApplicationEngine(this);

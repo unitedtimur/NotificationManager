@@ -19,7 +19,12 @@ namespace Core {
         Q_OBJECT
 
     public:
-        explicit AbstractCore();
+        static AbstractCore *getInstance()
+        {
+            if (!p_instance)
+                p_instance = new AbstractCore();
+            return p_instance;
+        }
 
         /*!
          * \brief В методе реализована логика предоставления прямого доступа к каждому плагину,
@@ -41,7 +46,7 @@ namespace Core {
          * \return True если плагин найден, иначе false
          */
         template<typename T>
-        static bool findPlugins(const QList<QPointer<QObject>> &dependencies, T *&plugin)
+        bool findPlugins(const QList<QPointer<QObject>> &dependencies, T *&plugin)
         {
             for (const auto &dependency : qAsConst(dependencies)) {
                 plugin = qobject_cast<T *>(dependency);
@@ -55,14 +60,20 @@ namespace Core {
         }
 
         template<typename T, typename... R>
-        static bool findPlugins(const QList<QPointer<QObject>> &dependencies,
-                            T *&plugin,
-                            R *&...plugins)
+        bool findPlugins(const QList<QPointer<QObject>> &dependencies, T *&plugin, R *&...plugins)
         {
             return findPlugins(dependencies, plugin) && findPlugins(dependencies, plugins...);
         }
 
     private:
+        /*!
+         * \brief Реализация патерна Singleton
+         */
+        static AbstractCore *p_instance;
+        AbstractCore();
+        AbstractCore(const AbstractCore &);
+        AbstractCore &operator=(AbstractCore &);
+
         /*!
          * \brief Список плагинов, которые будут загружены из папки plugins
          */

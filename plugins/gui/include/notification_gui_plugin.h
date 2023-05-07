@@ -38,7 +38,10 @@ namespace GuiPlugin {
          */
         LogicPlugin::NotificationLogicPlugin *_logicPlugin = nullptr;
 
+        Core::AbstractCore *_core = Core::AbstractCore::getInstance();
+
     public:
+        bool showNotification();
         bool initialize(const QList<QPointer<QObject>> &dependencies) override;
     };
 }

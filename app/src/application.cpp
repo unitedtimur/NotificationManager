@@ -5,5 +5,5 @@ App::Application::Application()
 
 void App::Application::invokePluginsLoading(const QString &pluginsDir)
 {
-    _core.loadPlugins(pluginsDir);
+    _core->loadPlugins(pluginsDir);
 }

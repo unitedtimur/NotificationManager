@@ -5,7 +5,7 @@
 namespace GuiPlugin {
     bool NotificationGuiPlugin::initialize(const QList<QPointer<QObject>> &dependencies)
     {
-        if (Core::AbstractCore::findPlugins(dependencies, _logicPlugin)) {
+        if (_core->findPlugins(dependencies, _logicPlugin)) {
             qDebug() << Q_FUNC_INFO << "Plugin dependencies found";
             return true;
         } else {
@@ -13,4 +13,7 @@ namespace GuiPlugin {
             return false;
         }
     }
+
+    bool NotificationGuiPlugin::showNotification()
+    {}
 }

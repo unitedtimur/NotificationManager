@@ -38,11 +38,6 @@ namespace LogicPlugin {
          * id)
          */
         static std::map<QString, uint16_t> _types;
-
-        /*!
-         * \brief _nTypes - количество уведомлений в структуре (по умолчанию их 4)
-         */
-        uint16_t _nTypes = 4;
     };
 }
 

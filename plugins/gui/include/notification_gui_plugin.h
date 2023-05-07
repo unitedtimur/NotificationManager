@@ -41,7 +41,7 @@ namespace GuiPlugin {
         Core::AbstractCore *_core = Core::AbstractCore::getInstance();
 
     public:
-        bool showNotification();
+        void showNotification();
         bool initialize(const QList<QPointer<QObject>> &dependencies) override;
     };
 }

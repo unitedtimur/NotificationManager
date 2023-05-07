@@ -2,8 +2,10 @@
     <qresource prefix="/qml">
         <file>BottomScreen/BottomScreen.qml</file>
         <file>ControlPanel/ControlPanel.qml</file>
-        <file>Notification/Notification.qml</file>
-        <file>Notification/NotificationArea.qml</file>
+        <file>qml/listView.qml</file>
+        <file>qml/main.qml</file>
+        <file>qml/Notification/Notification.qml</file>
+        <file>qml/Notification/qmldir</file>
     </qresource>
     <qresource prefix="/icons">
         <file>assets/closenoticon.png</file>

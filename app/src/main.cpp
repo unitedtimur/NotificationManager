@@ -12,5 +12,5 @@ int main(int argc, char *argv[])
     QString pluginsDir = QGuiApplication::applicationDirPath() + "/plugins";
     App::Application pluginInvoker;
     pluginInvoker.invokePluginsLoading(pluginsDir);
-    return app.exec();
+    app.exec();
 }

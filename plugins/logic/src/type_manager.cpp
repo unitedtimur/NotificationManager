@@ -15,7 +15,7 @@ std::optional<uint16_t> LogicPlugin::TypeManager::addType(const QString &name)
     if (it != _types.end()) // если тип уедомления с названием name уже существует, то мы ничего
                             // не добавляем в структуру
         return std::nullopt;
-    _types[name] = _types.size() + 1;
+    _types[name] = _types.size();
     return { it->second };
 }
 

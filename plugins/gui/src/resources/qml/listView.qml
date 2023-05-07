@@ -2,11 +2,11 @@ import QtQuick 2.15
 import QtQuick.Window 2.15
 import QtQuick.Controls 2.15
 
-import Notification 1.0
+import "./Notification"
 
 ApplicationWindow {
     id: listView
-    //flags: Qt.Window | Qt.FramelessWindowHint
+    flags: Qt.Window | Qt.FramelessWindowHint | Qt.WindowStaysOnTopHint | Qt.Tool
     width: 300
     height: 75
     visible: true

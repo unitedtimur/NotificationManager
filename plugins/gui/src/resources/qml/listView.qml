@@ -10,7 +10,7 @@ ApplicationWindow {
     width: 300
     height: 75
     visible: true
-    opacity: 0.3
+    opacity: 0.4
 
     ListView {
         id: notifyList
@@ -29,6 +29,21 @@ ApplicationWindow {
             title: model.title
             message: model.message
             state: model.type
+        }
+    }
+
+    Rectangle {
+        anchors.left: parent.left
+        anchors.right: parent.right
+        anchors.top: parent.top
+        anchors.bottom: parent.bottom
+
+        height: parent
+        MouseArea {
+            anchors.fill: parent
+            onPressed: {
+                listView.startSystemMove();
+            }
         }
     }
 }

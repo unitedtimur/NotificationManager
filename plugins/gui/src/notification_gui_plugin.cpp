@@ -10,8 +10,6 @@ namespace GuiPlugin {
             qDebug() << Q_FUNC_INFO << "Plugin dependencies found";
             setNotifyModel(_logicPlugin->getNotificationModel());
             setHistoryModel(_logicPlugin->getHistoryModel());
-            _qmlEngine.rootContext()->setContextProperty("HistoryModel", _history_model);
-            invoke();
             return true;
         } else {
             qWarning() << Q_FUNC_INFO << "Plugin dependencies not found";
@@ -66,6 +64,7 @@ namespace GuiPlugin {
 
     void NotificationGuiPlugin::invoke()
     {
+        _qmlEngine.rootContext()->setContextProperty("HistoryModel", _history_model);
         _qmlEngine.load(QUrl(QStringLiteral("qrc:/qml/qml/main.qml")));
         _qmlEngine.addImportPath("qrc:/qml");
         calculateLayout();

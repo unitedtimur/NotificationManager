@@ -2,7 +2,6 @@
 #define APPLICATION_H
 
 #include <abstract_core.h>
-
 #include <QDir>
 
 namespace App {
@@ -27,6 +26,7 @@ namespace App {
          * \brief _core - объект класса AbstractCore, через него в методе invokePluginsLoading
          * вызываем метод loadPlugins, принадлежащий AbstractCore
          */
+
         Core::AbstractCore& _core = Core::AbstractCore::getInstance();
     };
 }

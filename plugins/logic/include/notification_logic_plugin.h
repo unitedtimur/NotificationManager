@@ -36,8 +36,8 @@ namespace LogicPlugin {
     public:
         bool initialize(const QList<QPointer<QObject>> &dependencies) override;
         void addNotification(AbstractNotification *notification);
-        NotificationModel &getNotificationModel();
-        HistoryModel &getHistoryModel();
+        NotificationModel* getNotificationModel();
+        HistoryModel* getHistoryModel();
     };
 }
 

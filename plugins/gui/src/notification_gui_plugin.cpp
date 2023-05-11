@@ -5,8 +5,11 @@
 namespace GuiPlugin {
     bool NotificationGuiPlugin::initialize(const QList<QPointer<QObject>> &dependencies)
     {
-        if (_core.findPlugins(dependencies, _logicPlugin)) {
+        _core.findPlugins(dependencies, _logicPlugin);
+        if (_logicPlugin) {
             qDebug() << Q_FUNC_INFO << "Plugin dependencies found";
+            setNotifyModel(_logicPlugin->getNotificationModel());
+            setHistoryModel(_logicPlugin->getHistoryModel());
             invoke();
             return true;
         } else {
@@ -28,7 +31,8 @@ namespace GuiPlugin {
     void NotificationGuiPlugin::onRowsInserted(const QModelIndex &parent, int first, int last)
     {
         for (int i = first; i <= last; ++i) {
-            QQmlComponent component(&_qmlEngine, QUrl(QStringLiteral("qrc:/NotificationWindow.qml")));
+            QQmlComponent component(&_qmlEngine,
+                                    QUrl(QStringLiteral("qrc:/NotificationWindow.qml")));
             QObject *object = component.create();
             if (object) {
                 QQuickWindow *window = qobject_cast<QQuickWindow *>(object);

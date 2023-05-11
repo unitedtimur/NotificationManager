@@ -13,13 +13,13 @@ namespace LogicPlugin {
         _notify_model.addNotification(notification);
     }
 
-    NotificationModel &NotificationLogicPlugin::getNotificationModel()
+    NotificationModel* NotificationLogicPlugin::getNotificationModel()
     {
-        return _notify_model;
+        return &_notify_model;
     }
 
-    HistoryModel &NotificationLogicPlugin::getHistoryModel()
+    HistoryModel* NotificationLogicPlugin::getHistoryModel()
     {
-        return _history_model;
+        return &_history_model;
     }
 }

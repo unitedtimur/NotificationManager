@@ -36,7 +36,7 @@ Rectangle {
         }
 
         Image {
-            source: "qrc:/ui/assets/shape1.png"
+            source: "qrc:/img/assets/shape1.png"
         }
     }
 
@@ -70,7 +70,7 @@ Rectangle {
         }
 
         Image {
-            source: "qrc:/ui/assets/shape2.png"
+            source: "qrc:/img/assets/shape2.png"
         }
     }
 
@@ -99,7 +99,7 @@ Rectangle {
         }
 
         Image {
-            source: "qrc:/ui/assets/shape3.png"
+            source: "qrc:/img/assets/shape3.png"
         }
     }
 

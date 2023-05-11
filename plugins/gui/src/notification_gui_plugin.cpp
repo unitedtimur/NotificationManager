@@ -7,7 +7,7 @@ namespace GuiPlugin {
     {
         if (_core->findPlugins(dependencies, _logicPlugin)) {
             qDebug() << Q_FUNC_INFO << "Plugin dependencies found";
-            showNotification();
+            show();
             return true;
         } else {
             qWarning() << Q_FUNC_INFO << "Plugin dependencies not found";
@@ -15,7 +15,7 @@ namespace GuiPlugin {
         }
     }
 
-    void NotificationGuiPlugin::showNotification()
+    void NotificationGuiPlugin::show()
     {
         _core->qmlEngine()->load(QUrl(QStringLiteral("qrc:/qml/qml/main.qml")));
         _core->qmlEngine()->addImportPath("qrc:/qml");

@@ -1,13 +1,14 @@
 import QtQuick 2.15
+import QtQuick.Window 2.15
+import QtQuick.Controls 2.15
 
-Rectangle {
+Window {
     id: notificationArea
-    anchors {
-       top: parent.top
-       right: parent.right
-       rightMargin: 20
-       topMargin: 20
-    }
-    height: parent.height / 4 + 15
-    width: parent.width / 5
+    visible: true
+    height: mainWindow.height / 4 + 15
+    width: mainWindow.width / 5
+    // Set the window position to the bottom right corner
+        x: Screen.width - width
+        y: Screen.height - height
+        opacity : 1
 }

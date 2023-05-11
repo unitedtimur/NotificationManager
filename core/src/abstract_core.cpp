@@ -2,10 +2,11 @@
 #include "base_interface.h"
 
 #include <iostream>
+#include <QCoreApplication>
 
-#ifdef Q_OS_WIN
-#    include "windows.h"
-#endif
+// #ifdef Q_OS_WIN
+// #    include "windows.h"
+// #endif
 
 namespace Core {
     AbstractCore *AbstractCore::p_instance = 0;
@@ -25,10 +26,11 @@ namespace Core {
 
 #ifdef Q_OS_WIN
         plugins = dir.entryList(QStringList("*.dll"), QDir::Files);
-        SetDllDirectoryA((LPCSTR)path.toStdString().c_str());
+//        SetDllDirectoryA((LPCSTR)path.toStdString().c_str());
 #elif defined Q_OS_UNIX
         plugins = dir.entryList(QStringList("*.so"), QDir::Files);
 #endif
+        qDebug() << QCoreApplication::libraryPaths();
         for (const auto &plugin : qAsConst(plugins)) {
             QPluginLoader loader;
             loader.setFileName(path + "/" + plugin);

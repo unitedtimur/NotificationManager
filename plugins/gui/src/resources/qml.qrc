@@ -1,14 +1,31 @@
 <RCC>
-    <qresource prefix="/qml">
-        <file>BottomScreen/BottomScreen.qml</file>
-        <file>ControlPanel/ControlPanel.qml</file>
-        <file>qml/listView.qml</file>
-        <file>qml/main.qml</file>
-        <file>qml/Notification/Notification.qml</file>
-        <file>qml/Notification/qmldir</file>
+    <qresource prefix="/img">
+        <file>assets/close.svg</file>
+        <file>assets/envelope.svg</file>
+        <file>assets/home.svg</file>
+        <file>assets/micran-logo.png</file>
+        <file>assets/minimizeIcon.svg</file>
+        <file>assets/recommendations.svg</file>
+        <file>assets/settings.svg</file>
+        <file>assets/shape1.png</file>
+        <file>assets/shape2.png</file>
+        <file>assets/shape3.png</file>
     </qresource>
-    <qresource prefix="/icons">
-        <file>assets/closenoticon.png</file>
-        <file>assets/menuicon.png</file>
+    <qresource prefix="/qml">
+        <file>qml/ControlPanel/ControlPanel.qml</file>
+        <file>qml/ControlPanel/ToolBar.qml</file>
+        <file>qml/LeftArea/AppName.qml</file>
+        <file>qml/LeftArea/LeftArea.qml</file>
+        <file>qml/LeftArea/MenuSection.qml</file>
+        <file>qml/Notification/listView.qml</file>
+        <file>qml/Notification/Notification.qml</file>
+        <file>qml/Notification/NotificationArea.qml</file>
+        <file>qml/RightArea/AdvicesPage.qml</file>
+        <file>qml/RightArea/ArchivePage.qml</file>
+        <file>qml/RightArea/MainPage.qml</file>
+        <file>qml/RightArea/PageRect.qml</file>
+        <file>qml/RightArea/PagesHandler.qml</file>
+        <file>qml/RightArea/SettingsPage.qml</file>
+        <file>qml/main.qml</file>
     </qresource>
 </RCC>

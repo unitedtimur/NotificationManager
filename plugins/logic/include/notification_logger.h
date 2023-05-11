@@ -44,7 +44,7 @@ namespace LogicPlugin {
          * \param date - Дата
          * \return Возвращает true, если запрос успешно выполнен, иначе false
          */
-        bool insert(QString type, QString tytle, QString descript, QDate date);
+        bool insert(QString type, QString tytle, QString descript, QDate date, QString time);
 
         /*!
          * \brief close Метод закрывает соединение с базой данных
@@ -65,6 +65,7 @@ namespace LogicPlugin {
         /*!
          * \brief _db - Статический обьект для установки соединения с базой данных
          */
+
         static QSqlDatabase _db;
     };
 }

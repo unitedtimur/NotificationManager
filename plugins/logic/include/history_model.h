@@ -1,6 +1,7 @@
 #ifndef HISTORY_MODEL_H
 #define HISTORY_MODEL_H
-#include <QtSql>
+#include <QSqlTableModel>
+#include <QSqlRecord>
 
 class HistoryModel : public QSqlTableModel
 {

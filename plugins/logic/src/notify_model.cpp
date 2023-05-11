@@ -48,7 +48,7 @@ namespace LogicPlugin {
         beginInsertRows(QModelIndex(), _notifications.count(), _notifications.count());
         _notifications.push_back(notification);
         logger.insert(notification->type(), notification->title(), notification->description(),
-                      QDate::currentDate());
+                      QDate::currentDate(), QTime::currentTime().toString("hh:mm:ss"));
         endInsertRows();
     }
 
@@ -81,5 +81,4 @@ namespace LogicPlugin {
     {
         return _notifications.count();
     }
-
 }

@@ -13,48 +13,10 @@ public:
         TypeRole,
         DateRole
     };
-
-    HistoryModel(QObject *parent = nullptr)
-        : QSqlTableModel(parent)
-    {
-        setTable("notification");
-        select();
-    }
-
-    QHash<int, QByteArray> roleNames() const override
-    {
-        QHash<int, QByteArray> roles;
-        roles[TitleRole] = "title";
-        roles[MessageRole] = "message";
-        roles[TypeRole] = "type";
-        roles[DateRole] = "date";
-        return roles;
-    }
-
-    QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override
-    {
-        if (role < Qt::UserRole)
-            return QSqlTableModel::data(index, role);
-
-        QSqlRecord record = QSqlTableModel::record(index.row());
-        switch (role) {
-        case TitleRole:
-            return record.value("Title");
-        case MessageRole:
-            return record.value("Description");
-        case TypeRole:
-            return record.value("Type");
-        case DateRole:
-            return record.value("Date");       
-        default:
-            return QVariant();
-        }
-    }
-    Q_INVOKABLE void selectByDate(const QString& dateStr)
-    {
-        setFilter(QString("Date='%1'").arg(dateStr));
-        select();
-    }
+    HistoryModel(QObject *parent = nullptr);
+    QHash<int, QByteArray> roleNames() const override;
+    QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
+    Q_INVOKABLE void selectByDate(const QString& dateStr);
 };
 
 

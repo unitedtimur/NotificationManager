@@ -31,7 +31,7 @@ Rectangle {
         anchors {
             top: header.bottom
             right: parent.right
-            left:parent.left
+            left: parent.left
             topMargin: 36
             rightMargin: 30
             leftMargin: 30

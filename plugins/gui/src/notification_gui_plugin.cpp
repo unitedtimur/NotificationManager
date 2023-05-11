@@ -10,6 +10,7 @@ namespace GuiPlugin {
             qDebug() << Q_FUNC_INFO << "Plugin dependencies found";
             setNotifyModel(_logicPlugin->getNotificationModel());
             setHistoryModel(_logicPlugin->getHistoryModel());
+            _qmlEngine.rootContext()->setContextProperty("HistoryModel", _history_model);
             invoke();
             return true;
         } else {

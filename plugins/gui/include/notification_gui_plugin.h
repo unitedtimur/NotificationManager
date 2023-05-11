@@ -9,9 +9,10 @@
 
 #include <QObject>
 #include <QString>
-#include <QTimer>
 #include <QtQuick>
 #include <QQuickWindow>
+#include <QQmlContext>
+#include <QQmlApplicationEngine>
 namespace GuiPlugin {
     /*!
      * \brief Класс реализующий плагин бизнес-логики отображения уведомлений
@@ -52,7 +53,7 @@ namespace GuiPlugin {
          */
         QQmlApplicationEngine _qmlEngine;
 
-        int _screenHeight;
+        int _screenHeight{0};
     public:
 
         void invoke();

@@ -43,7 +43,7 @@ namespace LogicPlugin {
         return roles;
     }
 
-    void NotificationModel::addNotification(QPointer<AbstractNotification> notification)
+    void NotificationModel::addNotification(AbstractNotification *notification)
     {
         beginInsertRows(QModelIndex(), _notifications.count(), _notifications.count());
         _notifications.push_back(notification);

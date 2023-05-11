@@ -10,7 +10,8 @@
 #include <QObject>
 #include <QString>
 #include <QTimer>
-
+#include <QtQuick>
+#include <QQuickWindow>
 namespace GuiPlugin {
     /*!
      * \brief Класс реализующий плагин бизнес-логики отображения уведомлений
@@ -36,13 +37,30 @@ namespace GuiPlugin {
         /*!
          * \brief Указатель на NotificationLogicPlugin
          */
-        LogicPlugin::NotificationLogicPlugin *_logicPlugin = nullptr;
+        LogicPlugin::NotificationLogicPlugin *_logicPlugin { nullptr };
+        LogicPlugin::NotificationModel *_notify_model { nullptr };
+        LogicPlugin::HistoryModel *_history_model { nullptr };
 
-        Core::AbstractCore *_core = Core::AbstractCore::getInstance();
+        QList<QQuickWindow *> _notify_windows_list;
+        Core::AbstractCore& _core = Core::AbstractCore::getInstance();
 
+        void onRowsInserted(const QModelIndex &parent, int first, int last);
+        void connectOnVisibleChanged(QQuickWindow *);
+
+        /*!
+         * \brief Указатель на движок QML
+         */
+        QQmlApplicationEngine _qmlEngine;
+
+        int _screenHeight;
     public:
-        void show();
+
+        void invoke();
+        void calculateLayout();
+        void setupConnections();
         bool initialize(const QList<QPointer<QObject>> &dependencies) override;
+        void setNotifyModel(LogicPlugin::NotificationModel *);
+        void setHistoryModel(LogicPlugin::HistoryModel *);
     };
 }
 #endif // NOTIFICATION_GUI_PLUGIN_H

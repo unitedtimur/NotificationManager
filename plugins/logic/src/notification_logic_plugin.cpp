@@ -7,4 +7,19 @@ namespace LogicPlugin {
     {
         return true;
     }
+
+    void NotificationLogicPlugin::addNotification(AbstractNotification *notification)
+    {
+        _notify_model.addNotification(notification);
+    }
+
+    NotificationModel &NotificationLogicPlugin::getNotificationModel()
+    {
+        return _notify_model;
+    }
+
+    HistoryModel &NotificationLogicPlugin::getHistoryModel()
+    {
+        return _history_model;
+    }
 }

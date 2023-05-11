@@ -42,7 +42,9 @@ set(QT_COMPONENTS
         Core Widgets
         QuickWidgets
         Core
-        QuickControls2)
+        QuickControls2
+        Sql
+    )
 
 FIND_AND_LINK_QT(TARGET ${PROJECT_NAME}
     QT_COMPONENTS

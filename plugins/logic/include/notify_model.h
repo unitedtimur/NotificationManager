@@ -40,7 +40,7 @@ namespace LogicPlugin {
         /*!
          * \brief Метод, с помощью которого в модель добавляются данные о новом уведомлении
          */
-        void addNotification(QPointer<LogicPlugin::AbstractNotification> notification);
+        void addNotification(AbstractNotification *notification);
 
         /*!
          * \brief Метод, с помощью которого из модели удаляются данные об уведомлении с определенным

@@ -3,15 +3,17 @@
 
 #include "logic_interface.h"
 #include "logic_plugin_export.h"
-
 #include <QString>
 #include <QTimer>
 #include <QObject>
+#include <notify_model.h>
+#include <history_model.h>
 
 namespace LogicPlugin {
     /*!
      * \brief Класс реализующий плагин бизнес-логики отображения уведомлений
      */
+    class GuiPlugin;
     class LOGIC_PLUGIN_EXPORT NotificationLogicPlugin final : public Core::LogicInterface
     {
         Q_OBJECT
@@ -28,9 +30,14 @@ namespace LogicPlugin {
          * плагина.
          */
         Q_PLUGIN_METADATA(IID "com.Core.LogicInterface" FILE "metadata.json")
+        NotificationModel _notify_model;
+        HistoryModel _history_model;
 
     public:
         bool initialize(const QList<QPointer<QObject>> &dependencies) override;
+        void addNotification(AbstractNotification *notification);
+        NotificationModel &getNotificationModel();
+        HistoryModel &getHistoryModel();
     };
 }
 

@@ -19,11 +19,10 @@ namespace Core {
         Q_OBJECT
 
     public:
-        static AbstractCore *getInstance()
+        static AbstractCore& getInstance()
         {
-            if (!p_instance)
-                p_instance = new AbstractCore();
-            return p_instance;
+                static AbstractCore core;
+                return core;
         }
 
         /*!
@@ -69,20 +68,16 @@ namespace Core {
         /*!
          * \brief Реализация патерна Singleton
          */
-        static AbstractCore *p_instance;
-        AbstractCore();
-        AbstractCore(const AbstractCore &);
-        AbstractCore &operator=(AbstractCore &);
+        explicit AbstractCore() = default;
+        ~AbstractCore() = default;
+        AbstractCore(const AbstractCore &) = delete;
+        AbstractCore &operator=(AbstractCore) = delete;
 
         /*!
          * \brief Список плагинов, которые будут загружены из папки plugins
          */
         QList<QPointer<QObject>> _plugins;
 
-        /*!
-         * \brief Указатель на движок QML
-         */
-        QPointer<QQmlApplicationEngine> _qmlEngine;
 
         /*!
          * \brief Указатель на QSettings

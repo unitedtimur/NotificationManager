@@ -9,13 +9,6 @@
 // #endif
 
 namespace Core {
-    AbstractCore *AbstractCore::p_instance = 0;
-
-    AbstractCore::AbstractCore()
-    {
-        _qmlEngine = new QQmlApplicationEngine(this);
-    }
-
     bool AbstractCore::loadPlugins(const QString &path)
     {
         QStringList plugins;
@@ -62,8 +55,4 @@ namespace Core {
         return true;
     }
 
-    QPointer<QQmlApplicationEngine> AbstractCore::qmlEngine() const
-    {
-        return _qmlEngine;
-    }
 } // namespace Core

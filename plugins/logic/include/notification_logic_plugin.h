@@ -10,35 +10,36 @@
 #include <history_model.h>
 
 namespace LogicPlugin {
-/*!
+    /*!
      * \brief Класс реализующий плагин бизнес-логики отображения уведомлений
      */
-class GuiPlugin;
-class LOGIC_PLUGIN_EXPORT NotificationLogicPlugin final : public Core::LogicInterface
-{
-    Q_OBJECT
-    /*!
+    class LOGIC_PLUGIN_EXPORT NotificationLogicPlugin final : public Core::LogicInterface
+    {
+        Q_OBJECT
+        /*!
          * \brief Q_INTERFACES Этот макрос сообщает Qt, какие интерфейсы реализует класс. Это
          * используется при внедрении плагинов.
          */
-    Q_INTERFACES(Core::LogicInterface)
+        Q_INTERFACES(Core::LogicInterface)
 
-    /*!
+        /*!
          * \brief Q_PLUGIN_METADATA  Этот макрос используется для объявления метаданных, которые
          * являются частью плагина, создающего экземпляр этого объекта. Макрос должен объявить IID
          * интерфейса, реализованного через объект, и сослаться на файл, содержащий метаданные для
          * плагина.
          */
-    Q_PLUGIN_METADATA(IID "com.Core.LogicInterface" FILE "metadata.json")
-    NotificationModel _notify_model;
-    HistoryModel _history_model;
+        Q_PLUGIN_METADATA(IID "com.Core.LogicInterface" FILE "metadata.json")
 
-public:
-    bool initialize(const QList<QPointer<QObject>> &dependencies) override;
-    void addNotification(AbstractNotification *notification);
-    NotificationModel *getNotificationModel();
-    HistoryModel *getHistoryModel();
-};
+    public:
+        bool initialize(const QList<QPointer<QObject>> &dependencies) override;
+        void addNotification(AbstractNotification *notification);
+        NotificationModel *getNotificationModel();
+        HistoryModel *getHistoryModel();
+
+    private:
+        NotificationModel _notify_model;
+        HistoryModel _history_model;
+    };
 }
 
 #endif // NOTIFY_LOGIC_PLUGIN_H

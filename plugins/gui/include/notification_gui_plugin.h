@@ -35,7 +35,16 @@ namespace GuiPlugin {
          */
         Q_PLUGIN_METADATA(IID "com.NotificationGuiPlugin" FILE "metadata.json")
 
-        /*!
+    public:
+        void invoke();
+        void calculateLayout();
+        void setupConnections();
+        bool initialize(const QList<QPointer<QObject>> &dependencies) override;
+        void setNotifyModel(LogicPlugin::NotificationModel *);
+        void setHistoryModel(LogicPlugin::HistoryModel *);
+
+    private:
+         /*!
          * \brief Указатель на NotificationLogicPlugin
          */
         LogicPlugin::NotificationLogicPlugin *_logicPlugin { nullptr };
@@ -43,7 +52,7 @@ namespace GuiPlugin {
         LogicPlugin::HistoryModel *_history_model { nullptr };
 
         QList<QQuickWindow *> _notify_windows_list;
-        Core::AbstractCore& _core = Core::AbstractCore::getInstance();
+        Core::AbstractCore &_core = Core::AbstractCore::getInstance();
 
         void onRowsInserted(const QModelIndex &parent, int first, int last);
         void connectOnVisibleChanged(QQuickWindow *);
@@ -53,15 +62,7 @@ namespace GuiPlugin {
          */
         QQmlApplicationEngine _qmlEngine;
 
-        int _screenHeight{0};
-    public:
-
-        void invoke();
-        void calculateLayout();
-        void setupConnections();
-        bool initialize(const QList<QPointer<QObject>> &dependencies) override;
-        void setNotifyModel(LogicPlugin::NotificationModel *);
-        void setHistoryModel(LogicPlugin::HistoryModel *);
+        int _screenHeight { 0 };
     };
 }
 #endif // NOTIFICATION_GUI_PLUGIN_H

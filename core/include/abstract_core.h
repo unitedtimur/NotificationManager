@@ -34,11 +34,6 @@ namespace Core {
         bool loadPlugins(const QString &path);
 
         /*!
-         * \brief Возвращает указатель на QQmlApplicationEngine
-         */
-        QPointer<QQmlApplicationEngine> qmlEngine() const;
-
-        /*!
          * \brief Метод присваивает переданному указателю адрес памяти, где находится плагин
          * \param _plugin - указатель внутри класса плагина
          * \param dependencies - плагины, среди которых нужно искать

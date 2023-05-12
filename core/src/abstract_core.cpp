@@ -19,7 +19,6 @@ namespace Core {
 
 #ifdef Q_OS_WIN
         plugins = dir.entryList(QStringList("*.dll"), QDir::Files);
-//        SetDllDirectoryA((LPCSTR)path.toStdString().c_str());
 #elif defined Q_OS_UNIX
         plugins = dir.entryList(QStringList("*.so"), QDir::Files);
 #endif

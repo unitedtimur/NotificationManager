@@ -21,14 +21,14 @@ namespace LogicPlugin {
     {
         if (index.row() > _notifications.size())
             return QVariant();
-        const auto row = _notifications.at(index.row());
+        const auto notification = _notifications.at(index.row());
         switch (role) {
         case TitleRole:
-            return row->title();
+            return notification->title();
         case MessageRole:
-            return row->description();
+            return notification->description();
         case TypeRole:
-            return row->type();
+            return notification->type();
         default:
             return QVariant();
         }

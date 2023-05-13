@@ -39,25 +39,21 @@ namespace Core {
          * \param dependencies - плагины, среди которых нужно искать
          * \return True если плагин найден, иначе false
          */
-        template<typename T>
-        T* findPlugins(const QList<QPointer<QObject>> &dependencies, T *&plugin)
+        template<typename Interface>
+        bool resolve(const QList<QPointer<QObject>> &objects, QPointer<Interface> &iface)
         {
-            for (const auto &dependency : qAsConst(dependencies)) {
-                plugin = qobject_cast<T *>(dependency);
+                for (QPointer<QObject> object : objects)
+                    if (iface = qobject_cast<Interface *>(object); iface)
+                        return true;
 
-                if (plugin) {
-                    return plugin;
-                }
-            }
-
-            return nullptr;
+                return false;
         }
 
-//        template<typename T, typename... R>
-//        bool findPlugins(const QList<QPointer<QObject>> &dependencies, T *&plugin, R *&...plugins)
-//        {
-//            return findPlugins(dependencies, plugin) && findPlugins(dependencies, plugins...);
-//        }
+        template<typename T, typename... R>
+        bool resolve(const QList<QPointer<QObject>> &dependencies, T *&plugin, R *&...plugins)
+        {
+            return resolve(dependencies, plugin) && resolve(dependencies, plugins...);
+        }
 
     private:
         /*!

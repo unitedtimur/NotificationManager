@@ -1,12 +1,7 @@
 #include "abstract_core.h"
 #include "base_interface.h"
-
 #include <iostream>
 #include <QCoreApplication>
-
-// #ifdef Q_OS_WIN
-// #    include "windows.h"
-// #endif
 
 namespace Core {
     bool AbstractCore::loadPlugins(const QString &path)

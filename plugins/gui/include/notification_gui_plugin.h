@@ -45,7 +45,7 @@ namespace GuiPlugin {
         /*!
          * \brief Указатель на NotificationLogicPlugin
          */
-        LogicPlugin::NotificationLogicPlugin *_logicPlugin { nullptr };
+        QPointer<LogicPlugin::NotificationLogicPlugin> _logicPlugin { nullptr };
         LogicPlugin::NotificationModel *_notify_model { nullptr };
         LogicPlugin::HistoryModel *_history_model { nullptr };
 

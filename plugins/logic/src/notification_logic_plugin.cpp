@@ -2,7 +2,9 @@
 
 #include <QDebug>
 
-bool LogicPlugin::NotificationLogicPlugin::initialize(const QList<QPointer<QObject>> &dependencies)
-{
-    return true;
+namespace LogicPlugin {
+    bool NotificationLogicPlugin::initialize(const QList<QPointer<QObject>> &dependencies)
+    {
+        return true;
+    }
 }

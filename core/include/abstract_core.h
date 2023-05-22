@@ -27,12 +27,40 @@ namespace Core {
          * список(QList<QPointer<QObject>> _plugins)
          * \param path - в этой строке находится путь до папки plugins
          */
-        void loadPlugins(const QString &path);
+        bool loadPlugins(const QString &path);
 
         /*!
          * \brief Возвращает указатель на QQmlApplicationEngine
          */
         QPointer<QQmlApplicationEngine> qmlEngine() const;
+
+        /*!
+         * \brief Метод присваивает переданному указателю адрес памяти, где находится плагин
+         * \param _plugin - указатель внутри класса плагина
+         * \param dependencies - плагины, среди которых нужно искать
+         * \return True если плагин найден, иначе false
+         */
+        template<typename T>
+        static bool findPlugins(const QList<QPointer<QObject>> &dependencies, T *&plugin)
+        {
+            for (const auto &dependency : qAsConst(dependencies)) {
+                plugin = qobject_cast<T *>(dependency);
+
+                if (plugin) {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        template<typename T, typename... R>
+        static bool findPlugins(const QList<QPointer<QObject>> &dependencies,
+                            T *&plugin,
+                            R *&...plugins)
+        {
+            return findPlugins(dependencies, plugin) && findPlugins(dependencies, plugins...);
+        }
 
     private:
         /*!

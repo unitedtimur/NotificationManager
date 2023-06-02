@@ -9,6 +9,7 @@ namespace GuiPlugin {
             qDebug() << Q_FUNC_INFO << "Plugin dependencies found";
             setNotifyModel(_logicPlugin->getNotificationModel());
             setHistoryModel(_logicPlugin->getHistoryModel());
+            invoke();
             return true;
         } else {
             qWarning() << Q_FUNC_INFO << "Plugin dependencies not found";

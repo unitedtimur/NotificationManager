@@ -13,6 +13,7 @@
 #include <QQuickWindow>
 #include <QQmlContext>
 #include <QQmlApplicationEngine>
+
 namespace GuiPlugin {
     /*!
      * \brief Класс реализующий плагин бизнес-логики отображения уведомлений

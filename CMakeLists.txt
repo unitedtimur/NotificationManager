@@ -23,3 +23,4 @@ PARSE_SUBDIRECTORIES(
     core
     plugins
     translations)
+#efre

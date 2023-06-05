@@ -3,7 +3,7 @@
 #include <QSqlTableModel>
 #include <QSqlRecord>
 namespace LogicPlugin {
-    class HistoryModel final: public QSqlTableModel
+    class HistoryModel final : public QSqlTableModel
     {
         Q_OBJECT
     public:
@@ -14,6 +14,7 @@ namespace LogicPlugin {
             TypeRole,
             DateRole
         };
+
         HistoryModel(QObject *parent = nullptr);
         QHash<int, QByteArray> roleNames() const override;
         QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;

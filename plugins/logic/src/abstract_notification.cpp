@@ -1,7 +1,9 @@
 #include "abstract_notification.h"
 
 namespace LogicPlugin {
-    AbstractNotification::AbstractNotification(QString title, QString description, uint16_t typeID)
+    AbstractNotification::AbstractNotification(const QString &title,
+                                               const QString &description,
+                                               uint16_t typeID)
     {
         _title = title;
         _description = description;
@@ -21,6 +23,11 @@ namespace LogicPlugin {
     QString AbstractNotification::type() const
     {
         return TypeManager::stringType(_typeID);
+    }
+
+    int32_t AbstractNotification::id() const
+    {
+        return _id;
     }
 
     void AbstractNotification::setTitle(const QString &title)
@@ -43,5 +50,10 @@ namespace LogicPlugin {
                      << "\n NotificationType will be set to default value";
             _typeID = 0;
         }
+    }
+
+    void AbstractNotification::setId(int32_t id)
+    {
+        _id = id;
     }
 }

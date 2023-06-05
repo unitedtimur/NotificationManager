@@ -24,7 +24,8 @@ namespace LogicPlugin {
          */
         enum NotificationRoles
         {
-            TitleRole = Qt::UserRole + 1,
+            IdRole = Qt::UserRole + 1,
+            TitleRole,
             MessageRole,
             TypeRole
         };
@@ -40,18 +41,20 @@ namespace LogicPlugin {
         /*!
          * \brief Метод, с помощью которого в модель добавляются данные о новом уведомлении
          */
-        void addNotification(AbstractNotification *notification);
+        void addNotification(LogicPlugin::AbstractNotification *notification);
 
         /*!
          * \brief Метод, с помощью которого из модели удаляются данные об уведомлении с определенным
          * индексом
          */
-        void removeNotification(int index);
+        Q_INVOKABLE void removeNotification(int id);
+
         void timerEvent(QTimerEvent *event) override;
+
         /*!
          * \brief Метод, удаляющий информацию о всех уведомлениях в модели
          */
-        void clearNotifications();
+        Q_INVOKABLE void clearNotifications();
 
         /*!
          * \brief Метод, возвращающий количество уведомлений в модели
@@ -63,11 +66,15 @@ namespace LogicPlugin {
          * \brief logger Ссылка на класс, логирующий в бд
          */
         NotificationLogger &logger = NotificationLogger::instance();
+        /*!
+         * \brief avalaibleId - метод возвращающий доступный id
+         */
+        int32_t avalaibleId() const;
         qint32 _timerId;
         /*!
          * \brief Список, в котором хранится информация об всех уведомления в модели
          */
-        QList<QPointer<LogicPlugin::AbstractNotification>> _notifications;
+        std::vector<std::unique_ptr<LogicPlugin::AbstractNotification>> _notifications;
     };
 }
 

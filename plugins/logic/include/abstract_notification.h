@@ -12,7 +12,7 @@ namespace LogicPlugin {
      * \brief Класс, от которого могут наследоваться юзеры библиотеки, чтобы создать новый класс
      * уведомления, если потребуется расширить функционал
      */
-    class  AbstractNotification: public QObject
+    class AbstractNotification : public QObject
     {
     public:
         /*!
@@ -21,23 +21,27 @@ namespace LogicPlugin {
          * \param description - строка, в которой храниться более подробное описание уведомления
          * \param type - тип уведомления
          */
-        explicit AbstractNotification(QString title, QString description, uint16_t typeID);
+        explicit AbstractNotification(const QString &title,
+                                      const QString &description,
+                                      uint16_t typeID);
         ~AbstractNotification() = default;
 
         /*!
          * \brief Метод, возвращающий значения переменной _title
          */
-       Q_INVOKABLE QString title() const;
+        Q_INVOKABLE QString title() const;
 
         /*!
          * \brief Метод, возвращающий значения переменной _description
          */
-       Q_INVOKABLE QString description() const;
+        Q_INVOKABLE QString description() const;
 
         /*!
          * \brief Метод, возвращающий тип уведомления
          */
-       Q_INVOKABLE QString type() const;
+        Q_INVOKABLE QString type() const;
+
+        Q_INVOKABLE int32_t id() const;
 
         /*!
          * \brief Метод, меняющий значение переменной _title
@@ -53,6 +57,8 @@ namespace LogicPlugin {
          * \brief Метод, меняющий тип уведомления
          */
         void setType(const uint16_t &typeID);
+
+        void setId(int32_t id);
 
     private:
         /*!
@@ -70,6 +76,8 @@ namespace LogicPlugin {
          * конкретное название уведомления
          */
         uint16_t _typeID;
+
+        int32_t _id { -1 };
     };
 }
 

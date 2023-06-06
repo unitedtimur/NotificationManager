@@ -1,8 +1,8 @@
 #ifndef NOTIFY_MODEL_H
 #define NOTIFY_MODEL_H
 
-#include "abstract_notification.h"
 #include "notification_logger.h"
+#include "i_notify_model.h"
 
 #include <QAbstractListModel>
 #include <QPointer>
@@ -13,7 +13,7 @@ namespace LogicPlugin {
      * \brief Класс, который определяет интерфейс, используемый для взаимодействия с компонентами
      * gui
      */
-    class NotificationModel final : public QAbstractListModel
+    class NotificationModel final : public INotifyModel, public QAbstractListModel
     {
         Q_OBJECT
     public:
@@ -41,35 +41,35 @@ namespace LogicPlugin {
         /*!
          * \brief Метод, с помощью которого в модель добавляются данные о новом уведомлении
          */
-        void addNotification(LogicPlugin::AbstractNotification *notification);
+        void addNotification(QPointer<LogicPlugin::AbstractNotification> notification) override;
 
         /*!
          * \brief Метод, с помощью которого из модели удаляются данные об уведомлении с определенным
          * индексом
          */
-        Q_INVOKABLE void removeNotification(int id);
+        Q_INVOKABLE void removeNotification(uint16_t id) override;
 
         void timerEvent(QTimerEvent *event) override;
 
         /*!
          * \brief Метод, удаляющий информацию о всех уведомлениях в модели
          */
-        Q_INVOKABLE void clearNotifications();
+        Q_INVOKABLE void clearNotifications() override;
 
         /*!
          * \brief Метод, возвращающий количество уведомлений в модели
          */
-        int count() const;
+        int count() const override;
 
     private:
         /*!
-         * \brief logger Ссылка на класс, логирующий в бд
+         * \brief logger Ссылка на клаsсс, логирующий в бд
          */
         NotificationLogger &logger = NotificationLogger::instance();
         /*!
          * \brief avalaibleId - метод возвращающий доступный id
          */
-        int32_t avalaibleId() const;
+        int16_t avalaibleId() const;
         qint32 _timerId;
         /*!
          * \brief Список, в котором хранится информация об всех уведомления в модели

@@ -1,5 +1,4 @@
 #include "notify_model.h"
-#include "notification_entity.h"
 
 namespace LogicPlugin {
     NotificationModel::NotificationModel(QObject *parent) : QAbstractListModel(parent)
@@ -46,8 +45,8 @@ namespace LogicPlugin {
         return roles;
     }
 
-    void
-    LogicPlugin::NotificationModel::addNotification(LogicPlugin::AbstractNotification *notification)
+    void LogicPlugin::NotificationModel::addNotification(
+     QPointer<LogicPlugin::AbstractNotification> notification)
     {
         beginInsertRows(QModelIndex(), _notifications.size(), _notifications.size());
         notification->setId(avalaibleId());
@@ -94,7 +93,7 @@ namespace LogicPlugin {
         return _notifications.size();
     }
 
-    int32_t LogicPlugin::NotificationModel::avalaibleId() const
+    int16_t LogicPlugin::NotificationModel::avalaibleId() const
     {
         return _notifications.empty() ? 0 : _notifications.back()->id() + 1;
     }

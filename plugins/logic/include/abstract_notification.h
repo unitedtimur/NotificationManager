@@ -15,6 +15,10 @@ namespace LogicPlugin {
     class AbstractNotification : public QObject
     {
     public:
+        Q_PROPERTY(QString title MEMBER _title READ title WRITE setTitle);
+        Q_PROPERTY(QString description MEMBER _description READ description WRITE setDescription);
+        Q_PROPERTY(uint16_t type MEMBER _typeID READ type WRITE setType);
+        Q_PROPERTY(uint16_t id MEMBER _id READ id WRITE setId);
         /*!
          * \brief AbstractNotification конструктор, инициализирующий параметры
          * \param title - строка, в которой храниться название уведомления
@@ -25,23 +29,25 @@ namespace LogicPlugin {
                                       const QString &description,
                                       uint16_t typeID);
         ~AbstractNotification() = default;
-
         /*!
          * \brief Метод, возвращающий значения переменной _title
          */
-        Q_INVOKABLE QString title() const;
+        QString title() const;
 
         /*!
          * \brief Метод, возвращающий значения переменной _description
          */
-        Q_INVOKABLE QString description() const;
+        QString description() const;
 
         /*!
          * \brief Метод, возвращающий тип уведомления
          */
-        Q_INVOKABLE QString type() const;
+        QString type() const;
 
-        Q_INVOKABLE int32_t id() const;
+        /*!
+         * \brief Метод, возвращающий номер уведомления в очереди уведомлений
+         */
+        int32_t id() const;
 
         /*!
          * \brief Метод, меняющий значение переменной _title
@@ -58,7 +64,10 @@ namespace LogicPlugin {
          */
         void setType(const uint16_t &typeID);
 
-        void setId(int32_t id);
+        /*!
+         * \brief Метод, меняющий номер уведомления в очереди уведомлений
+         */
+        void setId(int16_t id);
 
     private:
         /*!
@@ -77,7 +86,10 @@ namespace LogicPlugin {
          */
         uint16_t _typeID;
 
-        int32_t _id { -1 };
+        /*!
+         * \brief Приватное поле класса, хранящее номер уведомления в очереди уведомлений
+         */
+        int16_t _id { -1 };
     };
 }
 

@@ -52,7 +52,7 @@ namespace LogicPlugin {
         }
     }
 
-    void AbstractNotification::setId(int32_t id)
+    void AbstractNotification::setId(int16_t id)
     {
         _id = id;
     }

@@ -10,41 +10,40 @@ import "Notification"
 import "LeftArea"
 import "RightArea"
 
-
 ApplicationWindow {
-    id: mainWindow
-    flags: Qt.FramelessWindowHint | Qt.Window
-    width: 900
-    height: 600
+  id: mainWindow
+  flags: Qt.FramelessWindowHint | Qt.Window
+  width: 900
+  height: 600
 
-    minimumWidth: width
-    minimumHeight: height
-    maximumWidth: width
-    maximumHeight: height
+  minimumWidth: width
+  minimumHeight: height
+  maximumWidth: width
+  maximumHeight: height
 
-    visible: true
+  visible: true
+  color: "transparent"
+
+  Rectangle {
+    width: mainWindow.width
+    height: mainWindow.height
     color: "transparent"
 
-    Rectangle {
-        width: mainWindow.width
-        height: mainWindow.height
-        color: "transparent"
-
-        LeftArea{
-            id: leftField
-        }
-
-        PagesHandler {
-            id: rightField
-
-            ToolBar{
-              id: toolBar
-            }
-            Loader {
-                id: rightFieldLoader
-                source: "qrc:/qml/qml/RightArea/MainPage.qml"
-                anchors.fill: parent
-            }
-        }
+    LeftArea {
+      id: leftField
     }
+
+    PagesHandler {
+      id: rightField
+
+      ToolBar {
+        id: toolBar
+      }
+      Loader {
+        id: rightFieldLoader
+        source: "qrc:/qml/qml/RightArea/MainPage.qml"
+        anchors.fill: parent
+      }
+    }
+  }
 }

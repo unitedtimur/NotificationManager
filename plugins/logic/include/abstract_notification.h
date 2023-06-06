@@ -29,6 +29,7 @@ namespace LogicPlugin {
                                       const QString &description,
                                       uint16_t typeID);
         ~AbstractNotification() = default;
+
         /*!
          * \brief Метод, возвращающий значения переменной _title
          */

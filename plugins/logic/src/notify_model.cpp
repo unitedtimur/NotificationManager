@@ -56,7 +56,7 @@ namespace LogicPlugin {
         endInsertRows();
     }
 
-    void NotificationModel::removeNotification(int id)
+    void NotificationModel::removeNotification(uint16_t id)
     {
         const auto it = std::lower_bound(_notifications.begin(), _notifications.end(), id,
                                          [](const auto &notification, auto id) {

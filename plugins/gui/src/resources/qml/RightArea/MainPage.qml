@@ -1,119 +1,117 @@
 import QtQuick 2.15
 
-
 Rectangle {
-    id: mainPage
-    color: "transparent"
+  id: mainPage
+  color: "transparent"
 
-    Text {
-        id: header
-        text: "Добро пожаловать"
+  Text {
+    id: header
+    text: "Добро пожаловать"
 
-        font {
-            pixelSize: 36
-            family: "Arial"
-            weight: Font.DemiBold
-            letterSpacing: 1
-        }
-        anchors {
-            top: parent.top
-            left: parent.left
-            topMargin: 66
-            leftMargin: 30
-        }
-
-        color: "#DDDDDD"
+    font {
+      pixelSize: 36
+      family: "Arial"
+      weight: Font.DemiBold
+      letterSpacing: 1
     }
-    Item {
-        width: 274
-        height: 270
-        anchors {
-            top: parent.top
-            right: parent.right
-
-            topMargin: 50
-            rightMargin: -38
-        }
-
-        Image {
-            source: "qrc:/img/assets/shape1.png"
-        }
+    anchors {
+      top: parent.top
+      left: parent.left
+      topMargin: 66
+      leftMargin: 30
     }
 
-    PageRect {
-        primaryText: "Micran"
-        secondaryText: "Сайт компании"
+    color: "#DDDDDD"
+  }
+  Item {
+    width: 274
+    height: 270
+    anchors {
+      top: parent.top
+      right: parent.right
 
-        anchors {
-            top: parent.top
-            right: parent.right
-
-            topMargin: 160
-            rightMargin: 38
-        }
-
-        MouseArea {
-            anchors.fill: parent
-            onClicked: Qt.openUrlExternally("https://www.micran.ru")
-        }
+      topMargin: 50
+      rightMargin: -38
     }
 
-    Item {
-        width: 352
-        height: 308
-        anchors {
-            top: parent.top
-            left: parent.left
+    Image {
+      source: "qrc:/img/assets/shape1.png"
+    }
+  }
 
-            topMargin: 176
-            leftMargin: -58
-        }
+  PageRect {
+    primaryText: "Micran"
+    secondaryText: "Сайт компании"
 
-        Image {
-            source: "qrc:/img/assets/shape2.png"
-        }
+    anchors {
+      top: parent.top
+      right: parent.right
+
+      topMargin: 160
+      rightMargin: 38
     }
 
-    PageRect {
-        primaryText: "Версия 0.1.0"
-        secondaryText: "Первая альфа"
+    MouseArea {
+      anchors.fill: parent
+      onClicked: Qt.openUrlExternally("https://www.micran.ru")
+    }
+  }
 
-        anchors {
-            top: parent.top
-            left: parent.left
+  Item {
+    width: 352
+    height: 308
+    anchors {
+      top: parent.top
+      left: parent.left
 
-            topMargin: 300
-            leftMargin: 30
-        }
+      topMargin: 176
+      leftMargin: -58
     }
 
-    Item {
-        width: 318
-        height: 298
-        anchors {
-            top: parent.top
-            right: parent.right
+    Image {
+      source: "qrc:/img/assets/shape2.png"
+    }
+  }
 
-            topMargin: 340
-            rightMargin: -90
-        }
+  PageRect {
+    primaryText: "Версия 0.1.0"
+    secondaryText: "Первая альфа"
 
-        Image {
-            source: "qrc:/img/assets/shape3.png"
-        }
+    anchors {
+      top: parent.top
+      left: parent.left
+
+      topMargin: 300
+      leftMargin: 30
+    }
+  }
+
+  Item {
+    width: 318
+    height: 298
+    anchors {
+      top: parent.top
+      right: parent.right
+
+      topMargin: 340
+      rightMargin: -90
     }
 
-    PageRect {
-        primaryText: "Notification Manager"
-        secondaryText: "О приложении"
-
-        anchors {
-            top: parent.top
-            right: parent.right
-
-            topMargin: 446
-            rightMargin: 38
-        }
+    Image {
+      source: "qrc:/img/assets/shape3.png"
     }
+  }
 
+  PageRect {
+    primaryText: "Notification Manager"
+    secondaryText: "О приложении"
+
+    anchors {
+      top: parent.top
+      right: parent.right
+
+      topMargin: 446
+      rightMargin: 38
+    }
+  }
 }

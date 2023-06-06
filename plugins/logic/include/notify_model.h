@@ -13,7 +13,7 @@ namespace LogicPlugin {
      * \brief Класс, который определяет интерфейс, используемый для взаимодействия с компонентами
      * gui
      */
-    class NotificationModel final : public INotifyModel, public QAbstractListModel
+    class NotificationModel final : public QAbstractListModel, public INotifyModel
     {
         Q_OBJECT
     public:

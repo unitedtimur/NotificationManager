@@ -25,21 +25,22 @@ namespace LogicPlugin {
     {
         QSqlQuery query(_db);
         query.prepare("CREATE TABLE IF NOT EXISTS notification(Type TEXT, Title TEXT, "
-                      "Description TEXT, Date DATE, Time TIME)");
+                      "Description TEXT, Date DATE, Time TIME, Color TEXT)");
         return query.exec();
     }
 
     bool NotificationLogger::insert(
-     QString type, QString title, QString descript, QDate date, QString time)
+     QString type, QString title, QString descript, QDate date, QString time, QString color)
     {
         QSqlQuery query(_db);
-        query.prepare("INSERT INTO notification(Type, Title, Description, Date, Time) "
-                      "VALUES(:type, :title, :descript, :date, :time)");
+        query.prepare("INSERT INTO notification(Type, Title, Description, Date, Time, Color) "
+                      "VALUES(:type, :title, :descript, :date, :time, :color)");
         query.bindValue(":type", QVariant::fromValue(type));
         query.bindValue(":title", QVariant::fromValue(title));
         query.bindValue(":descript", QVariant::fromValue(descript));
         query.bindValue(":date", QVariant::fromValue(date));
         query.bindValue(":time", QVariant::fromValue(time));
+        query.bindValue(":color", QVariant::fromValue(color));
         return query.exec();
     }
 }

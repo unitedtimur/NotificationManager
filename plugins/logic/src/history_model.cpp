@@ -13,6 +13,7 @@ namespace LogicPlugin {
         roles[MessageRole] = "message";
         roles[TypeRole] = "type";
         roles[DateRole] = "date";
+        roles[ColorRole] = "color";
         return roles;
     }
 
@@ -31,6 +32,8 @@ namespace LogicPlugin {
             return record.value("Type");
         case DateRole:
             return record.value("Date");
+        case ColorRole:
+            return record.value("Color");
         default:
             return QVariant();
         }

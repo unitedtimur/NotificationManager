@@ -12,7 +12,8 @@ namespace LogicPlugin {
             TitleRole = Qt::UserRole + 1,
             MessageRole,
             TypeRole,
-            DateRole
+            DateRole,
+            ColorRole
         };
 
         HistoryModel(QObject *parent = nullptr);

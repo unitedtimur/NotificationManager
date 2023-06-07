@@ -42,9 +42,11 @@ namespace LogicPlugin {
          * \param tytle - Заголовок уведомления
          * \param descript - Описание
          * \param date - Дата
+         * \param color - цвет уведомления
          * \return Возвращает true, если запрос успешно выполнен, иначе false
          */
-        bool insert(QString type, QString tytle, QString descript, QDate date, QString time);
+        bool insert(
+         QString type, QString tytle, QString descript, QDate date, QString time, QString color);
 
         /*!
          * \brief close Метод закрывает соединение с базой данных

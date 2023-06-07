@@ -81,7 +81,8 @@ namespace LogicPlugin {
         notification->setId(avalaibleId());
         _notifications.emplace_back(notification);
         logger.insert(notification->type(), notification->title(), notification->description(),
-                      QDate::currentDate(), QTime::currentTime().toString("hh:mm:ss"));
+                      QDate::currentDate(), QTime::currentTime().toString("hh:mm:ss"),
+                      notification->color());
         endInsertRows();
     }
 
@@ -108,7 +109,7 @@ namespace LogicPlugin {
         if (count() > 10)
             return;
         auto warning =
-         new LogicPlugin::AbstractNotification("Камера не доступна", "some info", 1, "#E6B04444");
+         new LogicPlugin::AbstractNotification("Камера не доступна", "some info", 1, "#B04444");
         addNotification(warning);
     }
     void NotificationModel::clearNotifications()

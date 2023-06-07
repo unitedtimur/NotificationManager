@@ -30,8 +30,8 @@ namespace GuiPlugin {
     void NotificationGuiPlugin::onRowsInserted(const QModelIndex &parent, int first, int last)
     {
         for (int i = first; i <= last; ++i) {
-            QQmlComponent component(&_qmlEngine,
-                                    QUrl(QStringLiteral("qrc:/NotificationWindow.qml")));
+            QQmlComponent component(
+             &_qmlEngine, QUrl(QStringLiteral("qrc:/qml/qml/Notification/NotificationWindow.qml")));
             QObject *object = component.create();
             if (object) {
                 QQuickWindow *window = qobject_cast<QQuickWindow *>(object);

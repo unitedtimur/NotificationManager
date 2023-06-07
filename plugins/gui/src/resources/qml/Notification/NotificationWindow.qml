@@ -7,7 +7,7 @@ Window {
 
   property string title: ""
   property string message: ""
-  property string color: ""
+  property string hexcolor: ""
 
   flags: Qt.FramelessWindowHint | Qt.WindowStaysOnTopHint | Qt.Tool
 
@@ -32,7 +32,7 @@ Window {
 
   Image {
     id: closeNotificationIcon
-    source: "qrc:/ui/assets/close.svg"
+    source: "qrc:/img/assets/close.svg"
     width: 14
     height: 14
     anchors {

@@ -2,6 +2,7 @@
 
 LogicPlugin::NotificationEntity::NotificationEntity(const QString &title,
                                                     const QString &description,
-                                                    uint16_t type) :
-    AbstractNotification(title, description, type)
+                                                    uint16_t type,
+                                                    const QString &color) :
+    AbstractNotification(title, description, type, color)
 {}

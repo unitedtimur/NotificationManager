@@ -40,7 +40,6 @@ namespace LogicPlugin {
          * id)
          */
         static std::map<QString, uint16_t> _types;
-
     };
 }
 

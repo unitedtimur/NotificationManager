@@ -5,7 +5,7 @@ namespace LogicPlugin {
     {
         logger.openDatabase("QSQLITE", "./notify_db.db");
         logger.createTable();
-        _timerId = startTimer(1000);
+        //_timerId = startTimer(1000);
     }
 
     int NotificationModel::rowCount(const QModelIndex &parent) const
@@ -30,6 +30,8 @@ namespace LogicPlugin {
             return notification->description();
         case TypeRole:
             return notification->type();
+        case ColorRole:
+            return notification->color();
         default:
             return QVariant();
         }
@@ -42,7 +44,34 @@ namespace LogicPlugin {
         roles[TitleRole] = "title";
         roles[MessageRole] = "message";
         roles[TypeRole] = "type";
+        roles[ColorRole] = "color";
         return roles;
+    }
+
+    void NotificationModel::createNotification(const uint16_t typeID)
+    {
+        if (LogicPlugin::TypeManager::isTypeExist(typeID)) {
+            switch (typeID) {
+            case 1: {
+                auto notify = new LogicPlugin::AbstractNotification("Обнаружена цель", "some info",
+                                                                    typeID, "#E6212131");
+                addNotification(notify);
+                break;
+            }
+            case 2: {
+                auto warning = new LogicPlugin::AbstractNotification(
+                 "Камера не доступна", "some info", typeID, "#E6B04444");
+                addNotification(warning);
+                break;
+            }
+            case 3: {
+                auto alarm = new LogicPlugin::AbstractNotification(
+                 "Высокий уровень шума", "some info", typeID, "#E6B07F00");
+                addNotification(alarm);
+                break;
+            }
+            }
+        }
     }
 
     void LogicPlugin::NotificationModel::addNotification(
@@ -74,12 +103,13 @@ namespace LogicPlugin {
 
     void NotificationModel::timerEvent(QTimerEvent *event)
     {
-        //    if(_timerId!=event->timerId())
-        //        return;
-        //    if(count()>10)
-        //        return;
-        //    auto myImpl = new LogicPlugin::NotificationEntity("test", "Очень важная информация.
-        //    Очень важная информация.", 1); addNotification(myImpl);
+        if (_timerId != event->timerId())
+            return;
+        if (count() > 10)
+            return;
+        auto warning =
+         new LogicPlugin::AbstractNotification("Камера не доступна", "some info", 1, "#E6B04444");
+        addNotification(warning);
     }
     void NotificationModel::clearNotifications()
     {

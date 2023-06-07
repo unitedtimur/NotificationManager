@@ -13,6 +13,7 @@ namespace LogicPlugin {
     class LOGIC_PLUGIN_EXPORT INotifyModel
     {
     public:
+        virtual void createNotification(uint16_t typeID) = 0;
         virtual void addNotification(QPointer<LogicPlugin::AbstractNotification> notification) = 0;
         virtual void removeNotification(uint16_t id) = 0;
         virtual void clearNotifications() = 0;

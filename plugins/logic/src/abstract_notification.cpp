@@ -3,11 +3,13 @@
 namespace LogicPlugin {
     AbstractNotification::AbstractNotification(const QString &title,
                                                const QString &description,
-                                               uint16_t typeID)
+                                               uint16_t typeID,
+                                               const QString &color)
     {
         _title = title;
         _description = description;
         setType(typeID);
+        _color = color;
     }
 
     QString AbstractNotification::title() const
@@ -28,6 +30,11 @@ namespace LogicPlugin {
     int32_t AbstractNotification::id() const
     {
         return _id;
+    }
+
+    QString AbstractNotification::color() const
+    {
+        return _color;
     }
 
     void AbstractNotification::setTitle(const QString &title)
@@ -55,5 +62,10 @@ namespace LogicPlugin {
     void AbstractNotification::setId(int16_t id)
     {
         _id = id;
+    }
+
+    void AbstractNotification::setColor(QString hex)
+    {
+        _color = hex;
     }
 }

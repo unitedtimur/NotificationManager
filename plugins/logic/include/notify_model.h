@@ -27,7 +27,8 @@ namespace LogicPlugin {
             IdRole = Qt::UserRole + 1,
             TitleRole,
             MessageRole,
-            TypeRole
+            TypeRole,
+            ColorRole
         };
         Q_ENUM(NotificationRoles)
 
@@ -37,6 +38,13 @@ namespace LogicPlugin {
         int rowCount(const QModelIndex &parent = QModelIndex()) const override;
         QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
         QHash<int, QByteArray> roleNames() const override;
+
+        /*!
+         * \brief createNotification - метод, вызываемый для создания заранее заготовленых
+         * уведомлений
+         * \param typeID - id типа уведомления (Default, Warning, etc.)
+         */
+        void createNotification(uint16_t typeID) override;
 
         /*!
          * \brief Метод, с помощью которого в модель добавляются данные о новом уведомлении

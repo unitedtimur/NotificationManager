@@ -7,7 +7,7 @@ Rectangle {
   id: rec
   property string title: ""
   property string message: ""
-  property string type: ""
+  property string hexcolor: ""
   property string date: ""
 
   height: 60
@@ -15,21 +15,7 @@ Rectangle {
   visible: true
   radius: 10
 
-  Component.onCompleted: {
-    switch (type) {
-    case "NOTIFY":
-      color = Qt.rgba(176 / 255, 68 / 255, 68 / 255, 0.9)
-      break
-    case "WARNING":
-      color = Qt.rgba(33 / 255, 33 / 255, 49 / 255, 0.9)
-      break
-    case "ALARM":
-      color = Qt.rgba(176 / 255, 127 / 255, 0, 0.9)
-      break
-    case "DEFAULT":
-      color = Qt.rgba(176 / 255, 68 / 255, 68 / 255, 0.5)
-    }
-  }
+  color: hexcolor
 
   Image {
     id: closeNotificationIcon

@@ -16,9 +16,6 @@ Window {
   maximumHeight: height
   maximumWidth: width
 
-  x: Screen.width - width - 10
-  y: Screen.height - height
-
   color: "#00000000"
 
   visible: true

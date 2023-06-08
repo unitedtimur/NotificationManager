@@ -62,7 +62,8 @@ namespace GuiPlugin {
          */
         QQmlApplicationEngine _qmlEngine;
 
-        int _screenHeight { 0 };
+        qreal _screenHeight { 0 };
+        qreal _screenWidth { 0 };
     };
 }
 #endif // NOTIFICATION_GUI_PLUGIN_H

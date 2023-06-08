@@ -27,7 +27,7 @@ namespace LogicPlugin {
         case TitleRole:
             return notification->title();
         case MessageRole:
-            return notification->description();
+            return notification->message();
         case TypeRole:
             return notification->type();
         case ColorRole:
@@ -44,7 +44,7 @@ namespace LogicPlugin {
         roles[TitleRole] = "title";
         roles[MessageRole] = "message";
         roles[TypeRole] = "type";
-        roles[ColorRole] = "color";
+        roles[ColorRole] = "hexcolor";
         return roles;
     }
 
@@ -80,7 +80,7 @@ namespace LogicPlugin {
         beginInsertRows(QModelIndex(), _notifications.size(), _notifications.size());
         notification->setId(avalaibleId());
         _notifications.emplace_back(notification);
-        logger.insert(notification->type(), notification->title(), notification->description(),
+        logger.insert(notification->type(), notification->title(), notification->message(),
                       QDate::currentDate(), QTime::currentTime().toString("hh:mm:ss"),
                       notification->color());
         endInsertRows();
@@ -109,9 +109,10 @@ namespace LogicPlugin {
         if (count() > 10)
             return;
         auto warning =
-         new LogicPlugin::AbstractNotification("Камера не доступна", "some info", 1, "#B04444");
+         new LogicPlugin::AbstractNotification("Камера не доступна", "some info", 1, "#E6B04444");
         addNotification(warning);
     }
+
     void NotificationModel::clearNotifications()
     {
         beginResetModel();

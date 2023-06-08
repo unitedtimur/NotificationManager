@@ -16,18 +16,18 @@ namespace LogicPlugin {
     {
     public:
         Q_PROPERTY(QString title MEMBER _title READ title WRITE setTitle);
-        Q_PROPERTY(QString description MEMBER _description READ description WRITE setDescription);
+        Q_PROPERTY(QString message MEMBER _message READ message WRITE setMessage);
         Q_PROPERTY(uint16_t type MEMBER _typeID READ type WRITE setType);
         Q_PROPERTY(uint16_t id MEMBER _id READ id WRITE setId);
         Q_PROPERTY(QString color MEMBER _color READ color WRITE setColor);
         /*!
          * \brief AbstractNotification конструктор, инициализирующий параметры
          * \param title - строка, в которой храниться название уведомления
-         * \param description - строка, в которой храниться более подробное описание уведомления
+         * \param message - строка, в которой храниться более подробное описание уведомления
          * \param type - тип уведомления
          */
         explicit AbstractNotification(const QString &title,
-                                      const QString &description,
+                                      const QString &message,
                                       uint16_t typeID,
                                       const QString &color);
         ~AbstractNotification() = default;
@@ -38,9 +38,9 @@ namespace LogicPlugin {
         QString title() const;
 
         /*!
-         * \brief Метод, возвращающий значения переменной _description
+         * \brief Метод, возвращающий значения переменной _message
          */
-        QString description() const;
+        QString message() const;
 
         /*!
          * \brief Метод, возвращающий тип уведомления
@@ -63,9 +63,9 @@ namespace LogicPlugin {
         void setTitle(const QString &title);
 
         /*!
-         * \brief Метод, меняющий значение переменной _description
+         * \brief Метод, меняющий значение переменной _message
          */
-        void setDescription(const QString &description);
+        void setMessage(const QString &message);
 
         /*!
          * \brief Метод, меняющий тип уведомления
@@ -92,7 +92,7 @@ namespace LogicPlugin {
         /*!
          * \brief Приватное поле класса, хранящее краткое описание уведомления
          */
-        QString _description;
+        QString _message;
 
         /*!
          * \brief Приватное поле класса, хранящее id типа уведомления, к каждому id привязано

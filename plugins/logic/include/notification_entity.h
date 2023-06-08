@@ -11,7 +11,7 @@ namespace LogicPlugin {
     {
     public:
         explicit NotificationEntity(const QString &title,
-                                    const QString &description,
+                                    const QString &message,
                                     uint16_t type,
                                     const QString &color);
     };

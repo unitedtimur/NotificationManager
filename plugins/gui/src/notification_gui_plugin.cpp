@@ -39,12 +39,19 @@ namespace GuiPlugin {
                     window->setProperty(
                      "title", _notify_model->data(_notify_model->index(i, 0),
                                                   LogicPlugin::NotificationModel::TitleRole));
+
                     window->setProperty(
                      "message", _notify_model->data(_notify_model->index(i, 0),
                                                     LogicPlugin::NotificationModel::MessageRole));
+
                     window->setProperty(
                      "type", _notify_model->data(_notify_model->index(i, 0),
                                                  LogicPlugin::NotificationModel::TypeRole));
+
+                    window->setProperty(
+                     "hexcolor", _notify_model->data(_notify_model->index(i, 0),
+                                                     LogicPlugin::NotificationModel::ColorRole));
+
                     qreal pos = 0;
                     if (_notify_windows_list.count())
                         pos = _notify_windows_list.back()->property("y").toReal();

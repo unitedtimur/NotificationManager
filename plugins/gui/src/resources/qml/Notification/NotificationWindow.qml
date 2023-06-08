@@ -19,67 +19,74 @@ Window {
   x: Screen.width - width - 10
   y: Screen.height - height
 
+  color: "#00000000"
+
   visible: true
 
-  color: hexcolor
+  Rectangle {
+    height: parent.height
+    width: parent.width
 
-  Timer {
-    interval: 15000
-    running: true
-    repeat: false
-    onTriggered: notification_window.close
-  }
+    color: hexcolor
 
-  Image {
-    id: closeNotificationIcon
-    source: "qrc:/img/assets/close.svg"
-    width: 14
-    height: 14
-    anchors {
-      top: parent.top
-      right: parent.right
-      topMargin: 14
-      rightMargin: 14
+    Timer {
+      interval: 15000
+      running: true
+      repeat: false
+      onTriggered: notification_window.close
     }
 
-    MouseArea {
-      anchors.fill: parent
-      onClicked: notification_window.close()
-    }
-  }
+    Image {
+      id: closeNotificationIcon
+      source: "qrc:/img/assets/close.svg"
+      width: 14
+      height: 14
+      anchors {
+        top: parent.top
+        right: parent.right
+        topMargin: 14
+        rightMargin: 14
+      }
 
-  ColumnLayout {
-    id: columnLayout
-    spacing: 6
-    anchors {
-      top: parent.top
-      left: parent.left
-      topMargin: 8
-      leftMargin: 14
-    }
-
-    Text {
-      text: title
-      color: "#DDDDDD"
-      font {
-        pixelSize: 18
-        weight: Font.DemiBold
-        family: "Arial"
+      MouseArea {
+        anchors.fill: parent
+        onClicked: notification_window.close()
       }
     }
 
-    Item {
-      width: 300
+    ColumnLayout {
+      id: columnLayout
+      spacing: 6
+      anchors {
+        top: parent.top
+        left: parent.left
+        topMargin: 8
+        leftMargin: 14
+      }
+
       Text {
-        text: message
-        width: parent.width
+        text: title
         color: "#DDDDDD"
         font {
-          pixelSize: 16
+          pixelSize: 18
+          weight: Font.DemiBold
           family: "Arial"
         }
+      }
 
-        wrapMode: Text.WordWrap
+      Item {
+        width: 300
+        Text {
+          text: message
+          width: parent.width
+          color: "#DDDDDD"
+          font {
+            pixelSize: 16
+            family: "Arial"
+          }
+
+          wrapMode: Text.WordWrap
+        }
       }
     }
   }

@@ -2,12 +2,12 @@
 
 namespace LogicPlugin {
     AbstractNotification::AbstractNotification(const QString &title,
-                                               const QString &description,
+                                               const QString &message,
                                                uint16_t typeID,
                                                const QString &color)
     {
         _title = title;
-        _description = description;
+        _message = message;
         setType(typeID);
         _color = color;
     }
@@ -17,9 +17,9 @@ namespace LogicPlugin {
         return _title;
     }
 
-    QString AbstractNotification::description() const
+    QString AbstractNotification::message() const
     {
-        return _description;
+        return _message;
     }
 
     QString AbstractNotification::type() const
@@ -42,9 +42,9 @@ namespace LogicPlugin {
         _title = title;
     }
 
-    void AbstractNotification::setDescription(const QString &description)
+    void AbstractNotification::setMessage(const QString &message)
     {
-        _description = description;
+        _message = message;
     }
 
     void AbstractNotification::setType(const uint16_t &typeID)

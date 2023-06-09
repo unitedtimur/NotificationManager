@@ -70,7 +70,6 @@ namespace GuiPlugin {
             BOTTOM_LEFT
         };
 
-        // Координата элемента находиться в нижнем левом углу
         qreal _screenHeight = -1;
         qreal _screenWidth = -1;
 
@@ -81,6 +80,8 @@ namespace GuiPlugin {
         qreal x_position = -1;
 
         qreal direction_sign = -1;
+
+        qreal margin = 5;
     };
 }
 #endif // NOTIFICATION_GUI_PLUGIN_H

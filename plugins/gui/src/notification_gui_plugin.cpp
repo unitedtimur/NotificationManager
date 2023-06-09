@@ -52,7 +52,7 @@ namespace GuiPlugin {
                      "hexcolor", _notify_model->data(_notify_model->index(i, 0),
                                                      LogicPlugin::NotificationModel::ColorRole));
 
-                    int position = Position::BOTTOM_RIGHT;
+                    int position = Position::TOP_RIGHT;
 
                     qreal x_start_position;
                     qreal y_start_position;
@@ -87,9 +87,10 @@ namespace GuiPlugin {
                     }
 
                     x_position = x_start_position;
-
+                    qDebug() << _notify_windows_list.count();
                     if (_notify_windows_list.count()) {
                         y_position = _notify_windows_list.back()->property("y").toReal();
+                        // qDebug() << y_position;
                         y_position += direction_sign * 5; // интервал между уведомлениями
                     } else
                         y_position = y_start_position; // начальное положение

@@ -33,7 +33,7 @@ namespace LogicPlugin {
         case TitleRole:
             return record.value("Title");
         case MessageRole:
-            return record.value("Message");
+            return record.value("Description");
         case TypeRole:
             return record.value("Type");
         case DateRole:
@@ -48,7 +48,7 @@ namespace LogicPlugin {
     }
     void HistoryModel::selectByDate(const QString &dateStr)
     {
-        QString argument = dateStr + '%';
+        QString argument = dateStr;
         setFilter(QString("Date='%1'").arg(argument));
         select();
     }

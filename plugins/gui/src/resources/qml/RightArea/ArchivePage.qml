@@ -89,7 +89,7 @@ Rectangle {
       title: model.title
       message: model.message
       time: model.time
-      hexcolor: model.color
+      hexcolor: model.hexcolor
     }
   }
   Rectangle {

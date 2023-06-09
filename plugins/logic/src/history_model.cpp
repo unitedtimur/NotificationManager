@@ -1,8 +1,13 @@
 #include "history_model.h"
+#include "qdatetime.h"
+
 namespace LogicPlugin {
     HistoryModel::HistoryModel(QObject *parent) : QSqlTableModel(parent)
     {
         setTable("notification");
+        QDate myDate = QDate::currentDate();
+        QString myDateString = myDate.toString("yyyy-MM-dd");
+        setFilter(QString("Date LIKE '%1'").arg(myDateString));
         select();
     }
 
@@ -13,6 +18,7 @@ namespace LogicPlugin {
         roles[MessageRole] = "message";
         roles[TypeRole] = "type";
         roles[DateRole] = "date";
+        roles[TimeRole] = "time";
         roles[ColorRole] = "hexcolor";
         return roles;
     }
@@ -32,6 +38,8 @@ namespace LogicPlugin {
             return record.value("Type");
         case DateRole:
             return record.value("Date");
+        case TimeRole:
+            return record.value("Time");
         case ColorRole:
             return record.value("Color");
         default:
@@ -40,7 +48,8 @@ namespace LogicPlugin {
     }
     void HistoryModel::selectByDate(const QString &dateStr)
     {
-        setFilter(QString("Date='%1'").arg(dateStr));
+        QString argument = dateStr + '%';
+        setFilter(QString("Date='%1'").arg(argument));
         select();
     }
 }

@@ -88,8 +88,8 @@ Rectangle {
     delegate: Notification {
       title: model.title
       message: model.message
+      time: model.time
       hexcolor: model.color
-      date: model.time
     }
   }
   Rectangle {

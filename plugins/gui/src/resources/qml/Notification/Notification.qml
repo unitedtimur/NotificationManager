@@ -7,8 +7,9 @@ Rectangle {
   id: rec
   property string title: ""
   property string message: ""
+  //property string type: ""
+  property string time: ""
   property string hexcolor: ""
-  property string date: ""
 
   height: 60
   width: 550
@@ -58,7 +59,7 @@ Rectangle {
         font.family: "OpenSans"
       }
       Text {
-        text: date
+        text: time
         Layout.leftMargin: 7
         color: "#DDDDDD"
         font.pointSize: ((rec.height / 5) + (rec.width / 10)) / 6

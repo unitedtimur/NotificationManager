@@ -13,6 +13,7 @@ namespace LogicPlugin {
             MessageRole,
             TypeRole,
             DateRole,
+            TimeRole,
             ColorRole
         };
 

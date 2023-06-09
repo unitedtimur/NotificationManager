@@ -3,14 +3,6 @@
 #include <QDebug>
 
 namespace GuiPlugin {
-    enum Position
-    {
-        TOP_LEFT,
-        TOP_RIGHT,
-        BUTTOM_RIGHT,
-        BUTTOM_LEFT
-    };
-
     bool NotificationGuiPlugin::initialize(const QList<QPointer<QObject>> &dependencies)
     {
         if (_core.resolve(dependencies, _logicPlugin)) {
@@ -60,34 +52,37 @@ namespace GuiPlugin {
                      "hexcolor", _notify_model->data(_notify_model->index(i, 0),
                                                      LogicPlugin::NotificationModel::ColorRole));
 
-                    int position = Position::TOP_RIGHT;
+                    int position = Position::BOTTOM_RIGHT;
 
                     qreal x_start_position;
                     qreal y_start_position;
+                    qreal margin = 15;
 
                     qreal y_position = 0;
                     qreal x_position = 0;
 
-                    qreal direction_sign = 1;
+                    qreal direction_sign;
 
                     switch (position) {
-                    case (Position::BUTTOM_RIGHT):
-                        x_start_position = _screenWidth;
-                        y_start_position = _screenHeight;
+                    case (Position::BOTTOM_RIGHT):
+                        x_start_position = _screenWidth + margin;
+                        y_start_position = _screenHeight - margin;
                         direction_sign = -1;
                         break;
-                    case (Position::BUTTOM_LEFT):
-                        x_start_position = 0;
-                        y_start_position = _screenHeight;
+                    case (Position::BOTTOM_LEFT):
+                        x_start_position = 0 + margin;
+                        y_start_position = _screenHeight - margin;
                         direction_sign = -1;
                         break;
                     case (Position::TOP_LEFT):
-                        x_start_position = 0;
-                        y_start_position = 0;
+                        x_start_position = 0 + margin;
+                        y_start_position = 0 + margin;
+                        direction_sign = 1;
                         break;
                     case (Position::TOP_RIGHT):
-                        x_start_position = _screenWidth;
-                        y_start_position = 0;
+                        x_start_position = _screenWidth - margin;
+                        y_start_position = 0 + margin;
+                        direction_sign = 1;
                         break;
                     }
 

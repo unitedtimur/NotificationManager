@@ -27,7 +27,7 @@ Window {
     color: hexcolor
 
     Timer {
-      interval: 15000
+      interval: 1
       running: true
       repeat: false
       onTriggered: notification_window.close

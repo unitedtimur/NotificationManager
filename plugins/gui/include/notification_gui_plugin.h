@@ -62,6 +62,14 @@ namespace GuiPlugin {
          */
         QQmlApplicationEngine _qmlEngine;
 
+        enum Position
+        {
+            TOP_LEFT,
+            TOP_RIGHT,
+            BOTTOM_RIGHT,
+            BOTTOM_LEFT
+        };
+
         qreal _screenHeight { 0 };
         qreal _screenWidth { 0 };
     };

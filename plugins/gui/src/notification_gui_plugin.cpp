@@ -32,9 +32,12 @@ namespace GuiPlugin {
         for (int i = first; i <= last; ++i) {
             QQmlComponent component(
              &_qmlEngine, QUrl(QStringLiteral("qrc:/qml/qml/Notification/NotificationWindow.qml")));
+
             QObject *object = component.create();
+
             if (object) {
                 QQuickWindow *window = qobject_cast<QQuickWindow *>(object);
+
                 if (window) {
                     window->setProperty(
                      "title", _notify_model->data(_notify_model->index(i, 0),
@@ -52,36 +55,27 @@ namespace GuiPlugin {
                      "hexcolor", _notify_model->data(_notify_model->index(i, 0),
                                                      LogicPlugin::NotificationModel::ColorRole));
 
-                    int position = Position::BOTTOM_RIGHT;
-
-                    qreal x_start_position;
-                    qreal y_start_position;
-                    qreal margin = 15;
-
-                    qreal y_position = 0;
-                    qreal x_position = 0;
-
-                    qreal direction_sign;
+                    int position = Position::TOP_RIGHT;
 
                     switch (position) {
                     case (Position::BOTTOM_RIGHT):
-                        x_start_position = _screenWidth + margin;
-                        y_start_position = _screenHeight - margin;
+                        x_start_position = _screenWidth - window->width();
+                        y_start_position = _screenHeight;
                         direction_sign = -1;
                         break;
                     case (Position::BOTTOM_LEFT):
-                        x_start_position = 0 + margin;
-                        y_start_position = _screenHeight - margin;
+                        x_start_position = 0;
+                        y_start_position = _screenHeight;
                         direction_sign = -1;
                         break;
                     case (Position::TOP_LEFT):
-                        x_start_position = 0 + margin;
-                        y_start_position = 0 + margin;
+                        x_start_position = 0;
+                        y_start_position = 0;
                         direction_sign = 1;
                         break;
                     case (Position::TOP_RIGHT):
-                        x_start_position = _screenWidth - margin;
-                        y_start_position = 0 + margin;
+                        x_start_position = _screenWidth - window->width();
+                        y_start_position = window->height();
                         direction_sign = 1;
                         break;
                     }
@@ -122,9 +116,12 @@ namespace GuiPlugin {
     void NotificationGuiPlugin::calculateLayout()
     {
         QScreen *screen = QGuiApplication::primaryScreen();
-        QRect geometry = screen->geometry();
-        _screenHeight = screen->size().height() + geometry.y();
-        _screenWidth = screen->size().width() + geometry.x();
+        QSize size = screen->size();
+        qDebug() << size.height();
+        qDebug() << size.width();
+
+        _screenHeight = size.height();
+        _screenWidth = size.width();
     }
 
     void GuiPlugin::NotificationGuiPlugin::NotificationGuiPlugin::setupConnections()
@@ -137,11 +134,14 @@ namespace GuiPlugin {
     {
         QObject::connect(window, &QQuickWindow::visibleChanged, [&, window]() {
             qreal closedWindowPos = window->property("y").toReal();
+
             int index = _notify_windows_list.indexOf(window);
+
             for (auto &w : _notify_windows_list) {
                 qreal wPos = w->property("y").toReal();
                 if (w != window && wPos < closedWindowPos) {
-                    w->setProperty("y", QVariant::fromValue(wPos + 85));
+                    w->setProperty("y",
+                                   QVariant::fromValue(wPos + (direction_sign * window->height())));
                 }
             }
             _notify_model->removeNotification(index);

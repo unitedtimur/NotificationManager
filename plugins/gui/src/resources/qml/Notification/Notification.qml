@@ -42,22 +42,41 @@ Rectangle {
     }
 
     ColumnLayout {
-      Image {
-        id: closeNotificationIcon
-        source: "qrc:/img/assets/close.svg"
-        width: 14
-        height: 14
-        //        Layout.topMargin: 14
-        //        Layout.rightMargin: 14
-        //        anchors {
-        //          top: parent.top
-        //          right: parent.right
-        //          topMargin: 14
-        //          rightMargin: 14
-        //        }
-        MouseArea {
-          anchors.fill: closeNotificationIcon
-          onClicked: notification.visible = false
+      Rectangle {
+        id: recCloseIconWrapper
+        Layout.preferredWidth: 25
+        Layout.preferredHeight: 25
+        color: "transparent"
+        Image {
+          id: closeNotificationIcon
+          source: "qrc:/img/assets/close.svg"
+          Layout.preferredWidth: 14
+          Layout.preferredHeight: 14
+          anchors.centerIn: recCloseIconWrapper
+          //        Layout.topMargin: 14
+          //        Layout.rightMargin: 14
+          //        anchors {
+          //          top: parent.top
+          //          right: parent.right
+          //          topMargin: 14
+          //          rightMargin: 14
+          //        }
+          MouseArea {
+            anchors.fill: closeNotificationIcon
+            hoverEnabled: true
+            onEntered: {
+              recCloseIconWrapper.color = "#E5E5E5"
+              recCloseIconWrapper.opacity = 0.3
+            }
+            onExited: {
+              recCloseIconWrapper.color = "transparent"
+              recCloseIconWrapper.opacity = 1
+            }
+            onPressed: {
+              recCloseIconWrapper.opacity = 0.5
+            }
+            onClicked: notification.visible = false
+          }
         }
       }
       Text {

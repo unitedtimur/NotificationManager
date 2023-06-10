@@ -44,10 +44,14 @@ Rectangle {
         hoverEnabled: true
         onEntered: {
           recMinimizeWrapper.color = "#E5E5E5"
-          recMinimizeWrapper.opacity = 0.5
+          recMinimizeWrapper.opacity = 0.3
         }
         onExited: {
           recMinimizeWrapper.color = "transparent"
+          recMinimizeWrapper.opacity = 1
+        }
+        onPressed: {
+          recMinimizeWrapper.opacity = 0.5
         }
         onClicked: {
           mainWindow.showMinimized()
@@ -70,12 +74,15 @@ Rectangle {
           hoverEnabled: true
           onEntered: {
             recQuitWrapper.color = "#E5E5E5"
-            recQuitWrapper.opacity = 0.5
+            recQuitWrapper.opacity = 0.3
           }
           onExited: {
             recQuitWrapper.color = "transparent"
+            recQuitWrapper.opacity = 1
           }
-
+          onPressed: {
+            recQuitWrapper.opacity = 0.5
+          }
           anchors.fill: parent
           onClicked: {
             Qt.quit()

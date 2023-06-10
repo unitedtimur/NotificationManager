@@ -1,4 +1,6 @@
 #include "notify_model.h"
+#include "notification_entity.h"
+#include <random>
 
 namespace LogicPlugin {
     NotificationModel::NotificationModel(QObject *parent) : QAbstractListModel(parent)
@@ -108,9 +110,30 @@ namespace LogicPlugin {
             return;
         if (count() > 10)
             return;
-        auto warning =
-         new LogicPlugin::AbstractNotification("Камера не доступна", "some info", 1, "#E6B04444");
-        addNotification(warning);
+        std::random_device rand_dev;
+        std::mt19937 generator(rand_dev());
+        std::uniform_int_distribution<int> distr(0, 3);
+        int num = distr(generator);
+        auto myImpl1 = new LogicPlugin::NotificationEntity(
+         "Обнаружена цель в SportCenter", "Очень важная информация. Очень важная информация.", 1,
+         "#E6B04444");
+        auto myImpl2 = new LogicPlugin::NotificationEntity(
+         "Камера не доступна!", "Очень важная информация. Очень важная информация.", 2,
+         "#E6212131");
+        auto myImpl3 = new LogicPlugin::NotificationEntity(
+         "Высокий уровень шума!", "Очень важная информация. Очень важная информация.", 3,
+         "#E6B07F00");
+        switch (num) {
+        case 1:
+            addNotification(myImpl1);
+            break;
+        case 2:
+            addNotification(myImpl2);
+            break;
+        case 3:
+            addNotification(myImpl3);
+            break;
+        }
     }
 
     void NotificationModel::clearNotifications()

@@ -41,6 +41,7 @@ namespace GuiPlugin {
         bool initialize(const QList<QPointer<QObject>> &dependencies) override;
         void setNotifyModel(LogicPlugin::NotificationModel *);
         void setHistoryModel(LogicPlugin::HistoryModel *);
+        void setDisplayCorner(uint16_t);
 
     private:
         /*!
@@ -56,7 +57,6 @@ namespace GuiPlugin {
         void setupConnections();
         void onRowsInserted(const QModelIndex &parent, int first, int last);
         void connectOnVisibleChanged(QQuickWindow *);
-
         /*!
          * \brief Указатель на движок QML
          */
@@ -70,18 +70,19 @@ namespace GuiPlugin {
             BOTTOM_LEFT
         };
 
-        qreal _screenHeight = -1;
-        qreal _screenWidth = -1;
+        qreal _screenHeight { -1 };
+        qreal _screenWidth { -1 };
+        int32_t _windowWidth { -1 };
 
-        qreal x_start_position = -1;
-        qreal y_start_position = -1;
+        qreal _x_start_position { -1 };
+        qreal _y_start_position { -1 };
 
-        qreal y_position = -1;
-        qreal x_position = -1;
+        qreal y_position { -1 };
+        qreal x_position { -1 };
 
-        qreal direction_sign = -1;
+        int16_t direction_sign { -1 };
 
-        qreal margin = 5;
+        qreal margin { 5 };
     };
 }
 #endif // NOTIFICATION_GUI_PLUGIN_H

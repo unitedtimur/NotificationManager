@@ -51,7 +51,7 @@ Rectangle {
           recMinimizeWrapper.opacity = 1
         }
         onPressed: {
-          recMinimizeWrapper.opacity = 0.5
+          recMinimizeWrapperWrapper.opacity = 0.5
         }
         onClicked: {
           mainWindow.showMinimized()

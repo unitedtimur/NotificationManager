@@ -81,14 +81,10 @@ namespace GuiPlugin {
                                                      LogicPlugin::NotificationModel::ColorRole));
 
                     x_position = _x_start_position;
-                    int position = Position::TOP_RIGHT;
-
-                    x_position = _x_start_position;
                     if (_notify_windows_list.count()) {
                         y_position = _notify_windows_list.back()->property("y").toReal();
                         y_position += direction_sign * margin; // интервал между уведомлениями
                         // qDebug() << y_position;
-                        y_position += direction_sign * 5; // интервал между уведомлениями
 
                     } else
                         y_position = _y_start_position; // начальное положение
@@ -114,7 +110,7 @@ namespace GuiPlugin {
         _qmlEngine.addImportPath("qrc:/qml");
         calculateLayout();
         setupConnections();
-        setDisplayCorner(Position::BOTTOM_RIGHT);
+        setDisplayCorner(Position::TOP_RIGHT);
     }
 
     void NotificationGuiPlugin::calculateLayout()

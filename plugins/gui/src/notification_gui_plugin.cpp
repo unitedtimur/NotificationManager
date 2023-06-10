@@ -87,7 +87,6 @@ namespace GuiPlugin {
                     }
 
                     x_position = x_start_position;
-                    qDebug() << _notify_windows_list.count();
                     if (_notify_windows_list.count()) {
                         y_position = _notify_windows_list.back()->property("y").toReal();
                         // qDebug() << y_position;

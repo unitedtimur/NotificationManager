@@ -80,11 +80,54 @@ namespace GuiPlugin {
                      "hexcolor", _notify_model->data(_notify_model->index(i, 0),
                                                      LogicPlugin::NotificationModel::ColorRole));
 
+<<<<<<< HEAD
                     x_position = _x_start_position;
 
+=======
+                    int position = Position::TOP_RIGHT;
+
+                    qreal x_start_position;
+                    qreal y_start_position;
+                    qreal margin = 15;
+
+                    qreal y_position = 0;
+                    qreal x_position = 0;
+
+                    qreal direction_sign;
+
+                    switch (position) {
+                    case (Position::BOTTOM_RIGHT):
+                        x_start_position = _screenWidth + margin;
+                        y_start_position = _screenHeight - margin;
+                        direction_sign = -1;
+                        break;
+                    case (Position::BOTTOM_LEFT):
+                        x_start_position = 0 + margin;
+                        y_start_position = _screenHeight - margin;
+                        direction_sign = -1;
+                        break;
+                    case (Position::TOP_LEFT):
+                        x_start_position = 0 + margin;
+                        y_start_position = 0 + margin;
+                        direction_sign = 1;
+                        break;
+                    case (Position::TOP_RIGHT):
+                        x_start_position = _screenWidth - margin;
+                        y_start_position = 0 + margin;
+                        direction_sign = 1;
+                        break;
+                    }
+
+                    x_position = x_start_position;
+>>>>>>> refs/heads/fixes/history-model
                     if (_notify_windows_list.count()) {
                         y_position = _notify_windows_list.back()->property("y").toReal();
+<<<<<<< HEAD
                         y_position += direction_sign * margin; // интервал между уведомлениями
+=======
+                        // qDebug() << y_position;
+                        y_position += direction_sign * 5; // интервал между уведомлениями
+>>>>>>> refs/heads/fixes/history-model
                     } else
                         y_position = _y_start_position; // начальное положение
 

@@ -18,6 +18,7 @@ namespace LogicPlugin {
         virtual void removeNotification(uint16_t id) = 0;
         virtual void clearNotifications() = 0;
         virtual int count() const = 0;
+        virtual void reset() = 0;
     };
 }
 #endif // I_NOTIFY_MODEL_H

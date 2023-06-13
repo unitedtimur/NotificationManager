@@ -26,6 +26,14 @@ Window {
 
     color: hexcolor
 
+    MouseArea {
+      anchors.fill: parent
+
+      onClicked: {
+        GUI.setDisplayCorner(0)
+      }
+    }
+
     Timer {
       interval: 1
       running: true

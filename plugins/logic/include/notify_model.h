@@ -69,6 +69,8 @@ namespace LogicPlugin {
          */
         int count() const override;
 
+        void reset();
+
     private:
         /*!
          * \brief logger Ссылка на клаsсс, логирующий в бд

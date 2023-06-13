@@ -30,7 +30,12 @@ namespace GuiPlugin {
 
     void NotificationGuiPlugin::setDisplayCorner(int32_t position)
     {
+        
         _notify_windows_list.clear();
+        for(int32_t i = 0; i < _notify_windows_list.size(); ++i) {
+            _notify_windows_list[i]->close();
+            _notify_wi
+        }
         _notify_model->clearNotifications();
         switch (position) {
         case (Position::BOTTOM_RIGHT):

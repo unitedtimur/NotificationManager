@@ -41,9 +41,14 @@ namespace GuiPlugin {
         bool initialize(const QList<QPointer<QObject>> &dependencies) override;
         void setNotifyModel(LogicPlugin::NotificationModel *);
         void setHistoryModel(LogicPlugin::HistoryModel *);
-        Q_INVOKABLE void setDisplayCorner(uint16_t);
+        Q_INVOKABLE void setDisplayCorner(int);
 
     private:
+        void calculateLayout();
+        void setupConnections();
+        void onRowsInserted(const QModelIndex &parent, int first, int last);
+        void connectOnVisibleChanged(QQuickWindow *);
+
         /*!
          * \brief Указатель на NotificationLogicPlugin
          */
@@ -53,10 +58,6 @@ namespace GuiPlugin {
 
         QList<QQuickWindow *> _notify_windows_list;
         Core::AbstractCore &_core = Core::AbstractCore::getInstance();
-        void calculateLayout();
-        void setupConnections();
-        void onRowsInserted(const QModelIndex &parent, int first, int last);
-        void connectOnVisibleChanged(QQuickWindow *);
         /*!
          * \brief Указатель на движок QML
          */

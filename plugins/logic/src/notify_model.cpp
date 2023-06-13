@@ -108,7 +108,7 @@ namespace LogicPlugin {
     {
         if (_timerId != event->timerId())
             return;
-        if (count() > 10)
+        if (count() > 5)
             return;
         std::random_device rand_dev;
         std::mt19937 generator(rand_dev());
@@ -152,4 +152,7 @@ namespace LogicPlugin {
     {
         return _notifications.empty() ? 0 : _notifications.back()->id() + 1;
     }
+
+    void LogicPlugin::NotificationModel::reset()
+    {}
 }

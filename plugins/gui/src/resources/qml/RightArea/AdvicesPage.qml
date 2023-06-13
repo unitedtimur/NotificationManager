@@ -12,7 +12,7 @@ Rectangle {
     font {
       pixelSize: 24
       family: "Arial"
-      weight: Font.DemiBold
+      weight: Font.Bold
       letterSpacing: 1
     }
 

@@ -11,7 +11,7 @@ Rectangle {
     font {
       pixelSize: 36
       family: "Arial"
-      weight: Font.DemiBold
+      weight: Font.Bold
       letterSpacing: 1
     }
     anchors {

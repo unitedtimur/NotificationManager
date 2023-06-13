@@ -110,7 +110,7 @@ namespace GuiPlugin {
         _qmlEngine.addImportPath("qrc:/qml");
         calculateLayout();
         setupConnections();
-        setDisplayCorner(Position::TOP_RIGHT);
+        setDisplayCorner(Position::BOTTOM_RIGHT);
     }
 
     void NotificationGuiPlugin::calculateLayout()

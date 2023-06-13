@@ -5,11 +5,12 @@
 #include <QQmlEngine>
 #include <QQmlContext>
 #include <QFile>
+#include <QtPlugin>
 
 int main(int argc, char *argv[])
 {
-    QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
     QGuiApplication app(argc, argv);
+    QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
     app.setQuitOnLastWindowClosed(false);
 
     QString pluginsDir = QGuiApplication::applicationDirPath() + "/plugins";

@@ -26,6 +26,7 @@ Rectangle {
         id: titleID
         text: title
         Layout.leftMargin: 7
+        Layout.alignment: Qt.AlignTop | Qt.AlignLeft
         color: "#DDDDDD"
         font.pointSize: ((notification.height / 5) + (notification.width / 10)) / 5
         font.weight: "DemiBold"
@@ -35,6 +36,7 @@ Rectangle {
         id: messageID
         text: message
         Layout.leftMargin: 7
+        Layout.alignment: Qt.AlignTop | Qt.AlignLeft
         color: "#DDDDDD"
         font.pointSize: ((notification.height / 5) + (notification.width / 10)) / 6
         font.family: "OpenSans"
@@ -47,20 +49,13 @@ Rectangle {
         Layout.preferredWidth: 25
         Layout.preferredHeight: 25
         color: "transparent"
+        Layout.alignment: Qt.AlignTop | Qt.AlignRight
         Image {
           id: closeNotificationIcon
           source: "qrc:/img/assets/close.svg"
           Layout.preferredWidth: 14
           Layout.preferredHeight: 14
           anchors.centerIn: recCloseIconWrapper
-          //        Layout.topMargin: 14
-          //        Layout.rightMargin: 14
-          //        anchors {
-          //          top: parent.top
-          //          right: parent.right
-          //          topMargin: 14
-          //          rightMargin: 14
-          //        }
           MouseArea {
             anchors.fill: closeNotificationIcon
             hoverEnabled: true
@@ -91,54 +86,4 @@ Rectangle {
       }
     }
   }
-
-  //  Image {
-  //    id: closeNotificationIcon
-  //    source: "qrc:/img/assets/close.svg"
-  //    width: 14
-  //    height: 14
-  //    anchors {
-  //      top: parent.top
-  //      right: parent.right
-  //      topMargin: 14
-  //      rightMargin: 14
-  //    }
-
-  //    MouseArea {
-  //      anchors.fill: parent
-  //      onClicked: rec.visible = false
-  //    }
-  //  }
-
-  //  ColumnLayout {
-  //    id: columnLayout
-  //    width: parent.width
-
-  //    Text {
-  //      text: title
-  //      Layout.leftMargin: 7
-  //      Layout.topMargin: 10
-  //      color: "#DDDDDD"
-  //      font.pointSize: ((rec.height / 5) + (rec.width / 10)) / 5
-  //      font.weight: "DemiBold"
-  //      font.family: "OpenSans"
-  //    }
-
-  //    RowLayout {
-  //      Text {
-  //        text: message
-  //        Layout.leftMargin: 7
-  //        color: "#DDDDDD"
-  //        font.pointSize: ((rec.height / 5) + (rec.width / 10)) / 6
-  //        font.family: "OpenSans"
-  //      }
-  //      Text {
-  //        text: time
-  //        Layout.leftMargin: 7
-  //        color: "#DDDDDD"
-  //        font.pointSize: ((rec.height / 5) + (rec.width / 10)) / 6
-  //        font.family: "OpenSans"
-  //      }
-  //    }
-  //  }
 }

@@ -5,7 +5,7 @@ import QtQuick 2.15
 import "../Notification"
 
 Rectangle {
-  id: root
+  id: archivePage
   color: "transparent"
   Text {
     id: header
@@ -32,6 +32,23 @@ Rectangle {
     RowLayout {
       spacing: 10
       Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
+
+      TextField {
+        id: dateInput
+        Layout.preferredHeight: 30
+        Layout.preferredWidth: 120
+        placeholderText: "Selected date"
+        readOnly: true
+      }
+      Button {
+        id: dateButton
+        Layout.preferredHeight: 30
+        Layout.preferredWidth: 80
+        text: "Select date"
+        onClicked: {
+          datePopup.open()
+        }
+      }
       Popup {
         id: datePopup
         modal: true
@@ -45,55 +62,37 @@ Rectangle {
           }
         }
       }
-      TextField {
-        id: dateInput
-        width: 120
-        height: 30
-        placeholderText: "Selected date"
-        readOnly: true
-      }
-      Button {
-        id: dateButton
-        width: 80
-        height: 30
-        text: "Select date"
-        onClicked: {
-          datePopup.open()
-        }
-      }
     }
-
     ListView {
       id: notifyList
-      spacing: 20
-      model: HistoryModel
-      height: root.height
-      width: root.width
-      clip: true
-      Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
-      Layout.fillWidth: true
+      Layout.preferredHeight: archivePage.height - 110
+      Layout.preferredWidth: archivePage.width - 50
+      Component.onCompleted: {
+        console.log(archivePage.width)
+        console.log(archivePage.height)
+      }
       Layout.leftMargin: 40
       Layout.topMargin: 10
-
-      //      anchors {
-      //        top: header.bottom
-      //        left: header.left
-      //        bottom: footer.top
-      //        topMargin: 35
-      //        leftMargin: 30
-      //      }
+      spacing: 20
+      model: HistoryModel
       delegate: Notification {
         title: model.title
         message: model.message
         time: model.time
         hexcolor: model.hexcolor
       }
+      clip: true
+      ScrollBar.vertical: ScrollBar {
+        id: verticalScrollBar
+        active: true
+        orientation: Qt.Vertical
+      }
     }
   }
   Rectangle {
     id: footer
-    width: root.width
-    anchors.bottom: root.bottom
+    width: archivePage.width
+    anchors.bottom: archivePage.bottom
     height: 10
     color: "#1E1E1E"
   }

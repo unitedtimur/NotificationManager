@@ -41,7 +41,7 @@ namespace GuiPlugin {
         bool initialize(const QList<QPointer<QObject>> &dependencies) override;
         void setNotifyModel(LogicPlugin::NotificationModel *);
         void setHistoryModel(LogicPlugin::HistoryModel *);
-        Q_INVOKABLE void setDisplayCorner(uint16_t);
+        Q_INVOKABLE void setDisplayCorner(int position);
 
     private:
         /*!

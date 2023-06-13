@@ -7,7 +7,7 @@ namespace LogicPlugin {
     {
         logger.openDatabase("QSQLITE", "./notify_db.db");
         logger.createTable();
-        _timerId = startTimer(1500);
+        _timerId = startTimer(4000);
     }
 
     int NotificationModel::rowCount(const QModelIndex &parent) const

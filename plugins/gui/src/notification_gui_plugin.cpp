@@ -27,8 +27,10 @@ namespace GuiPlugin {
         _history_model = model;
     }
 
-    void NotificationGuiPlugin::setDisplayCorner(uint16_t position)
+    void NotificationGuiPlugin::setDisplayCorner(int position)
     {
+        _notify_windows_list.clear();
+
         switch (position) {
         case (Position::BOTTOM_RIGHT):
             _x_start_position = _screenWidth - _windowWidth;
@@ -84,10 +86,12 @@ namespace GuiPlugin {
                     if (_notify_windows_list.count()) {
                         y_position = _notify_windows_list.back()->property("y").toReal();
                         y_position += direction_sign * margin; // интервал между уведомлениями
-                        // qDebug() << y_position;
+                        qDebug() << "RUNTIME " << y_position;
 
-                    } else
+                    } else {
                         y_position = _y_start_position; // начальное положение
+                        qDebug() << "RESET " << y_position;
+                    }
 
                     y_position += direction_sign * window->height();
                     window->setProperty("y", QVariant::fromValue(y_position));
@@ -106,6 +110,7 @@ namespace GuiPlugin {
     void NotificationGuiPlugin::invoke()
     {
         _qmlEngine.rootContext()->setContextProperty("HistoryModel", _history_model);
+        _qmlEngine.rootContext()->setContextProperty("GUI", this);
         _qmlEngine.load(QUrl(QStringLiteral("qrc:/qml/qml/main.qml")));
         _qmlEngine.addImportPath("qrc:/qml");
         calculateLayout();

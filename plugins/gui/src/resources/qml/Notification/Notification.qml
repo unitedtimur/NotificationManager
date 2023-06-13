@@ -11,7 +11,7 @@ Rectangle {
   property string hexcolor: ""
 
   height: 60
-  width: root.width - 100
+  width: archivePage.width - 100
   visible: true
   radius: 10
 

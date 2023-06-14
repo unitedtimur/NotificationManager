@@ -1,6 +1,7 @@
 import QtQuick 2.15
 import QtQuick.Layouts 1.15
 import QtQuick.Controls 2.15
+import QtQuick.Controls 1.4
 
 Rectangle {
   id: root
@@ -46,14 +47,21 @@ Rectangle {
       }
       ColumnLayout {
         anchors.top: notificationAligmentHat.bottom
+        anchors.topMargin: 10
         RadioButton {
-          id: fbutton
+          id: buttonLT
           MouseArea {
-            anchors.fill: fbutton
-            onClicked: GUI.setDisplayCorner(0)
+            anchors.fill: buttonLT
+            onClicked: {
+              GUI.setDisplayCorner(0)
+              buttonLT.checked = true
+              buttonRT.checked = false
+              buttonLB.checked = false
+              buttonRB.checked = false
+            }
           }
           Text {
-            anchors.left: fbutton.right
+            anchors.left: buttonLT.right
             text: "Слева сверху"
             color: "#DDDDDD"
             font {
@@ -64,13 +72,19 @@ Rectangle {
           }
         }
         RadioButton {
-          id: sbutton
+          id: buttonRT
           MouseArea {
-            anchors.fill: sbutton
-            onClicked: GUI.setDisplayCorner(1)
+            anchors.fill: buttonRT
+            onClicked: {
+              GUI.setDisplayCorner(1)
+              buttonLT.checked = false
+              buttonRT.checked = true
+              buttonLB.checked = false
+              buttonRB.checked = false
+            }
           }
           Text {
-            anchors.left: sbutton.right
+            anchors.left: buttonRT.right
             text: "Справа сверху"
             color: "#DDDDDD"
             font {
@@ -81,14 +95,21 @@ Rectangle {
           }
         }
         RadioButton {
-          id: tbutton
+          id: buttonRB
+          checked: true
           MouseArea {
-            anchors.fill: tbutton
-            onClicked: GUI.setDisplayCorner(2)
+            anchors.fill: buttonRB
+            onClicked: {
+              GUI.setDisplayCorner(2)
+              buttonLT.checked = false
+              buttonRT.checked = false
+              buttonRB.checked = true
+              buttonLB.checked = false
+            }
           }
           Text {
-            anchors.left: tbutton.right
-            text: "Снизу справа"
+            anchors.left: buttonRB.right
+            text: "Справа снизу"
             color: "#DDDDDD"
             font {
               pixelSize: 12
@@ -98,14 +119,20 @@ Rectangle {
           }
         }
         RadioButton {
-          id: fobutton
+          id: buttonLB
           MouseArea {
-            anchors.fill: fobutton
-            onClicked: GUI.setDisplayCorner(3)
+            anchors.fill: buttonLB
+            onClicked: {
+              GUI.setDisplayCorner(3)
+              buttonLT.checked = false
+              buttonRT.checked = false
+              buttonRB.checked = false
+              buttonLB.checked = true
+            }
           }
           Text {
-            anchors.left: fobutton.right
-            text: "Снизу слева"
+            anchors.left: buttonLB.right
+            text: "Слева снизу"
             color: "#DDDDDD"
             font {
               pixelSize: 12

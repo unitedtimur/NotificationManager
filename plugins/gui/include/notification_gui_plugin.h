@@ -42,26 +42,32 @@ namespace GuiPlugin {
         void setNotifyModel(LogicPlugin::NotificationModel *);
         void setHistoryModel(LogicPlugin::HistoryModel *);
         Q_INVOKABLE void setDisplayCorner(int position);
+        QQuickWindow *createWindow(const QString &path);
+        QQuickWindow *createWindow(QQmlComponent &component);
+        QObject *createObject(QQmlComponent &component, QObject *parent);
 
     private:
-        /*!
-         * \brief Указатель на NotificationLogicPlugin
-         */
+        void calculateLayout();
+        void setupConnections();
+        void onRowsInserted(const QModelIndex &parent, int ix);
+        void connectOnVisibleChanged(QQuickWindow *);
+
+        QQmlApplicationEngine _qmlEngine;
         QPointer<LogicPlugin::NotificationLogicPlugin> _logicPlugin { nullptr };
         LogicPlugin::NotificationModel *_notify_model { nullptr };
         LogicPlugin::HistoryModel *_history_model { nullptr };
-
         QList<QQuickWindow *> _notify_windows_list;
         Core::AbstractCore &_core = Core::AbstractCore::getInstance();
-        void calculateLayout();
-        void setupConnections();
-        void onRowsInserted(const QModelIndex &parent, int first, int last);
-        void connectOnVisibleChanged(QQuickWindow *);
-        /*!
-         * \brief Указатель на движок QML
-         */
-        QQmlApplicationEngine _qmlEngine;
 
+        qreal _screenHeight { -1 };
+        qreal _screenWidth { -1 };
+        int32_t _windowWidth { -1 };
+        qreal _x_start_position { -1 };
+        qreal _y_start_position { -1 };
+        qreal y_position { -1 };
+        qreal x_position { -1 };
+        int16_t direction_sign { -1 };
+        qreal margin { 5 };
         enum Position
         {
             TOP_LEFT,
@@ -69,20 +75,6 @@ namespace GuiPlugin {
             BOTTOM_RIGHT,
             BOTTOM_LEFT
         };
-
-        qreal _screenHeight { -1 };
-        qreal _screenWidth { -1 };
-        int32_t _windowWidth { -1 };
-
-        qreal _x_start_position { -1 };
-        qreal _y_start_position { -1 };
-
-        qreal y_position { -1 };
-        qreal x_position { -1 };
-
-        int16_t direction_sign { -1 };
-
-        qreal margin { 5 };
     };
 }
 #endif // NOTIFICATION_GUI_PLUGIN_H

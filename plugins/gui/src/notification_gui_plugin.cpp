@@ -55,54 +55,80 @@ namespace GuiPlugin {
         }
     }
 
-    void NotificationGuiPlugin::onRowsInserted(const QModelIndex &parent, int first, int last)
+    QQuickWindow *NotificationGuiPlugin::createWindow(const QString &path)
     {
-        for (int i = first; i <= last; ++i) {
-            QQmlComponent component(
-             &_qmlEngine, QUrl(QStringLiteral("qrc:/qml/qml/Notification/NotificationWindow.qml")));
+        QQmlComponent component(&_qmlEngine, QUrl(path));
+        auto item = createWindow(component);
+        if (!item)
+            qWarning() << "Failed to create window";
+        return item;
+    }
 
-            QObject *object = component.create();
-            if (object) {
-                QQuickWindow *window = qobject_cast<QQuickWindow *>(object);
-                _windowWidth = window->width();
-                if (window) {
-                    window->setProperty(
-                     "title", _notify_model->data(_notify_model->index(i, 0),
-                                                  LogicPlugin::NotificationModel::TitleRole));
+    QQuickWindow *NotificationGuiPlugin::createWindow(QQmlComponent &component)
+    {
+        auto object = createObject(component, nullptr);
+        auto window = qobject_cast<QQuickWindow *>(object);
+        if (!window) {
+            qWarning() << "Failed to create object";
+            delete object;
+            return nullptr;
+        }
+        return window;
+    }
 
-                    window->setProperty(
-                     "message", _notify_model->data(_notify_model->index(i, 0),
-                                                    LogicPlugin::NotificationModel::MessageRole));
+    QObject *NotificationGuiPlugin::createObject(QQmlComponent &component, QObject *parent)
+    {
+        // auto object = component.beginCreate();
+    }
 
-                    window->setProperty(
-                     "type", _notify_model->data(_notify_model->index(i, 0),
-                                                 LogicPlugin::NotificationModel::TypeRole));
+    void NotificationGuiPlugin::onRowsInserted(const QModelIndex &parent, int ix)
+    {
+        qDebug() << "ix " << ix;
 
-                    window->setProperty(
-                     "hexcolor", _notify_model->data(_notify_model->index(i, 0),
-                                                     LogicPlugin::NotificationModel::ColorRole));
+        QQmlComponent component(
+         &_qmlEngine, QUrl(QStringLiteral("qrc:/qml/qml/Notification/NotificationWindow.qml")));
 
-                    x_position = _x_start_position;
-                    if (_notify_windows_list.count()) {
-                        y_position = _notify_windows_list.back()->property("y").toReal();
-                        y_position += direction_sign * margin; // интервал между уведомлениями
-                        qDebug() << "RUNTIME " << y_position;
+        QObject *object = component.create();
+        if (object) {
+            QQuickWindow *window = qobject_cast<QQuickWindow *>(object);
+            _windowWidth = window->width();
+            if (window) {
+                window->setProperty("title",
+                                    _notify_model->data(_notify_model->index(ix, 0),
+                                                        LogicPlugin::NotificationModel::TitleRole));
 
-                    } else {
-                        y_position = _y_start_position; // начальное положение
-                        qDebug() << "RESET " << y_position;
-                    }
+                window->setProperty(
+                 "message", _notify_model->data(_notify_model->index(ix, 0),
+                                                LogicPlugin::NotificationModel::MessageRole));
 
-                    y_position += direction_sign * window->height();
-                    window->setProperty("y", QVariant::fromValue(y_position));
-                    window->setProperty("x", QVariant::fromValue(x_position));
+                window->setProperty("type",
+                                    _notify_model->data(_notify_model->index(ix, 0),
+                                                        LogicPlugin::NotificationModel::TypeRole));
 
-                    connectOnVisibleChanged(window);
-                    window->show();
-                    _notify_windows_list.append(window);
+                window->setProperty("hexcolor",
+                                    _notify_model->data(_notify_model->index(ix, 0),
+                                                        LogicPlugin::NotificationModel::ColorRole));
+
+                x_position = _x_start_position;
+                if (_notify_windows_list.count()) {
+                    y_position = _notify_windows_list.back()->property("y").toReal();
+                    y_position += direction_sign * margin; // интервал между уведомлениями
+                    //                        qDebug() << "RUNTIME " << y_position;
+
                 } else {
-                    delete object;
+                    y_position = _y_start_position; // начальное положение
+                    //                        qDebug() << "RESET " << y_position;
                 }
+
+                y_position += direction_sign * window->height();
+                window->setProperty("y", QVariant::fromValue(y_position));
+                window->setProperty("x", QVariant::fromValue(x_position));
+
+                connectOnVisibleChanged(window);
+                window->show();
+                _notify_windows_list.append(window);
+            } else {
+                delete object;
             }
         }
     }
@@ -137,7 +163,9 @@ namespace GuiPlugin {
 
     void GuiPlugin::NotificationGuiPlugin::connectOnVisibleChanged(QQuickWindow *window)
     {
+        // qDebug() << "Entered";
         QObject::connect(window, &QQuickWindow::visibleChanged, [&, window]() {
+            // qDebug() << "Entered in";
             qreal closedWindowPos = window->property("y").toReal();
             if (direction_sign == 1) {
                 for (int i = _notify_windows_list.size() - 1; i >= 0; --i) {

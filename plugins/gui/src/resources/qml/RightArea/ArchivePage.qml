@@ -67,10 +67,10 @@ Rectangle {
       id: notifyList
       Layout.preferredHeight: archivePage.height - 110
       Layout.preferredWidth: archivePage.width - 50
-      Component.onCompleted: {
-        console.log(archivePage.width)
-        console.log(archivePage.height)
-      }
+      //      Component.onCompleted: {
+      //        console.log(archivePage.width)
+      //        console.log(archivePage.height)
+      //      }
       Layout.leftMargin: 40
       Layout.topMargin: 10
       spacing: 20
@@ -86,6 +86,25 @@ Rectangle {
         id: verticalScrollBar
         active: true
         orientation: Qt.Vertical
+        contentItem: Rectangle {
+          implicitWidth: 6
+          color: "#dddddd"
+          radius: 10
+        }
+        background: Item {
+          Rectangle {
+            anchors {
+              top: parent.top
+              bottom: parent.bottom
+              bottomMargin: 0
+              left: parent.left
+              right: parent.right
+            }
+            radius: 10
+            color: "#dddddd"
+            opacity: 0.5
+          }
+        }
       }
     }
   }

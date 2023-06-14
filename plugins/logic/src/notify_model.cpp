@@ -7,7 +7,7 @@ namespace LogicPlugin {
     {
         logger.openDatabase("QSQLITE", "./notify_db.db");
         logger.createTable();
-        _timerId = startTimer(4000);
+        _timerId = startTimer(1000);
     }
 
     int NotificationModel::rowCount(const QModelIndex &parent) const
@@ -108,7 +108,7 @@ namespace LogicPlugin {
     {
         if (_timerId != event->timerId())
             return;
-        if (count() > 10)
+        if (count() >= 3)
             return;
         std::random_device rand_dev;
         std::mt19937 generator(rand_dev());

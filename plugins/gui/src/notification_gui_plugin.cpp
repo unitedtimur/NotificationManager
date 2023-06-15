@@ -56,7 +56,7 @@ namespace GuiPlugin {
         }
     }
 
-    QQuickWindow *NotificationGuiPlugin::createWindow(const QString &path, int32_t ix)
+    QQuickWindow *NotificationGuiPlugin::createWindow(const QString &path, qint32 ix)
     {
         if (!_qmlEngine) {
             qWarning() << "Failed to create" << path.toUtf8().data()
@@ -69,7 +69,7 @@ namespace GuiPlugin {
         return item;
     }
 
-    QQuickWindow *NotificationGuiPlugin::createWindow(QQmlComponent &component, int32_t ix)
+    QQuickWindow *NotificationGuiPlugin::createWindow(QQmlComponent &component, qint32 ix)
     {
         auto object = createObject(component, nullptr, ix);
         auto window = qobject_cast<QQuickWindow *>(object);
@@ -82,7 +82,7 @@ namespace GuiPlugin {
     }
 
     QObject *
-    NotificationGuiPlugin::createObject(QQmlComponent &component, QObject *parent, int32_t ix)
+    NotificationGuiPlugin::createObject(QQmlComponent &component, QObject *parent, qint32 ix)
     {
         auto object = component.beginCreate(context(parent));
 

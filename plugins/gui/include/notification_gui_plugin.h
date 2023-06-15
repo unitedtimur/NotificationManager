@@ -53,12 +53,12 @@ namespace GuiPlugin {
         void onRowsInserted(const QModelIndex &parent, int ix);
         void connectOnVisibleChanged(QQuickWindow *);
 
-        QQmlApplicationEngine _qmlEngine;
+        Core::AbstractCore &_core = Core::AbstractCore::getInstance();
+        QPointer<QQmlApplicationEngine> _qmlEngine = _core.engine();
         QPointer<LogicPlugin::NotificationLogicPlugin> _logicPlugin { nullptr };
         LogicPlugin::NotificationModel *_notify_model { nullptr };
         LogicPlugin::HistoryModel *_history_model { nullptr };
         QList<QQuickWindow *> _notify_windows_list;
-        Core::AbstractCore &_core = Core::AbstractCore::getInstance();
 
         qreal _screenHeight { -1 };
         qreal _screenWidth { -1 };

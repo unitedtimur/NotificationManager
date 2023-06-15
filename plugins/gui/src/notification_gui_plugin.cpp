@@ -58,7 +58,11 @@ namespace GuiPlugin {
 
     QQuickWindow *NotificationGuiPlugin::createWindow(const QString &path, int32_t ix)
     {
-        QQmlComponent component(&_qmlEngine, QUrl(path));
+        if (!_qmlEngine) {
+            qWarning() << "Failed to create" << path.toUtf8().data()
+                       << "- engine was already destroyed";
+        }
+        QQmlComponent component(_qmlEngine, QUrl(path));
         auto item = createWindow(component, ix);
         if (!item)
             qWarning() << "Failed to create window";
@@ -105,7 +109,7 @@ namespace GuiPlugin {
 
     QQmlContext *NotificationGuiPlugin::context(QObject *object) const
     {
-        return object ? _qmlEngine.contextForObject(object) : _qmlEngine.rootContext();
+        return object ? _qmlEngine->contextForObject(object) : _qmlEngine->rootContext();
     }
 
     void NotificationGuiPlugin::onRowsInserted(const QModelIndex &parent, int ix)
@@ -167,11 +171,11 @@ namespace GuiPlugin {
 
     void NotificationGuiPlugin::invoke()
     {
-        _qmlEngine.rootContext()->setContextProperty("HistoryModel", _history_model);
-        _qmlEngine.rootContext()->setContextProperty("GUI", this);
+        _qmlEngine->rootContext()->setContextProperty("HistoryModel", _history_model);
+        _qmlEngine->rootContext()->setContextProperty("GUI", this);
 
-        _qmlEngine.load(QUrl(QStringLiteral("qrc:/qml/qml/main.qml")));
-        _qmlEngine.addImportPath("qrc:/qml");
+        _qmlEngine->load(QUrl(QStringLiteral("qrc:/qml/qml/main.qml")));
+        _qmlEngine->addImportPath("qrc:/qml");
         calculateLayout();
         setupConnections();
         setDisplayCorner(Position::BOTTOM_RIGHT);

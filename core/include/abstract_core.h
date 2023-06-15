@@ -19,10 +19,10 @@ namespace Core {
         Q_OBJECT
 
     public:
-        static AbstractCore& getInstance()
+        static AbstractCore &getInstance()
         {
-                static AbstractCore core;
-                return core;
+            static AbstractCore core;
+            return core;
         }
 
         /*!
@@ -42,11 +42,11 @@ namespace Core {
         template<typename Interface>
         bool resolve(const QList<QPointer<QObject>> &objects, QPointer<Interface> &iface)
         {
-                for (QPointer<QObject> object : objects)
-                    if (iface = qobject_cast<Interface *>(object); iface)
-                        return true;
+            for (QPointer<QObject> object : objects)
+                if (iface = qobject_cast<Interface *>(object); iface)
+                    return true;
 
-                return false;
+            return false;
         }
 
         template<typename T, typename... R>
@@ -68,7 +68,6 @@ namespace Core {
          * \brief Список плагинов, которые будут загружены из папки plugins
          */
         QList<QPointer<QObject>> _plugins;
-
 
         /*!
          * \brief Указатель на QSettings

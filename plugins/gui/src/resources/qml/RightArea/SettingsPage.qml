@@ -31,8 +31,11 @@ Rectangle {
 
     ListView {
       Layout.alignment: Qt.AlignTop
-      Layout.fillWidth: true
+      Layout.preferredHeight: root.height - 110
+      Layout.preferredWidth: root.width - 50
       Layout.leftMargin: 40
+      clip: true
+      ScrollBar.vertical: CustomScrollBar {}
 
       Text {
         id: notificationAligmentHat
@@ -45,6 +48,7 @@ Rectangle {
           letterSpacing: 1
         }
       }
+
       ColumnLayout {
         anchors.top: notificationAligmentHat.bottom
         anchors.topMargin: 10

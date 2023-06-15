@@ -10,6 +10,7 @@ namespace GuiPlugin {
             setNotifyModel(_logicPlugin->getNotificationModel());
             setHistoryModel(_logicPlugin->getHistoryModel());
             invoke();
+
             return true;
         } else {
             qWarning() << Q_FUNC_INFO << "Plugin dependencies not found";
@@ -27,7 +28,7 @@ namespace GuiPlugin {
         _history_model = model;
     }
 
-    void NotificationGuiPlugin::setDisplayCorner(int position)
+    void NotificationGuiPlugin::setDisplayCorner(int32_t position)
     {
         _notify_windows_list.clear();
 
@@ -55,18 +56,18 @@ namespace GuiPlugin {
         }
     }
 
-    QQuickWindow *NotificationGuiPlugin::createWindow(const QString &path)
+    QQuickWindow *NotificationGuiPlugin::createWindow(const QString &path, int32_t ix)
     {
         QQmlComponent component(&_qmlEngine, QUrl(path));
-        auto item = createWindow(component);
+        auto item = createWindow(component, ix);
         if (!item)
             qWarning() << "Failed to create window";
         return item;
     }
 
-    QQuickWindow *NotificationGuiPlugin::createWindow(QQmlComponent &component)
+    QQuickWindow *NotificationGuiPlugin::createWindow(QQmlComponent &component, int32_t ix)
     {
-        auto object = createObject(component, nullptr);
+        auto object = createObject(component, nullptr, ix);
         auto window = qobject_cast<QQuickWindow *>(object);
         if (!window) {
             qWarning() << "Failed to create object";
@@ -76,67 +77,98 @@ namespace GuiPlugin {
         return window;
     }
 
-    QObject *NotificationGuiPlugin::createObject(QQmlComponent &component, QObject *parent)
+    QObject *
+    NotificationGuiPlugin::createObject(QQmlComponent &component, QObject *parent, int32_t ix)
     {
-        // auto object = component.beginCreate();
+        auto object = component.beginCreate(context(parent));
+
+        if (!object)
+            return nullptr;
+        object->setProperty("title",
+                            _notify_model->data(_notify_model->index(ix, 0),
+                                                LogicPlugin::NotificationModel::TitleRole));
+
+        object->setProperty("message",
+                            _notify_model->data(_notify_model->index(ix, 0),
+                                                LogicPlugin::NotificationModel::MessageRole));
+
+        object->setProperty("type", _notify_model->data(_notify_model->index(ix, 0),
+                                                        LogicPlugin::NotificationModel::TypeRole));
+
+        object->setProperty("hexcolor",
+                            _notify_model->data(_notify_model->index(ix, 0),
+                                                LogicPlugin::NotificationModel::ColorRole));
+
+        component.completeCreate();
+        return object;
+    }
+
+    QQmlContext *NotificationGuiPlugin::context(QObject *object) const
+    {
+        return object ? _qmlEngine.contextForObject(object) : _qmlEngine.rootContext();
     }
 
     void NotificationGuiPlugin::onRowsInserted(const QModelIndex &parent, int ix)
     {
         qDebug() << "ix " << ix;
 
-        QQmlComponent component(
-         &_qmlEngine, QUrl(QStringLiteral("qrc:/qml/qml/Notification/NotificationWindow.qml")));
+        QQuickWindow *window = createWindow("qrc:/qml/qml/Notification/NotificationWindow.qml", ix);
+        //        QQmlComponent component(
+        //         &_qmlEngine,
+        //         QUrl(QStringLiteral("qrc:/qml/qml/Notification/NotificationWindow.qml")));
 
-        QObject *object = component.create();
-        if (object) {
-            QQuickWindow *window = qobject_cast<QQuickWindow *>(object);
-            _windowWidth = window->width();
-            if (window) {
-                window->setProperty("title",
-                                    _notify_model->data(_notify_model->index(ix, 0),
-                                                        LogicPlugin::NotificationModel::TitleRole));
+        //        QObject *object = component.create();
+        //        if (object) {
+        //            QQuickWindow *window = qobject_cast<QQuickWindow *>(object);
+        //            _windowWidth = window->width();
+        //            if (window) {
+        //                window->setProperty("title",
+        //                                    _notify_model->data(_notify_model->index(ix, 0),
+        //                                                        LogicPlugin::NotificationModel::TitleRole));
 
-                window->setProperty(
-                 "message", _notify_model->data(_notify_model->index(ix, 0),
-                                                LogicPlugin::NotificationModel::MessageRole));
+        //                window->setProperty(
+        //                 "message", _notify_model->data(_notify_model->index(ix, 0),
+        //                                                LogicPlugin::NotificationModel::MessageRole));
 
-                window->setProperty("type",
-                                    _notify_model->data(_notify_model->index(ix, 0),
-                                                        LogicPlugin::NotificationModel::TypeRole));
+        //                window->setProperty("type",
+        //                                    _notify_model->data(_notify_model->index(ix, 0),
+        //                                                        LogicPlugin::NotificationModel::TypeRole));
 
-                window->setProperty("hexcolor",
-                                    _notify_model->data(_notify_model->index(ix, 0),
-                                                        LogicPlugin::NotificationModel::ColorRole));
+        //                window->setProperty("hexcolor",
+        //                                    _notify_model->data(_notify_model->index(ix, 0),
+        //                                                        LogicPlugin::NotificationModel::ColorRole));
 
-                x_position = _x_start_position;
-                if (_notify_windows_list.count()) {
-                    y_position = _notify_windows_list.back()->property("y").toReal();
-                    y_position += direction_sign * margin; // интервал между уведомлениями
-                    //                        qDebug() << "RUNTIME " << y_position;
+        x_position = _x_start_position;
+        if (_notify_windows_list.count()) {
+            y_position = _notify_windows_list.back()->property("y").toReal();
+            y_position += direction_sign * margin; // интервал между уведомлениями
+            //                        qDebug() << "RUNTIME " << y_position;
 
-                } else {
-                    y_position = _y_start_position; // начальное положение
-                    //                        qDebug() << "RESET " << y_position;
-                }
-
-                y_position += direction_sign * window->height();
-                window->setProperty("y", QVariant::fromValue(y_position));
-                window->setProperty("x", QVariant::fromValue(x_position));
-
-                connectOnVisibleChanged(window);
-                window->show();
-                _notify_windows_list.append(window);
-            } else {
-                delete object;
-            }
+        } else {
+            y_position = _y_start_position; // начальное положение
+            //                        qDebug() << "RESET " << y_position;
         }
+
+        y_position += direction_sign * window->height();
+        window->setProperty("y", QVariant::fromValue(y_position));
+        window->setProperty("x", QVariant::fromValue(x_position));
+        //_qmlEngine.rootContext()->setProperty("ABCWINDOW", QVariant::fromValue(*window));
+        connectOnVisibleChanged(window);
+        window->show();
+        _notify_windows_list.append(window);
+        //    }
+        //    else
+        //    {
+        //        delete object;
+        //    }
+        //}
     }
 
     void NotificationGuiPlugin::invoke()
     {
         _qmlEngine.rootContext()->setContextProperty("HistoryModel", _history_model);
         _qmlEngine.rootContext()->setContextProperty("GUI", this);
+
         _qmlEngine.load(QUrl(QStringLiteral("qrc:/qml/qml/main.qml")));
         _qmlEngine.addImportPath("qrc:/qml");
         calculateLayout();

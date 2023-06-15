@@ -108,7 +108,7 @@ namespace LogicPlugin {
     {
         if (_timerId != event->timerId())
             return;
-        if (count() >= 3)
+        if (count() >= 10)
             return;
         std::random_device rand_dev;
         std::mt19937 generator(rand_dev());

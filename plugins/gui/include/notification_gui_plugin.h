@@ -41,10 +41,11 @@ namespace GuiPlugin {
         bool initialize(const QList<QPointer<QObject>> &dependencies) override;
         void setNotifyModel(LogicPlugin::NotificationModel *);
         void setHistoryModel(LogicPlugin::HistoryModel *);
-        Q_INVOKABLE void setDisplayCorner(int position);
-        QQuickWindow *createWindow(const QString &path);
-        QQuickWindow *createWindow(QQmlComponent &component);
-        QObject *createObject(QQmlComponent &component, QObject *parent);
+        Q_INVOKABLE void setDisplayCorner(int32_t position);
+        QQuickWindow *createWindow(const QString &path, int32_t ix);
+        QQuickWindow *createWindow(QQmlComponent &component, int32_t ix);
+        QObject *createObject(QQmlComponent &component, QObject *parent, int32_t ix);
+        QQmlContext *context(QObject *object) const;
 
     private:
         void calculateLayout();

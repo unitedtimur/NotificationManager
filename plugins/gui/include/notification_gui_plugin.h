@@ -44,7 +44,7 @@ namespace GuiPlugin {
         Q_INVOKABLE void setDisplayCorner(int32_t position);
         QQuickWindow *createWindow(const QString &path, int32_t ix);
         QQuickWindow *createWindow(QQmlComponent &component, int32_t ix);
-        QObject *createObject(QQmlComponent &component, QObject *parent, int32_t ix);
+        QObject *createObject(QQmlComponent &component, QObject *parent, int ix);
         QQmlContext *context(QObject *object) const;
 
     private:

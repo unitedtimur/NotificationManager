@@ -152,7 +152,8 @@ namespace GuiPlugin {
         y_position += direction_sign * window->height();
         window->setProperty("y", QVariant::fromValue(y_position));
         window->setProperty("x", QVariant::fromValue(x_position));
-        //_qmlEngine.rootContext()->setProperty("ABCWINDOW", QVariant::fromValue(*window));
+        // _qmlEngine.rootContext()->setProperty("notificationWindow",
+        // QVariant::fromValue(*window));
         connectOnVisibleChanged(window);
         window->show();
         _notify_windows_list.append(window);

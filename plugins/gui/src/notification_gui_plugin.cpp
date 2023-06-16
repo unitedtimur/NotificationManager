@@ -61,6 +61,7 @@ namespace GuiPlugin {
         if (!_qmlEngine) {
             qWarning() << "Failed to create" << path.toUtf8().data()
                        << "- engine was already destroyed";
+            return nullptr;
         }
         QQmlComponent component(_qmlEngine, QUrl(path));
         auto item = createWindow(component, ix);
@@ -72,9 +73,14 @@ namespace GuiPlugin {
     QQuickWindow *NotificationGuiPlugin::createWindow(QQmlComponent &component, qint32 ix)
     {
         auto object = createObject(component, nullptr, ix);
+        if (!object)
+            return nullptr;
         auto window = qobject_cast<QQuickWindow *>(object);
         if (!window) {
-            qWarning() << "Failed to create object";
+            auto file = component.url().toLocalFile();
+            auto errorMessage = QString("Filed to create %1: %2 is not a QQuickWIndow")
+                                 .arg(file, object->metaObject()->className());
+            qWarning() << errorMessage.toUtf8().data();
             delete object;
             return nullptr;
         }
@@ -88,6 +94,7 @@ namespace GuiPlugin {
 
         if (!object)
             return nullptr;
+
         object->setProperty("title",
                             _notify_model->data(_notify_model->index(ix, 0),
                                                 LogicPlugin::NotificationModel::TitleRole));
@@ -104,11 +111,15 @@ namespace GuiPlugin {
                                                 LogicPlugin::NotificationModel::ColorRole));
 
         component.completeCreate();
+
+        object->setParent(parent);
         return object;
     }
 
     QQmlContext *NotificationGuiPlugin::context(QObject *object) const
     {
+        if (!_qmlEngine)
+            return nullptr;
         return object ? _qmlEngine->contextForObject(object) : _qmlEngine->rootContext();
     }
 
@@ -117,30 +128,6 @@ namespace GuiPlugin {
         qDebug() << "ix " << ix;
 
         QQuickWindow *window = createWindow("qrc:/qml/qml/Notification/NotificationWindow.qml", ix);
-        //        QQmlComponent component(
-        //         &_qmlEngine,
-        //         QUrl(QStringLiteral("qrc:/qml/qml/Notification/NotificationWindow.qml")));
-
-        //        QObject *object = component.create();
-        //        if (object) {
-        //            QQuickWindow *window = qobject_cast<QQuickWindow *>(object);
-        //            _windowWidth = window->width();
-        //            if (window) {
-        //                window->setProperty("title",
-        //                                    _notify_model->data(_notify_model->index(ix, 0),
-        //                                                        LogicPlugin::NotificationModel::TitleRole));
-
-        //                window->setProperty(
-        //                 "message", _notify_model->data(_notify_model->index(ix, 0),
-        //                                                LogicPlugin::NotificationModel::MessageRole));
-
-        //                window->setProperty("type",
-        //                                    _notify_model->data(_notify_model->index(ix, 0),
-        //                                                        LogicPlugin::NotificationModel::TypeRole));
-
-        //                window->setProperty("hexcolor",
-        //                                    _notify_model->data(_notify_model->index(ix, 0),
-        //                                                        LogicPlugin::NotificationModel::ColorRole));
 
         x_position = _x_start_position;
         if (_notify_windows_list.count()) {
@@ -161,12 +148,6 @@ namespace GuiPlugin {
         connectOnVisibleChanged(window);
         window->show();
         _notify_windows_list.append(window);
-        //    }
-        //    else
-        //    {
-        //        delete object;
-        //    }
-        //}
     }
 
     void NotificationGuiPlugin::invoke()

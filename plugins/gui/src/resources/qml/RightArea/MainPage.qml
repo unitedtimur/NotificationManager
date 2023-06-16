@@ -4,6 +4,9 @@ Rectangle {
   id: mainPage
   color: "transparent"
 
+  property var _data
+  property QtObject myModel
+
   Text {
     id: header
     text: "Добро пожаловать"
